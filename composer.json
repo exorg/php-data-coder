@@ -1,0 +1,35 @@
+{
+    "name": "exorg/datafiles-parser",
+    "description": "Expansible Universal Data and Data Files Parser.",
+    "type": "library",
+    "keywords": [
+        "exorg",
+        "datafiles-parser"
+    ],
+    "license": "MIT",
+    "authors" : [
+        {
+            "name": "Katarzyna Krasińska",
+            "email": "katheroine@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "4.4.*",
+        "squizlabs/php_codesniffer": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Exorg\\DatafilesParser\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Exorg\\DatafilesParser\\": "tests/"
+        }
+    }
+}
+

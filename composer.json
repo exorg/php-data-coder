@@ -19,7 +19,8 @@
     },
     "require-dev": {
         "phpunit/PHPUnit": "4.4.*",
-        "squizlabs/php_codesniffer": "*"
+        "squizlabs/php_codesniffer": "*",
+        "escapestudios/symfony2-coding-standard": "~2.0"
     },
     "autoload": {
         "psr-4": {
@@ -32,4 +33,3 @@
         }
     }
 }
-

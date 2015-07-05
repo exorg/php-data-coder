@@ -1,0 +1,64 @@
+<?php
+
+/*
+ * This file is part of the DatafilesParser package.
+ *
+ * (c) Katarzyna Krasińska <katheroine@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Exorg\DatafilesParser;
+
+/**
+ * CheckingDataParsingResultTrait.
+ * Expansible Universal Data and Data Files Parser.
+ * Provide parsing strategies for basic format of data files
+ * with possibility to extending for another formats.
+ *
+ * @package DatafilesParser
+ * @author Katarzyna Krasińska <katheroine@gmail.com>
+ * @copyright Copyright (c) 2015 Katarzyna Krasińska
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @link https://github.com/ExOrg/php-datafiles-parser
+ */
+trait CheckingDataParsingResultTrait
+{
+/**
+     * Provide correct result of the parsing.
+     *
+     * @return array
+     */
+    public function provideExpectedResultOfParseData()
+    {
+        $expectedResult = array (
+            "firstName" => "John",
+            "lastName" => "Smith",
+            "isAlive" => true,
+            "age" => 25,
+            "height_cm" => 167.6,
+            "address" => array (
+                "streetAddress" => "21 2nd Street",
+                "city" => "New York",
+                "state" => "NY",
+                "postalCode" => "10021-3100",
+            ),
+            "phoneNumbers" => array (
+                array (
+                    "type" => "home",
+                    "number" => "212 555-1234",
+                ),
+                array (
+                    "type" => "office",
+                    "number" => "646 555-4567",
+                ),
+            ),
+            "children" => array (
+            ),
+            "spouse" => null,
+        );
+
+        return $expectedResult;
+    }
+}

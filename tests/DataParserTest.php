@@ -21,7 +21,7 @@ namespace Exorg\DatafilesParser;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-datafiles-parser
  */
-class DataParserTest extends \PHPUnit_Framework_TestCase
+class DataParserTest extends AbstractDataParsingTest
 {
     /**
      * Relative path to the fixture of parsing data file.
@@ -107,6 +107,17 @@ class DataParserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Provide relative path
+     * of the data file used for parsing strategy test.
+     *
+     * @return string
+     */
+    protected function provideFixtureFilePath()
+    {
+        return self::FIXTURE_FILE;
+    }
+
+    /**
      * Initialise data parser fixture.
      */
     private function initialiseDataParser()
@@ -146,63 +157,5 @@ class DataParserTest extends \PHPUnit_Framework_TestCase
     private function setUpDataParserWithStrategy()
     {
         $this->dataParser->setDataParsingStrategy($this->dataParsingStrategyMock);
-    }
-
-    /**
-     * Provide expected result of testing parseData method.
-     */
-    private function provideExpectedResultOfParseData()
-    {
-        $expectedResult = array('result' => 'success');
-
-        return $expectedResult;
-    }
-
-    /**
-     * Provide data for the parsing process.
-     *
-     * @return array()
-     */
-    private function provideParsedData()
-    {
-        $this->turnOffErrors();
-
-        $dataFileContent = $this->readDataContent();
-        $dataReadCorrectly = ($dataFileContent !== false);
-
-        if (! $dataReadCorrectly) {
-            $this->fail("Data file cannot be read.");
-        }
-
-        return $dataFileContent;
-    }
-
-    /**
-     * Read content of the fixture data file
-     * destined for parsing.
-     *
-     * @return string
-     */
-    private function readDataContent()
-    {
-        $dataFilePath = (__DIR__)
-            . DIRECTORY_SEPARATOR
-            . self::FIXTURE_FILE;
-
-        $dataFileContent = file_get_contents($dataFilePath);
-
-        return $dataFileContent;
-    }
-
-    /**
-     * Turn off errors reporting.
-     */
-    private function turnOffErrors()
-    {
-        $emptyFunction = function () {};
-
-        set_error_handler($emptyFunction);
-
-        error_reporting();
     }
 }

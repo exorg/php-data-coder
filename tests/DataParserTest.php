@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the DatafilesParser package.
+ * This file is part of the DataCoder package.
  *
  * (c) Katarzyna Krasińska <katheroine@gmail.com>
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DatafilesParser;
+namespace Exorg\DataCoder;
 
 /**
  * DataParserTest.
  * PHPUnit test class for DataParser class.
  *
- * @package DatafilesParser
+ * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
  * @copyright Copyright (c) 2015 Katarzyna Krasińska
  * @license http://opensource.org/licenses/MIT MIT License
- * @link https://github.com/ExOrg/php-datafiles-parser
+ * @link https://github.com/ExOrg/php-data-coder
  */
 class DataParserTest extends AbstractDataParsingTest
 {
@@ -51,7 +51,7 @@ class DataParserTest extends AbstractDataParsingTest
     {
         $dataParser = new dataParser();
 
-        $this->assertInstanceOf('Exorg\DatafilesParser\DataParser', $dataParser);
+        $this->assertInstanceOf('Exorg\DataCoder\DataParser', $dataParser);
     }
 
     /**
@@ -74,7 +74,7 @@ class DataParserTest extends AbstractDataParsingTest
      */
     public function testSetDataParsingStrategyAcceptsCorrectArgument()
     {
-        $dataParsingStrategyMock = $this->getMockBuilder('Exorg\DatafilesParser\DataParsingStrategyInterface')
+        $dataParsingStrategyMock = $this->getMockBuilder('Exorg\DataCoder\DataParsingStrategyInterface')
             ->getMock();
 
         $this->dataParser->setDataParsingStrategy($dataParsingStrategyMock);
@@ -130,7 +130,7 @@ class DataParserTest extends AbstractDataParsingTest
      */
     private function initialiseDataParsingStrategyMock()
     {
-        $this->dataParsingStrategyMock = $this->getMockBuilder('Exorg\DatafilesParser\DataParsingStrategyInterface')
+        $this->dataParsingStrategyMock = $this->getMockBuilder('Exorg\DataCoder\DataParsingStrategyInterface')
             ->setMethods(array('parseData'))
             ->getMock();
     }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the DatafilesParser package.
+ * This file is part of the DataCoder package.
  *
  * (c) Katarzyna Krasińska <katheroine@gmail.com>
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DatafilesParser;
+namespace Exorg\DataCoder;
 
 /**
  * DataFormatInvalidException.
  * Exception indicating that parsed data has incorrect format.
  *
- * @package DatafilesParser
+ * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
  * @copyright Copyright (c) 2015 Katarzyna Krasińska
  * @license http://opensource.org/licenses/MIT MIT License
- * @link https://github.com/ExOrg/php-datafiles-parser
+ * @link https://github.com/ExOrg/php-data-coder
  */
 class DataFormatInvalidException extends \Exception
 {

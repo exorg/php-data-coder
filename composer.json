@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Exorg\\DatafilesParser\\": "src/"
+            "Exorg\\DataCoder\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Exorg\\DatafilesParser\\": "tests/"
+            "Exorg\\DataCoder\\": "tests/"
         }
     }
 }

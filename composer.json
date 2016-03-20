@@ -1,10 +1,13 @@
 {
-    "name": "exorg/datafiles-parser",
-    "description": "Expansible Universal Data and Data Files Parser.",
+    "name": "exorg/data-coder",
+    "description": "Expansible Universal Data and Data Files Decoder/Encoder.",
     "type": "library",
     "keywords": [
         "exorg",
-        "datafiles-parser"
+        "php-data-coder",
+        "data-coder",
+        "decoder",
+        "encoder"
     ],
     "license": "MIT",
     "authors" : [

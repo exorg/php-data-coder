@@ -12,7 +12,7 @@
 namespace Exorg\DataCoder;
 
 /**
- * AbstractDataParsingTest.
+ * AbstractDataDecoderTest.
  * PHPUnit abstract test class for
  * Datafile Parser classes.
  *
@@ -22,7 +22,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-abstract class AbstractDataParsingTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractDataDecoderTest extends \PHPUnit_Framework_TestCase
 {
     use CheckingDataParsingResultTrait;
 

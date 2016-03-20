@@ -21,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataParserTest extends AbstractDataParsingTest
+class DataParserTest extends AbstractDataDecoderTest
 {
     /**
      * Relative path to the fixture of parsing data file.

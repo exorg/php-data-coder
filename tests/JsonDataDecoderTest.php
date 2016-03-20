@@ -12,7 +12,7 @@
 namespace Exorg\DataCoder;
 
 /**
- * JsonDataParsingStrategyTest.
+ * JsonDataDecoderTest.
  * PHPUnit test class for JsonDataParsingStrategy class.
  *
  * @package DataCoder
@@ -21,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDataParsingStrategyTest extends AbstractDataParsingTest
+class JsonDataDecoderTest extends AbstractDataDecoderTest
 {
     /**
      * Relative path to the fixture of parsing data file.

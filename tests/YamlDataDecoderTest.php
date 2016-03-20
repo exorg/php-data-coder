@@ -12,7 +12,7 @@
 namespace Exorg\DataCoder;
 
 /**
- * YamlDataParsingStrategyTest.
+ * YamlDataDecoderTest.
  * PHPUnit test class for YamlDataParsingStrategy class.
  *
  * @package DataCoder
@@ -21,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDataParsingStrategyTest extends AbstractDataParsingTest
+class YamlDataDecoderTest extends AbstractDataDecoderTest
 {
     /**
      * Relative path to the fixture of parsing data file.

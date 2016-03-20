@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * JsonDataParsingStrategy.
- * Data parsing strategy for JSON format.
+ * JsonDataDecoder.
+ * Data decoder for JSON format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDataParsingStrategy implements DataParsingStrategyInterface
+class JsonDataDecoder implements DataParsingStrategyInterface
 {
     /**
      * Parse given JSON data content to the array.

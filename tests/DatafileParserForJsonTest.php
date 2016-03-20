@@ -24,7 +24,7 @@ namespace Exorg\DataCoder;
  */
 class DatafileParserForJsonTest extends \PHPUnit_Framework_TestCase
 {
-    use CheckingDataParsingResultTrait;
+    use CheckingDataDecodingResultTrait;
 
     /**
      * Relative path to the fixture of parsing data file.
@@ -45,7 +45,7 @@ class DatafileParserForJsonTest extends \PHPUnit_Framework_TestCase
     {
         $filePath = $this->provideFilePath();
 
-        $expectedResult = $this->provideExpectedResultOfParseData();
+        $expectedResult = $this->provideExpectedResultOfDecodedData();
         $actualResult = $this->datafileParser->parseFile($filePath);
 
         $this->assertEquals($expectedResult, $actualResult);

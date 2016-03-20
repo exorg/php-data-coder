@@ -32,7 +32,7 @@ class DatafileContentParser
     /**
      * Parsing strategy full name postfix.
      */
-    const STRATEGY_CLASS_NAME_POSTFIX = "DataParsingStrategy";
+    const STRATEGY_CLASS_NAME_POSTFIX = "DataDecoder";
 
     /**
      * Parsed file format.

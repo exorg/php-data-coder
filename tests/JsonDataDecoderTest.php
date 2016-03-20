@@ -13,7 +13,7 @@ namespace Exorg\DataCoder;
 
 /**
  * JsonDataDecoderTest.
- * PHPUnit test class for JsonDataParsingStrategy class.
+ * PHPUnit test class for JsonDataDecoder class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -24,26 +24,26 @@ namespace Exorg\DataCoder;
 class JsonDataDecoderTest extends AbstractDataDecoderTest
 {
     /**
-     * Relative path to the fixture of parsing data file.
+     * Relative path to the fixture with decoding data.
      */
     const FIXTURE_FILE = 'fixtures/data.json';
 
     /**
      * Instance of tested class.
      *
-     * @var JsonDataParsingStrategy
+     * @var JsonDataDecoder
      */
-    private $dataParsingStrategy;
+    private $jsonDataDecoder;
 
     /**
-     * Test JsonDataParsingStrategy class
+     * Test JsonDataDecoder class
      * has been implemented.
      */
-    public function testJsonDataParsingStrategyClassExists()
+    public function testJsonDataDecoderClassExists()
     {
-        $jsonDataParsingStrategy = new JsonDataParsingStrategy();
+        $jsonDataDecoder = new JsonDataDecoder();
 
-        $this->assertInstanceOf('Exorg\DataCoder\JsonDataParsingStrategy', $jsonDataParsingStrategy);
+        $this->assertInstanceOf('Exorg\DataCoder\JsonDataDecoder', $jsonDataDecoder);
     }
 
     /**
@@ -55,7 +55,7 @@ class JsonDataDecoderTest extends AbstractDataDecoderTest
     {
         $data = '';
 
-        $this->dataParsingStrategy->parseData($data);
+        $this->jsonDataDecoder->parseData($data);
     }
 
     /**
@@ -64,10 +64,10 @@ class JsonDataDecoderTest extends AbstractDataDecoderTest
      */
     public function testParseDataWithCorrectData()
     {
-        $data = $this->provideParsedData();
+        $data = $this->provideDecodedData();
 
-        $expectedResult = self::provideExpectedResultOfParseData();
-        $actualResult = $this->dataParsingStrategy->parseData($data);
+        $expectedResult = self::provideExpectedResultOfDecodedData();
+        $actualResult = $this->jsonDataDecoder->parseData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -78,12 +78,12 @@ class JsonDataDecoderTest extends AbstractDataDecoderTest
      */
     protected function setUp()
     {
-        $this->initialiseDataParsingStrategy();
+        $this->initialiseDataDecoder();
     }
 
     /**
      * Provide relative path
-     * of the data file used for parsing strategy test.
+     * of the data file used for data decoder test.
      *
      * @return string
      */
@@ -93,10 +93,10 @@ class JsonDataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Initialise data parsing strategy fixture.
+     * Initialise data decoder fixture.
      */
-    private function initialiseDataParsingStrategy()
+    private function initialiseDataDecoder()
     {
-        $this->dataParsingStrategy = new JsonDataParsingStrategy();
+        $this->jsonDataDecoder = new JsonDataDecoder();
     }
 }

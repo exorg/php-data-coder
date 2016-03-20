@@ -13,7 +13,7 @@ namespace Exorg\DataCoder;
 
 /**
  * YamlDataDecoderTest.
- * PHPUnit test class for YamlDataParsingStrategy class.
+ * PHPUnit test class for YamlDataDecoder class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -24,26 +24,26 @@ namespace Exorg\DataCoder;
 class YamlDataDecoderTest extends AbstractDataDecoderTest
 {
     /**
-     * Relative path to the fixture of parsing data file.
+     * Relative path to the fixture with decoding data.
      */
     const FIXTURE_FILE = 'fixtures/data.yaml';
 
     /**
      * Instance of tested class.
      *
-     * @var YamlDataParsingStrategy
+     * @var YamlDataDecoder
      */
-    private $dataParsingStrategy;
+    private $yamlDataDecoder;
 
     /**
-     * Test YamlDataParsingStrategy class
+     * Test YamlDataDecoder class
      * has been implemented.
      */
-    public function testYamlDataParsingStrategyClassExists()
+    public function testYamlDataDecoderClassExists()
     {
-        $yamlDataParsingStrategy = new YamlDataParsingStrategy();
+        $yamlDataDecoder = new YamlDataDecoder();
 
-        $this->assertInstanceOf('Exorg\DataCoder\YamlDataParsingStrategy', $yamlDataParsingStrategy);
+        $this->assertInstanceOf('Exorg\DataCoder\YamlDataDecoder', $yamlDataDecoder);
     }
 
     /**
@@ -55,7 +55,7 @@ class YamlDataDecoderTest extends AbstractDataDecoderTest
     {
         $data = '';
 
-        $this->dataParsingStrategy->parseData($data);
+        $this->yamlDataDecoder->parseData($data);
     }
 
     /**
@@ -64,10 +64,10 @@ class YamlDataDecoderTest extends AbstractDataDecoderTest
      */
     public function testParseDataWithCorrectData()
     {
-        $data = $this->provideParsedData();
+        $data = $this->provideDecodedData();
 
-        $expectedResult = self::provideExpectedResultOfParseData();
-        $actualResult = $this->dataParsingStrategy->parseData($data);
+        $expectedResult = self::provideExpectedResultOfDecodedData();
+        $actualResult = $this->yamlDataDecoder->parseData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -78,12 +78,12 @@ class YamlDataDecoderTest extends AbstractDataDecoderTest
      */
     protected function setUp()
     {
-        $this->initialiseDataParsingStrategy();
+        $this->initialiseDataDecoder();
     }
 
     /**
      * Provide relative path
-     * of the data file used for parsing strategy test.
+     * of the data file used for data decoder test.
      *
      * @return string
      */
@@ -93,10 +93,10 @@ class YamlDataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Initialise data parsing strategy fixture.
+     * Initialise data decoder fixture.
      */
-    private function initialiseDataParsingStrategy()
+    private function initialiseDataDecoder()
     {
-        $this->dataParsingStrategy = new YamlDataParsingStrategy();
+        $this->yamlDataDecoder = new YamlDataDecoder();
     }
 }

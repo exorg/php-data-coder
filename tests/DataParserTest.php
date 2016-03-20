@@ -88,9 +88,9 @@ class DataParserTest extends AbstractDataDecoderTest
         $this->setUpDataParsingStrategyForParseDataTest();
         $this->setUpDataParserWithStrategy();
 
-        $data = $this->provideParsedData();
+        $data = $this->provideDecodedData();
 
-        $expectedResult = $this->provideExpectedResultOfParseData();
+        $expectedResult = $this->provideExpectedResultOfDecodedData();
         $actualResult = $this->dataParser->parseData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -147,7 +147,7 @@ class DataParserTest extends AbstractDataDecoderTest
             ->method('parseData')
             ->with('result -> success')
             ->will(
-                $this->returnValue($this->provideExpectedResultOfParseData())
+                $this->returnValue($this->provideExpectedResultOfDecodedData())
             );
     }
 

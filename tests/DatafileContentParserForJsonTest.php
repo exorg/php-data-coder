@@ -42,9 +42,9 @@ class DatafileContentParserForJsonTest extends AbstractDataDecoderTest
      */
     public function testParseDataForJson()
     {
-        $data = $this->provideParsedData();
+        $data = $this->provideDecodedData();
 
-        $expectedResult = $this->provideExpectedResultOfParseData();
+        $expectedResult = $this->provideExpectedResultOfDecodedData();
         $actualResult = $this->datafileContentParser->parseData($data);
 
         $this->assertEquals($expectedResult, $actualResult);

@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * YamlDataParsingStrategy.
- * Data parsing strategy for YAML format.
+ * YamlDataDecoder.
+ * Data decoder for YAML format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDataParsingStrategy implements DataParsingStrategyInterface
+class YamlDataDecoder implements DataParsingStrategyInterface
 {
     /**
      * Parse given Yaml data content to the array.

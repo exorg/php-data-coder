@@ -24,10 +24,10 @@ namespace Exorg\DataCoder;
 interface DataParsingStrategyInterface
 {
     /**
-     * Parse data.
+     * Decode data.
      *
      * @param array $data
      * @return array
      */
-    public function parseData($data);
+    public function decodeData($data);
 }

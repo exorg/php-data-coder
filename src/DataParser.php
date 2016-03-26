@@ -50,7 +50,7 @@ class DataParser
      */
     public function parseData($data)
     {
-        $parsedData = $this->dataParsingStrategy->parseData($data);
+        $parsedData = $this->dataParsingStrategy->decodeData($data);
 
         return $parsedData;
     }

@@ -21,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataParserTest extends AbstractDataParsingTest
+class DataParserTest extends AbstractDataDecoderTest
 {
     /**
      * Relative path to the fixture of parsing data file.
@@ -81,16 +81,16 @@ class DataParserTest extends AbstractDataParsingTest
     }
 
     /**
-     * Test parse data returns proper result.
+     * Test decode data returns proper result.
      */
-    public function testParseData()
+    public function testDecodeData()
     {
-        $this->setUpDataParsingStrategyForParseDataTest();
+        $this->setUpDataParsingStrategyForDecodeDataTest();
         $this->setUpDataParserWithStrategy();
 
-        $data = $this->provideParsedData();
+        $data = $this->provideDecodedData();
 
-        $expectedResult = $this->provideExpectedResultOfParseData();
+        $expectedResult = $this->provideExpectedResultOfDecodedData();
         $actualResult = $this->dataParser->parseData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -131,23 +131,23 @@ class DataParserTest extends AbstractDataParsingTest
     private function initialiseDataParsingStrategyMock()
     {
         $this->dataParsingStrategyMock = $this->getMockBuilder('Exorg\DataCoder\DataParsingStrategyInterface')
-            ->setMethods(array('parseData'))
+            ->setMethods(array('decodeData'))
             ->getMock();
     }
 
     /**
      * Set up DataParsingStrategy mock
      * and prepare for configure DataParser with it
-     * to test parseData method.
+     * to test decodeData method.
      */
-    private function setUpDataParsingStrategyForParseDataTest()
+    private function setUpDataParsingStrategyForDecodeDataTest()
     {
         $this->dataParsingStrategyMock
             ->expects($this->once())
-            ->method('parseData')
+            ->method('decodeData')
             ->with('result -> success')
             ->will(
-                $this->returnValue($this->provideExpectedResultOfParseData())
+                $this->returnValue($this->provideExpectedResultOfDecodedData())
             );
     }
 

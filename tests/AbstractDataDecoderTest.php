@@ -12,9 +12,9 @@
 namespace Exorg\DataCoder;
 
 /**
- * AbstractDataParsingTest.
+ * AbstractDataDecoderTest.
  * PHPUnit abstract test class for
- * Datafile Parser classes.
+ * Data Decoder classes.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -22,13 +22,13 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-abstract class AbstractDataParsingTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractDataDecoderTest extends \PHPUnit_Framework_TestCase
 {
-    use CheckingDataParsingResultTrait;
+    use CheckingDataDecodingResultTrait;
 
     /**
      * Provide relative path
-     * of the data file used for parsing strategy test.
+     * of the data file used for data decoder test.
      *
      * @return string
      */
@@ -39,7 +39,7 @@ abstract class AbstractDataParsingTest extends \PHPUnit_Framework_TestCase
      *
      * @return array()
      */
-    protected function provideParsedData()
+    protected function provideDecodedData()
     {
         $this->turnOffErrors();
 

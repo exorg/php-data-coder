@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * JsonDataParsingStrategyTest.
- * PHPUnit test class for JsonDataParsingStrategy class.
+ * JsonDataDecoderTest.
+ * PHPUnit test class for JsonDataDecoder class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,53 +21,53 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDataParsingStrategyTest extends AbstractDataParsingTest
+class JsonDataDecoderTest extends AbstractDataDecoderTest
 {
     /**
-     * Relative path to the fixture of parsing data file.
+     * Relative path to the fixture with decoding data.
      */
     const FIXTURE_FILE = 'fixtures/data.json';
 
     /**
      * Instance of tested class.
      *
-     * @var JsonDataParsingStrategy
+     * @var JsonDataDecoder
      */
-    private $dataParsingStrategy;
+    private $jsonDataDecoder;
 
     /**
-     * Test JsonDataParsingStrategy class
+     * Test JsonDataDecoder class
      * has been implemented.
      */
-    public function testJsonDataParsingStrategyClassExists()
+    public function testJsonDataDecoderClassExists()
     {
-        $jsonDataParsingStrategy = new JsonDataParsingStrategy();
+        $jsonDataDecoder = new JsonDataDecoder();
 
-        $this->assertInstanceOf('Exorg\DataCoder\JsonDataParsingStrategy', $jsonDataParsingStrategy);
+        $this->assertInstanceOf('Exorg\DataCoder\JsonDataDecoder', $jsonDataDecoder);
     }
 
     /**
-     * Test parseData method doesn't accept data of incorrect format.
+     * Test decodeData method doesn't accept data of incorrect format.
      *
      * @expectedException \Exorg\DataCoder\DataFormatInvalidException
      */
-    public function testParseDataWithIncorrectData()
+    public function testDecodeDataWithIncorrectData()
     {
         $data = '';
 
-        $this->dataParsingStrategy->parseData($data);
+        $this->jsonDataDecoder->decodeData($data);
     }
 
     /**
-     * Test parseData method accepts data of correct format
+     * Test decodeData method accepts data of correct format
      * and properly parses data.
      */
-    public function testParseDataWithCorrectData()
+    public function testDecodeDataWithCorrectData()
     {
-        $data = $this->provideParsedData();
+        $data = $this->provideDecodedData();
 
-        $expectedResult = self::provideExpectedResultOfParseData();
-        $actualResult = $this->dataParsingStrategy->parseData($data);
+        $expectedResult = self::provideExpectedResultOfDecodedData();
+        $actualResult = $this->jsonDataDecoder->decodeData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -78,12 +78,12 @@ class JsonDataParsingStrategyTest extends AbstractDataParsingTest
      */
     protected function setUp()
     {
-        $this->initialiseDataParsingStrategy();
+        $this->initialiseDataDecoder();
     }
 
     /**
      * Provide relative path
-     * of the data file used for parsing strategy test.
+     * of the data file used for data decoder test.
      *
      * @return string
      */
@@ -93,10 +93,10 @@ class JsonDataParsingStrategyTest extends AbstractDataParsingTest
     }
 
     /**
-     * Initialise data parsing strategy fixture.
+     * Initialise data decoder fixture.
      */
-    private function initialiseDataParsingStrategy()
+    private function initialiseDataDecoder()
     {
-        $this->dataParsingStrategy = new JsonDataParsingStrategy();
+        $this->jsonDataDecoder = new JsonDataDecoder();
     }
 }

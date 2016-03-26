@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * YamlDataParsingStrategy.
- * Data parsing strategy for YAML format.
+ * JsonDataDecoder.
+ * Data decoder for JSON format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,42 +21,28 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDataParsingStrategy implements DataParsingStrategyInterface
+class JsonDataDecoder implements DataParsingStrategyInterface
 {
     /**
-     * Parse given Yaml data content to the array.
+     * Decode given JSON data to PHP array.
      *
      * @param string $data
      * @return array
      * @throws DataFormatInvalidException
      */
-    public function parseData($data)
+    public function decodeData($data)
     {
-        $this->turnOffErrors();
+        $parsedData = json_decode($data, true);
 
-        $parsedData = yaml_parse($data);
-
-        $parsingSuccessful = ($parsedData !== false);
+        $parsingSuccessful = !(is_null($parsedData));
 
         if ($parsingSuccessful) {
             return $parsedData;
         } else {
-            $message = 'Invalid YAML data format.';
+            $message = 'Invalid JSON data format.';
             $exception = new DataFormatInvalidException($message);
 
             throw $exception;
         }
-    }
-
-    /**
-     * Turn off errors reporting.
-     */
-    private function turnOffErrors()
-    {
-        $emptyFunction = function () {};
-
-        set_error_handler($emptyFunction);
-
-        error_reporting();
     }
 }

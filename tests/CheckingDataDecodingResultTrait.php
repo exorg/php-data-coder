@@ -12,10 +12,7 @@
 namespace Exorg\DataCoder;
 
 /**
- * CheckingDataParsingResultTrait.
- * Expansible Universal Data and Data Files Parser.
- * Provide parsing strategies for basic format of data files
- * with possibility to extending for another formats.
+ * CheckingDataDecodingResultTrait.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -23,14 +20,14 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-trait CheckingDataParsingResultTrait
+trait CheckingDataDecodingResultTrait
 {
-/**
+    /**
      * Provide correct result of the parsing.
      *
      * @return array
      */
-    public function provideExpectedResultOfParseData()
+    public function provideExpectedResultOfDecodedData()
     {
         $expectedResult = array (
             "firstName" => "John",

@@ -22,7 +22,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DatafileContentParserForYamlTest extends AbstractDataParsingTest
+class DatafileContentParserForYamlTest extends AbstractDataDecoderTest
 {
     /**
      * Relative path to the fixture of parsing data file.
@@ -42,9 +42,9 @@ class DatafileContentParserForYamlTest extends AbstractDataParsingTest
      */
     public function testParseDataForYaml()
     {
-        $data = $this->provideParsedData();
+        $data = $this->provideDecodedData();
 
-        $expectedResult = $this->provideExpectedResultOfParseData();
+        $expectedResult = $this->provideExpectedResultOfDecodedData();
         $actualResult = $this->datafileContentParser->parseData($data);
 
         $this->assertEquals($expectedResult, $actualResult);

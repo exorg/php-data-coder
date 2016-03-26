@@ -24,13 +24,13 @@ namespace Exorg\DataCoder;
 class JsonDataDecoder implements DataParsingStrategyInterface
 {
     /**
-     * Parse given JSON data content to the array.
+     * Decode given JSON data to PHP array.
      *
      * @param string $data
      * @return array
      * @throws DataFormatInvalidException
      */
-    public function parseData($data)
+    public function decodeData($data)
     {
         $parsedData = json_decode($data, true);
 

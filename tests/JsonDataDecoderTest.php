@@ -47,27 +47,27 @@ class JsonDataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Test parseData method doesn't accept data of incorrect format.
+     * Test decodeData method doesn't accept data of incorrect format.
      *
      * @expectedException \Exorg\DataCoder\DataFormatInvalidException
      */
-    public function testParseDataWithIncorrectData()
+    public function testDecodeDataWithIncorrectData()
     {
         $data = '';
 
-        $this->jsonDataDecoder->parseData($data);
+        $this->jsonDataDecoder->decodeData($data);
     }
 
     /**
-     * Test parseData method accepts data of correct format
+     * Test decodeData method accepts data of correct format
      * and properly parses data.
      */
-    public function testParseDataWithCorrectData()
+    public function testDecodeDataWithCorrectData()
     {
         $data = $this->provideDecodedData();
 
         $expectedResult = self::provideExpectedResultOfDecodedData();
-        $actualResult = $this->jsonDataDecoder->parseData($data);
+        $actualResult = $this->jsonDataDecoder->decodeData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
     }

@@ -47,27 +47,27 @@ class YamlDataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Test parseData method doesn't accept data of incorrect format.
+     * Test decodeData method doesn't accept data of incorrect format.
      *
      * @expectedException \Exorg\DataCoder\DataFormatInvalidException
      */
-    public function testParseDataWithIncorrectData()
+    public function testDecodeDataWithIncorrectData()
     {
         $data = '';
 
-        $this->yamlDataDecoder->parseData($data);
+        $this->yamlDataDecoder->decodeData($data);
     }
 
     /**
-     * Test parseData method accepts data of correct format
+     * Test decodeData method accepts data of correct format
      * and properly parses data.
      */
-    public function testParseDataWithCorrectData()
+    public function testDecodeDataWithCorrectData()
     {
         $data = $this->provideDecodedData();
 
         $expectedResult = self::provideExpectedResultOfDecodedData();
-        $actualResult = $this->yamlDataDecoder->parseData($data);
+        $actualResult = $this->yamlDataDecoder->decodeData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
     }

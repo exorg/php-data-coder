@@ -24,13 +24,13 @@ namespace Exorg\DataCoder;
 class YamlDataDecoder implements DataParsingStrategyInterface
 {
     /**
-     * Parse given Yaml data content to the array.
+     * Decode given Yaml data to PHP array.
      *
      * @param string $data
      * @return array
      * @throws DataFormatInvalidException
      */
-    public function parseData($data)
+    public function decodeData($data)
     {
         $this->turnOffErrors();
 

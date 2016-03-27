@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * DataParsingStrategyInterface.
- * Defines interface of particular data parsing strategy.
+ * DataDecodingStrategyInterface.
+ * Defines interface of particular data decoding strategy.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-interface DataParsingStrategyInterface
+interface DataDecodingStrategyInterface
 {
     /**
      * Decode data.

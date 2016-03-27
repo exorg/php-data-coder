@@ -21,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDataDecoder implements DataParsingStrategyInterface
+class YamlDataDecoder implements DataDecodingStrategyInterface
 {
     /**
      * Decode given Yaml data to PHP array.

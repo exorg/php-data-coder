@@ -14,7 +14,7 @@ namespace Exorg\DataCoder;
 /**
  * DataDecoder.
  * Expansible Universal Data Decoder.
- * Provide parsing strategies for basic format of data files
+ * Provide decoding strategies for basic format of data files
  * with possibility to extending for another formats.
  *
  * @package DataCoder
@@ -26,32 +26,32 @@ namespace Exorg\DataCoder;
 class DataDecoder
 {
     /**
-     * Data parsing strategy.
+     * Data decoding strategy.
      *
-     * @var DataParsingStrategyInterface
+     * @var DataDecodingStrategyInterface
      */
-    private $dataParsingStrategy;
+    private $dataDecodingStrategy;
 
     /**
-     * Set data parsing strategy.
+     * Set data decoding strategy.
      *
-     * @param DataParsingStrategyInterface $dataParsingStrategy
+     * @param DataDecodingStrategyInterface $dataDecodingStrategy
      */
-    public function setDataParsingStrategy(DataParsingStrategyInterface $dataParsingStrategy)
+    public function setDataDecodingStrategy(DataDecodingStrategyInterface $dataDecodingStrategy)
     {
-        $this->dataParsingStrategy = $dataParsingStrategy;
+        $this->dataDecodingStrategy = $dataDecodingStrategy;
     }
 
     /**
-     * Parse data.
+     * Decode data.
      *
      * @param array $data
      * @return array
      */
     public function parseData($data)
     {
-        $parsedData = $this->dataParsingStrategy->decodeData($data);
+        $decodedData = $this->dataDecodingStrategy->decodeData($data);
 
-        return $parsedData;
+        return $decodedData;
     }
 }

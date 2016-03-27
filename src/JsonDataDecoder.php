@@ -21,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDataDecoder implements DataParsingStrategyInterface
+class JsonDataDecoder implements DataDecodingStrategyInterface
 {
     /**
      * Decode given JSON data to PHP array.

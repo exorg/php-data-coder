@@ -24,7 +24,7 @@ namespace Exorg\DataCoder;
 class DataDecoderTest extends AbstractDataDecoderTest
 {
     /**
-     * Relative path to the fixture of parsing data file.
+     * Relative path to the fixture of decoded data file.
      */
     const FIXTURE_FILE = 'fixtures/data';
 
@@ -36,12 +36,12 @@ class DataDecoderTest extends AbstractDataDecoderTest
     private $dataDecoder;
 
     /**
-     * Data parsing strategy mock.
-     * Mocked DataParsingStrategyInterface.
+     * Data decoding strategy mock.
+     * Mocked DataDecodingStrategyInterface.
      *
      * @var mixed
      */
-    private $dataParsingStrategyMock;
+    private $dataDecodingStrategyMock;
 
     /**
      * Test Exorg\DataCoder\DataDecoder class
@@ -55,37 +55,37 @@ class DataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Test setDataParsingStrategy method
+     * Test setDataDecodingStrategy method
      * does't accept argument of incorrect type.
      *
      * @expectedException PHPUnit_Framework_Error
      */
-    public function testSetDataParsingStrategyDoesNotAcceptIncorrectArgument()
+    public function testSetDataDecodingStrategyDoesNotAcceptIncorrectArgument()
     {
         $stdClassMock = $this->getMockBuilder('stdClass')
             ->getMock();
 
-        $this->dataDecoder->setDataParsingStrategy($stdClassMock);
+        $this->dataDecoder->setDataDecodingStrategy($stdClassMock);
     }
 
     /**
-     * Test setDataParsingStrategy method
-     * accepts argument of Exorg\DataCoder\DataParsingStrategyInterface interface.
+     * Test setDataDecodingStrategy method
+     * accepts argument of Exorg\DataCoder\DataDecodingStrategyInterface interface.
      */
-    public function testSetDataParsingStrategyAcceptsCorrectArgument()
+    public function testSetDataDecodingStrategyAcceptsCorrectArgument()
     {
-        $dataParsingStrategyMock = $this->getMockBuilder('Exorg\DataCoder\DataParsingStrategyInterface')
+        $dataParsingStrategyMock = $this->getMockBuilder('Exorg\DataCoder\DataDecodingStrategyInterface')
             ->getMock();
 
-        $this->dataDecoder->setDataParsingStrategy($dataParsingStrategyMock);
+        $this->dataDecoder->setDataDecodingStrategy($dataParsingStrategyMock);
     }
 
     /**
-     * Test decode data returns proper result.
+     * Test parse data returns proper result.
      */
-    public function testDecodeData()
+    public function testParseData()
     {
-        $this->setUpDataParsingStrategyForDecodeDataTest();
+        $this->setUpDataDecodingStrategyForDecodeDataTest();
         $this->setUpDataDecoderWithStrategy();
 
         $data = $this->provideDecodedData();
@@ -103,12 +103,12 @@ class DataDecoderTest extends AbstractDataDecoderTest
     protected function setUp()
     {
         $this->initialiseDataDecoder();
-        $this->initialiseDataParsingStrategyMock();
+        $this->initialiseDataDecodingStrategyMock();
     }
 
     /**
      * Provide relative path
-     * of the data file used for parsing strategy test.
+     * of the data file used for decoding strategy test.
      *
      * @return string
      */
@@ -126,23 +126,23 @@ class DataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Initialise data parsing strategy mock.
+     * Initialise data decoding strategy mock.
      */
-    private function initialiseDataParsingStrategyMock()
+    private function initialiseDataDecodingStrategyMock()
     {
-        $this->dataParsingStrategyMock = $this->getMockBuilder('Exorg\DataCoder\DataParsingStrategyInterface')
+        $this->dataDecodingStrategyMock = $this->getMockBuilder('Exorg\DataCoder\DataDecodingStrategyInterface')
             ->setMethods(array('decodeData'))
             ->getMock();
     }
 
     /**
-     * Set up DataParsingStrategy mock
+     * Set up DataDecodingStrategy mock
      * and prepare for configure DataDecoder with it
      * to test decodeData method.
      */
-    private function setUpDataParsingStrategyForDecodeDataTest()
+    private function setUpDataDecodingStrategyForDecodeDataTest()
     {
-        $this->dataParsingStrategyMock
+        $this->dataDecodingStrategyMock
             ->expects($this->once())
             ->method('decodeData')
             ->with('result -> success')
@@ -152,10 +152,10 @@ class DataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Set up DataDecoder with DataParsingStrategy mock.
+     * Set up DataDecoder with DataDecodingStrategy mock.
      */
     private function setUpDataDecoderWithStrategy()
     {
-        $this->dataDecoder->setDataParsingStrategy($this->dataParsingStrategyMock);
+        $this->dataDecoder->setDataDecodingStrategy($this->dataDecodingStrategyMock);
     }
 }

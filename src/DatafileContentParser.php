@@ -59,40 +59,40 @@ class DatafileContentParser
      */
     public function parseData($data)
     {
-        $parsingStrategy = $this->buildParsingStrategy();
-        $result = $this->parseDataWithParsingStrategy($data, $parsingStrategy);
+        $decodingStrategy = $this->buildDecodingStrategy();
+        $result = $this->parseDataWithDecodingStrategy($data, $decodingStrategy);
 
         return $result;
     }
 
     /**
-     * Build parsing strategy.
+     * Build decoding strategy.
      *
-     * @return DataParsingStrategy
+     * @return DataDecodingStrategyInterface
      */
-    private function buildParsingStrategy()
+    private function buildDecodingStrategy()
     {
-        $parsingStrategyClass = __NAMESPACE__
+        $decodingStrategyClass = __NAMESPACE__
             . self::NAMESPACE_SEPARATOR
             . ucfirst(strtolower($this->fileFormat))
             . self::STRATEGY_CLASS_NAME_POSTFIX;
 
-        $parsingStrategy = new $parsingStrategyClass();
+        $decodingStrategy = new $decodingStrategyClass();
 
-        return $parsingStrategy;
+        return $decodingStrategy;
     }
 
     /**
-     * Parse file content with chosen parsing strategy.
+     * Parse file content with chosen decoding strategy.
      *
      * @param string $data
-     * @param DataParsingStrategy $parsingStrategy
+     * @param DataDecodingStrategy $decodingStrategy
      * @return array
      */
-    private function parseDataWithParsingStrategy($data, $parsingStrategy)
+    private function parseDataWithDecodingStrategy($data, $decodingStrategy)
     {
         $dataDecoder = new DataDecoder();
-        $dataDecoder->setDataDecodingStrategy($parsingStrategy);
+        $dataDecoder->setDataDecodingStrategy($decodingStrategy);
         $result = $dataDecoder->decodeData($data);
 
         return $result;

@@ -18,7 +18,8 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9"
+        "php": ">=5.5.9",
+        "garoevans/php-enum": "*"
     },
     "require-dev": {
         "phpunit/PHPUnit": "4.4.*",

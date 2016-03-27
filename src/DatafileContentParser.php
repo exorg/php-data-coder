@@ -91,9 +91,9 @@ class DatafileContentParser
      */
     private function parseDataWithParsingStrategy($data, $parsingStrategy)
     {
-        $dataParser = new DataParser();
-        $dataParser->setDataParsingStrategy($parsingStrategy);
-        $result = $dataParser->parseData($data);
+        $dataDecoder = new DataDecoder();
+        $dataDecoder->setDataParsingStrategy($parsingStrategy);
+        $result = $dataDecoder->parseData($data);
 
         return $result;
     }

@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * DatafilesParser.
- * Expansible Universal Data and Data Files Parser.
+ * DataDecoder.
+ * Expansible Universal Data Decoder.
  * Provide parsing strategies for basic format of data files
  * with possibility to extending for another formats.
  *
@@ -23,7 +23,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataParser
+class DataDecoder
 {
     /**
      * Data parsing strategy.

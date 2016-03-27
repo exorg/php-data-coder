@@ -24,7 +24,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DecoderClassNotFoundException
+class DecoderClassNotFoundException extends \Exception
 {
 
 }

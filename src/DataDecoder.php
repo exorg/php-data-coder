@@ -12,9 +12,9 @@
 namespace Exorg\DataCoder;
 
 /**
- * DatafilesParser.
- * Expansible Universal Data and Data Files Parser.
- * Provide parsing strategies for basic format of data files
+ * DataDecoder.
+ * Expansible Universal Data Decoder.
+ * Provide decoding strategies for basic format of data files
  * with possibility to extending for another formats.
  *
  * @package DataCoder
@@ -23,35 +23,35 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataParser
+class DataDecoder
 {
     /**
-     * Data parsing strategy.
+     * Data decoding strategy.
      *
-     * @var DataParsingStrategyInterface
+     * @var DataDecodingStrategyInterface
      */
-    private $dataParsingStrategy;
+    private $dataDecodingStrategy;
 
     /**
-     * Set data parsing strategy.
+     * Set data decoding strategy.
      *
-     * @param DataParsingStrategyInterface $dataParsingStrategy
+     * @param DataDecodingStrategyInterface $dataDecodingStrategy
      */
-    public function setDataParsingStrategy(DataParsingStrategyInterface $dataParsingStrategy)
+    public function setDataDecodingStrategy(DataDecodingStrategyInterface $dataDecodingStrategy)
     {
-        $this->dataParsingStrategy = $dataParsingStrategy;
+        $this->dataDecodingStrategy = $dataDecodingStrategy;
     }
 
     /**
-     * Parse data.
+     * Decode data.
      *
      * @param array $data
      * @return array
      */
-    public function parseData($data)
+    public function decodeData($data)
     {
-        $parsedData = $this->dataParsingStrategy->decodeData($data);
+        $decodedData = $this->dataDecodingStrategy->decodeData($data);
 
-        return $parsedData;
+        return $decodedData;
     }
 }

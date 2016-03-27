@@ -81,9 +81,9 @@ class DataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Test parse data returns proper result.
+     * Test decode data returns proper result.
      */
-    public function testParseData()
+    public function testDecodeData()
     {
         $this->setUpDataDecodingStrategyForDecodeDataTest();
         $this->setUpDataDecoderWithStrategy();
@@ -91,7 +91,7 @@ class DataDecoderTest extends AbstractDataDecoderTest
         $data = $this->provideDecodedData();
 
         $expectedResult = $this->provideExpectedResultOfDecodedData();
-        $actualResult = $this->dataDecoder->parseData($data);
+        $actualResult = $this->dataDecoder->decodeData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
     }

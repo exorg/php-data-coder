@@ -93,7 +93,7 @@ class DatafileContentParser
     {
         $dataDecoder = new DataDecoder();
         $dataDecoder->setDataDecodingStrategy($parsingStrategy);
-        $result = $dataDecoder->parseData($data);
+        $result = $dataDecoder->decodeData($data);
 
         return $result;
     }

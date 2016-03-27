@@ -48,7 +48,7 @@ class DataDecoder
      * @param array $data
      * @return array
      */
-    public function parseData($data)
+    public function decodeData($data)
     {
         $decodedData = $this->dataDecodingStrategy->decodeData($data);
 

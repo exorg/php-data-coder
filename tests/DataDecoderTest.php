@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use Exorg\Decapsulator\ObjectDecapsulator;
+
 /**
  * DataDecoderTest.
  * PHPUnit test class for DataDecoder class.
@@ -36,6 +38,16 @@ class DataDecoderTest extends AbstractDataDecoderTest
     private $dataDecoder;
 
     /**
+     * Wrapped by decapsulator
+     * tested class instance,
+     * with non-public functions and properties
+     * accessible.
+     *
+     * @var ExOrg\Decapsulator\ObjectDecapsulator
+     */
+    private $dataDecoderDecapsulated;
+
+    /**
      * Data decoding strategy mock.
      * Mocked DataDecodingStrategyInterface.
      *
@@ -52,6 +64,35 @@ class DataDecoderTest extends AbstractDataDecoderTest
         $this->assertTrue(
             class_exists('Exorg\DataCoder\DataDecoder')
         );
+    }
+
+    /**
+     * Test if setDataFormat($dataFormat) method
+     * has been defined.
+     */
+    public function testSetDataFormatFunctionExists()
+    {
+        $this->assertTrue(
+            method_exists(
+                $this->dataDecoder,
+                'setDataFormat'
+            )
+        );
+    }
+
+    /**
+     * Test setDataFormat($dataFormat) mthod
+     * sets proper property.
+     */
+    public function testSetDataFormatFunction()
+    {
+        $expectedDataFormat = new DataFormat(DataFormat::YML);
+
+        $this->dataDecoder->setDataFormat($expectedDataFormat);
+
+        $actualDataFormat = $this->dataDecoderDecapsulated->dataFormat;
+
+        $this->assertEquals($expectedDataFormat, $actualDataFormat);
     }
 
     /**
@@ -103,6 +144,7 @@ class DataDecoderTest extends AbstractDataDecoderTest
     protected function setUp()
     {
         $this->initialiseDataDecoder();
+        $this->initialiseDataDecoderDecapsulated();
         $this->initialiseDataDecodingStrategyMock();
     }
 
@@ -123,6 +165,14 @@ class DataDecoderTest extends AbstractDataDecoderTest
     private function initialiseDataDecoder()
     {
         $this->dataDecoder = new DataDecoder();
+    }
+
+    /**
+     * Initialise DataDecoderDecapsulated fixture.
+     */
+    private function initialiseDataDecoderDecapsulated()
+    {
+        $this->dataDecoderDecapsulated = ObjectDecapsulator::buildForObject($this->dataDecoder);
     }
 
     /**

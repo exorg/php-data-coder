@@ -26,11 +26,28 @@ namespace Exorg\DataCoder;
 class DataDecoder
 {
     /**
+     * Decoded data format.
+     *
+     * @var DataFormat
+     */
+    private $dataFormat;
+
+    /**
      * Data decoding strategy.
      *
      * @var DataDecodingStrategyInterface
      */
     private $dataDecodingStrategy;
+
+    /**
+     * Set format of decoded data.
+     *
+     * @param DataFormat $dataFormat
+     */
+    public function setDataFormat(DataFormat $dataFormat)
+    {
+        $this->dataFormat = $dataFormat;
+    }
 
     /**
      * Set data decoding strategy.

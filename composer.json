@@ -24,7 +24,8 @@
     "require-dev": {
         "phpunit/PHPUnit": "4.4.*",
         "squizlabs/php_codesniffer": "*",
-        "escapestudios/symfony2-coding-standard": "~2.0"
+        "escapestudios/symfony2-coding-standard": "~2.0",
+        "exorg/decapsulator": "*"
     },
     "autoload": {
         "psr-4": {

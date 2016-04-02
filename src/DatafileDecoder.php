@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * DatafileParser.
- * Parse data file content
+ * DatafileDecoder.
+ * Decode data file content
  *
  * according to given format.
  *
@@ -23,7 +23,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DatafileParser
+class DatafileDecoder
 {
     /**
      * Parsed file info.

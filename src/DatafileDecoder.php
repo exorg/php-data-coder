@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * DatafileParser.
- * Parse data file content
+ * DatafileDecoder.
+ * Decode data file content
  *
  * according to given format.
  *
@@ -23,7 +23,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DatafileParser
+class DatafileDecoder
 {
     /**
      * Parsed file info.
@@ -33,19 +33,19 @@ class DatafileParser
     protected $fileInfo;
 
     /**
-     * Parse file content according to file type.
+     * Decode file content according to file type.
      *
      * @param string $filePath
      * @return array
      */
-    public function parseFile($filePath)
+    public function decodeFile($filePath)
     {
         $this->setUpFileInfo($filePath);
         $fileFormat = $this->getDataFileFormat();
         $fileData = $this->getDataFileContent();
 
-        $datafileContentParser = new DatafileContentParser($fileFormat);
-        $result = $datafileContentParser->parseData($fileData);
+        $datafileContentDecoder = new DatafileContentDecoder($fileFormat);
+        $result = $datafileContentDecoder->decodeData($fileData);
 
         return $result;
     }

@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * DatafileParserForJsonTest.
- * PHPUnit test class for DatafileParser class
+ * DatafileContentDecoder.
+ * PHPUnit test class for DatafileContentDecoder class
  * for JSON format.
  *
  * @package DataCoder
@@ -22,31 +22,30 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DatafileParserForJsonTest extends \PHPUnit_Framework_TestCase
+class DatafileContentDecoderForJsonTest extends AbstractDataDecoderTest
 {
-    use CheckingDataDecodingResultTrait;
-
     /**
      * Relative path to the fixture of parsing data file.
      */
     const FIXTURE_FILE = 'fixtures/data.json';
 
     /**
-     * File parser object.
+     * Instance of tested class.
      *
-     * @var DatafileParser
+     * @var DatafileContentDecoder
      */
-    private $datafileParser;
+    private $datafileContentDecoder;
 
     /**
-     * Test parseData method properly parses data.
+     * Test decodeData method properly decodes data
+     * of the JSON file content.
      */
-    public function testParseFile()
+    public function testDecodeDataForJson()
     {
-        $filePath = $this->provideFilePath();
+        $data = $this->provideDecodedData();
 
         $expectedResult = $this->provideExpectedResultOfDecodedData();
-        $actualResult = $this->datafileParser->parseFile($filePath);
+        $actualResult = $this->datafileContentDecoder->decodeData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -57,18 +56,17 @@ class DatafileParserForJsonTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->datafileParser = new DatafileParser();
+        $this->datafileContentDecoder = new DatafileContentDecoder('JSON');
     }
 
     /**
-     * Provide JSON file path.
+     * Provide relative path
+     * of the data file used for parsing strategy test.
+     *
+     * @return string
      */
-    protected function provideFilePath()
+    protected function provideFixtureFilePath()
     {
-        $filePath = (__DIR__)
-            . DIRECTORY_SEPARATOR
-            . self::FIXTURE_FILE;
-
-        return $filePath;
+        return self::FIXTURE_FILE;
     }
 }

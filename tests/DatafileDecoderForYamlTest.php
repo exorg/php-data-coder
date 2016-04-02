@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * DatafileContentParserForYamlTest.
- * PHPUnit test class for DatafileContentParser class
+ * DatafileDecoderForYamlTest.
+ * PHPUnit test class for DatafileDecoder class
  * for YAML format.
  *
  * @package DataCoder
@@ -22,30 +22,31 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DatafileContentParserForYamlTest extends AbstractDataDecoderTest
+class DatafileDecoderForYamlTest extends \PHPUnit_Framework_TestCase
 {
+    use CheckingDataDecodingResultTrait;
+
     /**
      * Relative path to the fixture of parsing data file.
      */
     const FIXTURE_FILE = 'fixtures/data.yaml';
 
     /**
-     * Instance of tested class.
+     * File decoder object.
      *
-     * @var DatafileContentParser
+     * @var DatafileDecoder
      */
-    private $datafileContentParser;
+    private $datafileDecoder;
 
     /**
-     * Test parseData method properly parse data
-     * of the YAML file content.
+     * Test decodeFile method properly decodes data file.
      */
-    public function testParseDataForYaml()
+    public function testParseFile()
     {
-        $data = $this->provideDecodedData();
+        $filePath = $this->provideFilePath();
 
         $expectedResult = $this->provideExpectedResultOfDecodedData();
-        $actualResult = $this->datafileContentParser->parseData($data);
+        $actualResult = $this->datafileDecoder->decodeFile($filePath);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -56,17 +57,18 @@ class DatafileContentParserForYamlTest extends AbstractDataDecoderTest
      */
     protected function setUp()
     {
-        $this->datafileContentParser = new DatafileContentParser('YAML');
+        $this->datafileDecoder = new DatafileDecoder();
     }
 
     /**
-     * Provide relative path
-     * of the data file used for parsing strategy test.
-     *
-     * @return string
+     * Provide YAML file path.
      */
-    protected function provideFixtureFilePath()
+    protected function provideFilePath()
     {
-        return self::FIXTURE_FILE;
+        $filePath = (__DIR__)
+            . DIRECTORY_SEPARATOR
+            . self::FIXTURE_FILE;
+
+        return $filePath;
     }
 }

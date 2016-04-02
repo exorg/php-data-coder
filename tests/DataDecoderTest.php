@@ -81,12 +81,12 @@ class DataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Test setDataFormat($dataFormat) mthod
+     * Test setDataFormat($dataFormat) method
      * sets proper property.
      */
     public function testSetDataFormatFunction()
     {
-        $expectedDataFormat = new DataFormat(DataFormat::YML);
+        $expectedDataFormat = 'FIRSTNONEXISTENT';
 
         $this->dataDecoder->setDataFormat($expectedDataFormat);
 
@@ -96,29 +96,44 @@ class DataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Test setDataDecodingStrategy method
-     * does't accept argument of incorrect type.
+     * Test setDataFormat($dataFormat) method
+     * sets proper decoding strategy.
      *
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException Exorg\DataCoder\DataFormatInvalidException
      */
-    public function testSetDataDecodingStrategyDoesNotAcceptIncorrectArgument()
+    public function testSetDataFormatFunctionWithEmptyDataFormat()
     {
-        $stdClassMock = $this->getMockBuilder('stdClass')
-            ->getMock();
+        $dataFormat = '';
 
-        $this->dataDecoder->setDataDecodingStrategy($stdClassMock);
+        $this->dataDecoder->setDataFormat($dataFormat);
     }
 
     /**
-     * Test setDataDecodingStrategy method
-     * accepts argument of Exorg\DataCoder\DataDecodingStrategyInterface interface.
+     * Test setDataFormat($dataFormat) method
+     * sets proper decoding strategy.
+     *
+     * @expectedException Exorg\DataCoder\DataFormatInvalidException
      */
-    public function testSetDataDecodingStrategyAcceptsCorrectArgument()
+    public function testSetDataFormatFunctionWithNullDataFormat()
     {
-        $dataParsingStrategyMock = $this->getMockBuilder('Exorg\DataCoder\DataDecodingStrategyInterface')
-            ->getMock();
+        $dataFormat = null;
 
-        $this->dataDecoder->setDataDecodingStrategy($dataParsingStrategyMock);
+        $this->dataDecoder->setDataFormat($dataFormat);
+    }
+
+    /**
+     * Test setDataFormat($dataFormat) method
+     * sets proper decoding strategy.
+     */
+    public function testSetDataFormatFunctionSetsDecodingStrategy()
+    {
+        $dataFormat = 'FIRSTNONEXISTENT';
+
+        $this->dataDecoder->setDataFormat($dataFormat);
+
+        $dataDecodingStrategy = $this->dataDecoderDecapsulated->dataDecodingStrategy;
+
+        $this->assertInstanceOf('\Exorg\DataCoder\FirstnonexistentDataDecoder', $dataDecodingStrategy);
     }
 
     /**
@@ -206,6 +221,6 @@ class DataDecoderTest extends AbstractDataDecoderTest
      */
     private function setUpDataDecoderWithStrategy()
     {
-        $this->dataDecoder->setDataDecodingStrategy($this->dataDecodingStrategyMock);
+        $this->dataDecoderDecapsulated->dataDecodingStrategy = $this->dataDecodingStrategyMock;
     }
 }

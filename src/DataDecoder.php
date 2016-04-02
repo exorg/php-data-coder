@@ -25,10 +25,12 @@ namespace Exorg\DataCoder;
  */
 class DataDecoder
 {
+    use DecodingDataFormatBasedTrait;
+
     /**
      * Decoded data format.
      *
-     * @var DataFormat
+     * @var string
      */
     private $dataFormat;
 
@@ -42,21 +44,23 @@ class DataDecoder
     /**
      * Set format of decoded data.
      *
-     * @param DataFormat $dataFormat
+     * @param string $dataFormat
      */
-    public function setDataFormat(DataFormat $dataFormat)
+    public function setDataFormat($dataFormat)
     {
+        $this->validateDataFormat($dataFormat);
         $this->dataFormat = $dataFormat;
+        $this->setUpDataDecodingStrategy();
     }
 
     /**
-     * Set data decoding strategy.
+     * Set-up data decoding strategy.
      *
      * @param DataDecodingStrategyInterface $dataDecodingStrategy
      */
-    public function setDataDecodingStrategy(DataDecodingStrategyInterface $dataDecodingStrategy)
+    private function setUpDataDecodingStrategy()
     {
-        $this->dataDecodingStrategy = $dataDecodingStrategy;
+        $this->dataDecodingStrategy = $this->buildDecoderForDataFormat($this->dataFormat);
     }
 
     /**
@@ -70,5 +74,25 @@ class DataDecoder
         $decodedData = $this->dataDecodingStrategy->decodeData($data);
 
         return $decodedData;
+    }
+
+    /**
+     * Validate data format.
+     *
+     * @param unknown $dataFormat
+     * @throws DataFormatInvalidException
+     */
+    public function validateDataFormat($dataFormat)
+    {
+        $dataFormatIsValid = (!is_null($dataFormat))
+            && (!empty($dataFormat));
+
+        if (!$dataFormatIsValid) {
+            throw new DataFormatInvalidException(
+                'Data format '
+                . $dataFormat
+                . ' is invalid'
+            );
+        }
     }
 }

@@ -54,12 +54,12 @@ class DatafileContentDecoder
     }
 
     /**
-     * Parse file content.
+     * Decode file content.
      *
      * @param string $data
      * @return array
      */
-    public function parseData($data)
+    public function decodeData($data)
     {
         $decodingStrategy = $this->buildDecodingStrategy();
         $result = $decodingStrategy->decodeData($data);

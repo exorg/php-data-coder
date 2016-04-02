@@ -39,14 +39,14 @@ class DatafileDecoderForJsonTest extends \PHPUnit_Framework_TestCase
     private $datafileParser;
 
     /**
-     * Test parseData method properly parses data.
+     * Test decodeFile method properly decodes data file.
      */
     public function testParseFile()
     {
         $filePath = $this->provideFilePath();
 
         $expectedResult = $this->provideExpectedResultOfDecodedData();
-        $actualResult = $this->datafileDecoder->parseFile($filePath);
+        $actualResult = $this->datafileDecoder->decodeFile($filePath);
 
         $this->assertEquals($expectedResult, $actualResult);
     }

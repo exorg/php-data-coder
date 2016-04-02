@@ -33,12 +33,12 @@ class DatafileDecoder
     protected $fileInfo;
 
     /**
-     * Parse file content according to file type.
+     * Decode file content according to file type.
      *
      * @param string $filePath
      * @return array
      */
-    public function parseFile($filePath)
+    public function decodeFile($filePath)
     {
         $this->setUpFileInfo($filePath);
         $fileFormat = $this->getDataFileFormat();

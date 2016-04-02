@@ -12,9 +12,9 @@
 namespace Exorg\DataCoder;
 
 /**
- * DatafileContentParserForJsonTest.
- * PHPUnit test class for DatafileContentParser class
- * for JSON format.
+ * DatafileContentDecoderForYamlTest.
+ * PHPUnit test class for DatafileContentDecoder class
+ * for YAML format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -22,30 +22,30 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DatafileContentParserForJsonTest extends AbstractDataDecoderTest
+class DatafileContentDecoderForYamlTest extends AbstractDataDecoderTest
 {
     /**
      * Relative path to the fixture of parsing data file.
      */
-    const FIXTURE_FILE = 'fixtures/data.json';
+    const FIXTURE_FILE = 'fixtures/data.yaml';
 
     /**
      * Instance of tested class.
      *
-     * @var DatafileContentParser
+     * @var DatafileContentDecoder
      */
-    private $datafileContentParser;
+    private $datafileContentDecoder;
 
     /**
      * Test parseData method properly parse data
-     * of the JSON file content.
+     * of the YAML file content.
      */
-    public function testParseDataForJson()
+    public function testParseDataForYaml()
     {
         $data = $this->provideDecodedData();
 
         $expectedResult = $this->provideExpectedResultOfDecodedData();
-        $actualResult = $this->datafileContentParser->parseData($data);
+        $actualResult = $this->datafileContentDecoder->parseData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -56,7 +56,7 @@ class DatafileContentParserForJsonTest extends AbstractDataDecoderTest
      */
     protected function setUp()
     {
-        $this->datafileContentParser = new DatafileContentParser('JSON');
+        $this->datafileContentDecoder = new DatafileContentDecoder('YAML');
     }
 
     /**

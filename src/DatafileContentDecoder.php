@@ -14,8 +14,8 @@ namespace Exorg\DataCoder;
 use Exorg\DataCoder\DataFormat;
 
 /**
- * DatafileContentParser.
- * Parse file content
+ * DatafileContentDecoder.
+ * Decode file content
  * according to given format.
  *
  * @package DataCoder
@@ -24,7 +24,7 @@ use Exorg\DataCoder\DataFormat;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DatafileContentParser
+class DatafileContentDecoder
 {
     /**
      * Namespace separator.

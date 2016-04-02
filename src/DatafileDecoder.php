@@ -44,8 +44,8 @@ class DatafileDecoder
         $fileFormat = $this->getDataFileFormat();
         $fileData = $this->getDataFileContent();
 
-        $datafileContentParser = new DatafileContentParser($fileFormat);
-        $result = $datafileContentParser->parseData($fileData);
+        $datafileContentDecoder = new DatafileContentDecoder($fileFormat);
+        $result = $datafileContentDecoder->parseData($fileData);
 
         return $result;
     }

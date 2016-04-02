@@ -23,7 +23,7 @@ use Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DatafileDecoderTest extends \PHPUnit_Framework_TestCase //AbstractDataDecoderTest
+class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Instance of tested class.
@@ -80,6 +80,32 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase //AbstractDataDeco
         $actualDataFormat = $this->datafileDecoderDecapsulated->dataFormat;
 
         $this->assertEquals($expectedDataFormat, $actualDataFormat);
+    }
+
+    /**
+     * Test setDataFormat($dataFormat) method
+     * sets proper decoding strategy.
+     *
+     * @expectedException Exorg\DataCoder\DataFormatInvalidException
+     */
+    public function testSetDataFormatFunctionWithEmptyDataFormat()
+    {
+        $dataFormat = '';
+
+        $this->datafileDecoder->setDataFormat($dataFormat);
+    }
+
+    /**
+     * Test setDataFormat($dataFormat) method
+     * sets proper decoding strategy.
+     *
+     * @expectedException Exorg\DataCoder\DataFormatInvalidException
+     */
+    public function testSetDataFormatFunctionWithNullDataFormat()
+    {
+        $dataFormat = null;
+
+        $this->datafileDecoder->setDataFormat($dataFormat);
     }
 
     /**

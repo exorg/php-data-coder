@@ -27,9 +27,17 @@ class DatafileDecoderForYamlTest extends \PHPUnit_Framework_TestCase
     use CheckingDataDecodingResultTrait;
 
     /**
-     * Relative path to the fixture of parsing data file.
+     * Relative path to the fixture of decoded datafile
+     * with format extension.
      */
-    const FIXTURE_FILE = 'fixtures/data.yaml';
+    const FIXTURE_EXT_FILE = 'fixtures/data.yaml';
+
+    /**
+     * Relative path to the fixture of decoded datafile
+     * without format extension.
+     */
+    const FIXTURE_NOEXT_FILE = 'fixtures/data-yaml';
+
 
     /**
      * File decoder object.
@@ -43,9 +51,24 @@ class DatafileDecoderForYamlTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseFile()
     {
-        $filePath = $this->provideFilePath();
+        $filePath = $this->provideFileWithExtensionPath();
 
         $expectedResult = $this->provideExpectedResultOfDecodedData();
+        $actualResult = $this->datafileDecoder->decodeFile($filePath);
+
+        $this->assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * Test decodeFile method properly decodes data file
+     * when format has been set.
+     */
+    public function testParseFileWhenFormatIsSet()
+    {
+        $filePath = $this->provideFileWithNoExtensionPath();
+
+        $expectedResult = $this->provideExpectedResultOfDecodedData();
+        $this->datafileDecoder->setDataFormat('YAML');
         $actualResult = $this->datafileDecoder->decodeFile($filePath);
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -61,13 +84,25 @@ class DatafileDecoderForYamlTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Provide YAML file path.
+     * Provide YAML file with format extension path.
      */
-    protected function provideFilePath()
+    protected function provideFileWithExtensionPath()
     {
         $filePath = (__DIR__)
             . DIRECTORY_SEPARATOR
-            . self::FIXTURE_FILE;
+            . self::FIXTURE_EXT_FILE;
+
+        return $filePath;
+    }
+
+    /**
+     * Provide YAML file without format extension path.
+     */
+    protected function provideFileWithNoExtensionPath()
+    {
+        $filePath = (__DIR__)
+            . DIRECTORY_SEPARATOR
+            . self::FIXTURE_NOEXT_FILE;
 
         return $filePath;
     }

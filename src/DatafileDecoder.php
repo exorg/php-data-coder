@@ -46,6 +46,7 @@ class DatafileDecoder
      */
     public function setDataFormat($dataFormat)
     {
+        $this->validateDataFormat($dataFormat);
         $this->dataFormat = $dataFormat;
     }
 
@@ -58,7 +59,7 @@ class DatafileDecoder
     public function decodeFile($filePath)
     {
         $this->setUpFileInfo($filePath);
-        $fileFormat = $this->getDataFileFormat();
+        $fileFormat = $this->establishDataFormat();
         $fileData = $this->getDataFileContent();
 
         $datafileContentDecoder = new DatafileContentDecoder($fileFormat);
@@ -95,14 +96,41 @@ class DatafileDecoder
     }
 
     /**
-     * Extract file format.
+     * Establish the dataFormat
+     * retrieving it from the proper source.
      *
-     * @return string
+     * @retun string
      */
-    private function getDataFileFormat()
+    private function establishDataFormat()
     {
-        $fileFormat = $fileObject = $this->fileInfo->getExtension();
+        $dataFormatIsSetDirectly = isset($this->dataFormat);
 
-        return $fileFormat;
+        if ($dataFormatIsSetDirectly) {
+            $dataFormat = $this->dataFormat;
+        } else {
+            $dataFormat = $this->fileInfo->getExtension();
+        }
+
+        return $dataFormat;
+    }
+
+    /**
+     * Validate data format.
+     *
+     * @param unknown $dataFormat
+     * @throws DataFormatInvalidException
+     */
+    public function validateDataFormat($dataFormat)
+    {
+        $dataFormatIsValid = (!is_null($dataFormat))
+            && (!empty($dataFormat));
+
+        if (!$dataFormatIsValid) {
+            throw new DataFormatInvalidException(
+                'Data format '
+                . $dataFormat
+                . ' is invalid'
+            );
+        }
     }
 }

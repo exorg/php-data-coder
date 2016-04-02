@@ -27,25 +27,49 @@ class DatafileDecoderForJsonTest extends \PHPUnit_Framework_TestCase
     use CheckingDataDecodingResultTrait;
 
     /**
-     * Relative path to the fixture of parsing data file.
+     * Relative path to the fixture of decoded datafile
+     * with format extension.
      */
-    const FIXTURE_FILE = 'fixtures/data.json';
+    const FIXTURE_EXT_FILE = 'fixtures/data.json';
+
+    /**
+     * Relative path to the fixture of decoded datafile
+     * without format extension.
+     */
+    const FIXTURE_NOEXT_FILE = 'fixtures/data-json';
 
     /**
      * File decoder object.
      *
      * @var DatafileDecoder
      */
-    private $datafileParser;
+    private $datafileDecoder;
 
     /**
-     * Test decodeFile method properly decodes data file.
+     * Test decodeFile method properly decodes data file
+     * when format hasn't been set directly
+     * and DatafileDecoder must base on the firl extension.
      */
-    public function testParseFile()
+    public function testParseFileWhenFormatIsNotSet()
     {
-        $filePath = $this->provideFilePath();
+        $filePath = $this->provideFileWithExtensionPath();
 
         $expectedResult = $this->provideExpectedResultOfDecodedData();
+        $actualResult = $this->datafileDecoder->decodeFile($filePath);
+
+        $this->assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * Test decodeFile method properly decodes data file
+     * when format has been set.
+     */
+    public function testParseFileWhenFormatIsSet()
+    {
+        $filePath = $this->provideFileWithNoExtensionPath();
+
+        $expectedResult = $this->provideExpectedResultOfDecodedData();
+        $this->datafileDecoder->setDataFormat('JSON');
         $actualResult = $this->datafileDecoder->decodeFile($filePath);
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -61,13 +85,25 @@ class DatafileDecoderForJsonTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Provide JSON file path.
+     * Provide JSON file with format extension path.
      */
-    protected function provideFilePath()
+    protected function provideFileWithExtensionPath()
     {
         $filePath = (__DIR__)
             . DIRECTORY_SEPARATOR
-            . self::FIXTURE_FILE;
+            . self::FIXTURE_EXT_FILE;
+
+        return $filePath;
+    }
+
+    /**
+     * Provide JSON file without format extension path.
+     */
+    protected function provideFileWithNoExtensionPath()
+    {
+        $filePath = (__DIR__)
+            . DIRECTORY_SEPARATOR
+            . self::FIXTURE_NOEXT_FILE;
 
         return $filePath;
     }

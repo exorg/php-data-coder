@@ -26,11 +26,28 @@ namespace Exorg\DataCoder;
 class DatafileDecoder
 {
     /**
+     * Decoded data format.
+     *
+     * @var string
+     */
+    private $dataFormat;
+
+    /**
      * Parsed file info.
      *
      * @var \SplFileInfo
      */
     protected $fileInfo;
+
+    /**
+     * Set format of decoded data.
+     *
+     * @param string $dataFormat
+     */
+    public function setDataFormat($dataFormat)
+    {
+        $this->dataFormat = $dataFormat;
+    }
 
     /**
      * Decode file content according to file type.

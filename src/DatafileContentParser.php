@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use Exorg\DataCoder\DataFormat;
+
 /**
  * DatafileContentParser.
  * Parse file content
@@ -60,7 +62,7 @@ class DatafileContentParser
     public function parseData($data)
     {
         $decodingStrategy = $this->buildDecodingStrategy();
-        $result = $this->parseDataWithDecodingStrategy($data, $decodingStrategy);
+        $result = $decodingStrategy->decodeData($data);
 
         return $result;
     }
@@ -80,21 +82,5 @@ class DatafileContentParser
         $decodingStrategy = new $decodingStrategyClass();
 
         return $decodingStrategy;
-    }
-
-    /**
-     * Parse file content with chosen decoding strategy.
-     *
-     * @param string $data
-     * @param DataDecodingStrategy $decodingStrategy
-     * @return array
-     */
-    private function parseDataWithDecodingStrategy($data, $decodingStrategy)
-    {
-        $dataDecoder = new DataDecoder();
-        $dataDecoder->setDataDecodingStrategy($decodingStrategy);
-        $result = $dataDecoder->decodeData($data);
-
-        return $result;
     }
 }

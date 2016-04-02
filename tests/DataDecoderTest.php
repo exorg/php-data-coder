@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use Exorg\Decapsulator\ObjectDecapsulator;
+
 /**
  * DataDecoderTest.
  * PHPUnit test class for DataDecoder class.
@@ -36,6 +38,16 @@ class DataDecoderTest extends AbstractDataDecoderTest
     private $dataDecoder;
 
     /**
+     * Wrapped by decapsulator
+     * tested class instance,
+     * with non-public functions and properties
+     * accessible.
+     *
+     * @var ExOrg\Decapsulator\ObjectDecapsulator
+     */
+    private $dataDecoderDecapsulated;
+
+    /**
      * Data decoding strategy mock.
      * Mocked DataDecodingStrategyInterface.
      *
@@ -55,29 +67,73 @@ class DataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Test setDataDecodingStrategy method
-     * does't accept argument of incorrect type.
-     *
-     * @expectedException PHPUnit_Framework_Error
+     * Test if setDataFormat($dataFormat) method
+     * has been defined.
      */
-    public function testSetDataDecodingStrategyDoesNotAcceptIncorrectArgument()
+    public function testSetDataFormatFunctionExists()
     {
-        $stdClassMock = $this->getMockBuilder('stdClass')
-            ->getMock();
-
-        $this->dataDecoder->setDataDecodingStrategy($stdClassMock);
+        $this->assertTrue(
+            method_exists(
+                $this->dataDecoder,
+                'setDataFormat'
+            )
+        );
     }
 
     /**
-     * Test setDataDecodingStrategy method
-     * accepts argument of Exorg\DataCoder\DataDecodingStrategyInterface interface.
+     * Test setDataFormat($dataFormat) method
+     * sets proper property.
      */
-    public function testSetDataDecodingStrategyAcceptsCorrectArgument()
+    public function testSetDataFormatFunction()
     {
-        $dataParsingStrategyMock = $this->getMockBuilder('Exorg\DataCoder\DataDecodingStrategyInterface')
-            ->getMock();
+        $expectedDataFormat = 'FIRSTNONEXISTENT';
 
-        $this->dataDecoder->setDataDecodingStrategy($dataParsingStrategyMock);
+        $this->dataDecoder->setDataFormat($expectedDataFormat);
+
+        $actualDataFormat = $this->dataDecoderDecapsulated->dataFormat;
+
+        $this->assertEquals($expectedDataFormat, $actualDataFormat);
+    }
+
+    /**
+     * Test setDataFormat($dataFormat) method
+     * sets proper decoding strategy.
+     *
+     * @expectedException Exorg\DataCoder\DataFormatInvalidException
+     */
+    public function testSetDataFormatFunctionWithEmptyDataFormat()
+    {
+        $dataFormat = '';
+
+        $this->dataDecoder->setDataFormat($dataFormat);
+    }
+
+    /**
+     * Test setDataFormat($dataFormat) method
+     * sets proper decoding strategy.
+     *
+     * @expectedException Exorg\DataCoder\DataFormatInvalidException
+     */
+    public function testSetDataFormatFunctionWithNullDataFormat()
+    {
+        $dataFormat = null;
+
+        $this->dataDecoder->setDataFormat($dataFormat);
+    }
+
+    /**
+     * Test setDataFormat($dataFormat) method
+     * sets proper decoding strategy.
+     */
+    public function testSetDataFormatFunctionSetsDecodingStrategy()
+    {
+        $dataFormat = 'FIRSTNONEXISTENT';
+
+        $this->dataDecoder->setDataFormat($dataFormat);
+
+        $dataDecodingStrategy = $this->dataDecoderDecapsulated->dataDecodingStrategy;
+
+        $this->assertInstanceOf('\Exorg\DataCoder\FirstnonexistentDataDecoder', $dataDecodingStrategy);
     }
 
     /**
@@ -103,6 +159,7 @@ class DataDecoderTest extends AbstractDataDecoderTest
     protected function setUp()
     {
         $this->initialiseDataDecoder();
+        $this->initialiseDataDecoderDecapsulated();
         $this->initialiseDataDecodingStrategyMock();
     }
 
@@ -123,6 +180,14 @@ class DataDecoderTest extends AbstractDataDecoderTest
     private function initialiseDataDecoder()
     {
         $this->dataDecoder = new DataDecoder();
+    }
+
+    /**
+     * Initialise DataDecoderDecapsulated fixture.
+     */
+    private function initialiseDataDecoderDecapsulated()
+    {
+        $this->dataDecoderDecapsulated = ObjectDecapsulator::buildForObject($this->dataDecoder);
     }
 
     /**
@@ -156,6 +221,6 @@ class DataDecoderTest extends AbstractDataDecoderTest
      */
     private function setUpDataDecoderWithStrategy()
     {
-        $this->dataDecoder->setDataDecodingStrategy($this->dataDecodingStrategyMock);
+        $this->dataDecoderDecapsulated->dataDecodingStrategy = $this->dataDecodingStrategyMock;
     }
 }

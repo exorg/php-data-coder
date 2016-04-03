@@ -143,7 +143,7 @@ class DataCodersTest extends \PHPUnit_Framework_TestCase
     private function writeContentToSelfTestFile($content)
     {
         $filePath = __DIR__ . "/data/self-test";
-        $file = fopen($filePath, "w") or $this->fail("Unable to open file data/self-test");
+        $file = fopen($filePath, "w") or $this->fail("Unable to open file $filePath");
         fwrite($file, $content);
         fclose($file);
     }

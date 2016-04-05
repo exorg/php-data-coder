@@ -41,9 +41,9 @@ class YamlDataDecoderTest extends AbstractDataDecoderTest
      */
     public function testYamlDataDecoderClassExists()
     {
-        $yamlDataDecoder = new YamlDataDecoder();
-
-        $this->assertInstanceOf('Exorg\DataCoder\YamlDataDecoder', $yamlDataDecoder);
+        $this->assertTrue(
+            class_exists('Exorg\DataCoder\YamlDataDecoder')
+        );
     }
 
     /**

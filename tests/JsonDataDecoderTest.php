@@ -41,9 +41,9 @@ class JsonDataDecoderTest extends AbstractDataDecoderTest
      */
     public function testJsonDataDecoderClassExists()
     {
-        $jsonDataDecoder = new JsonDataDecoder();
-
-        $this->assertInstanceOf('Exorg\DataCoder\JsonDataDecoder', $jsonDataDecoder);
+        $this->assertTrue(
+            class_exists('Exorg\DataCoder\JsonDataDecoder')
+        );
     }
 
     /**

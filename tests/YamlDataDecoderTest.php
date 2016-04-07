@@ -21,12 +21,19 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDataDecoderTest extends AbstractDataDecoderTest
+class YamlDataDecoderTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Relative path to the fixture with decoding data.
+     * Decoded data format.
      */
-    const FIXTURE_FILE = 'fixtures/data.yaml';
+    const DATA_FORMAT_YAML = 'yaml';
+
+    /**
+     * Test helper for Data Decoders.
+     *
+     * @var DataDecodersTestHelper
+     */
+    private static $dataDecodersTestHelper = null;
 
     /**
      * Instance of tested class.
@@ -43,6 +50,20 @@ class YamlDataDecoderTest extends AbstractDataDecoderTest
     {
         $this->assertTrue(
             class_exists('Exorg\DataCoder\YamlDataDecoder')
+        );
+    }
+
+    /**
+     * Test if decodeData function
+     * has been defined.
+     */
+    public function testDecodeDataFunctionExists()
+    {
+        $this->assertTrue(
+            method_exists(
+                $this->yamlDataDecoder,
+                'decodeData'
+            )
         );
     }
 
@@ -64,12 +85,21 @@ class YamlDataDecoderTest extends AbstractDataDecoderTest
      */
     public function testDecodeDataWithCorrectData()
     {
-        $data = $this->provideDecodedData();
+        $data = self::$dataDecodersTestHelper->loadDataToDecode();
+        $expectedResult = self::$dataDecodersTestHelper->getExpectedDecodingResult();
 
-        $expectedResult = self::provideExpectedResultOfDecodedData();
         $actualResult = $this->yamlDataDecoder->decodeData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * This method is called before the first test of this test class is run.
+     */
+    public static function setUpBeforeClass()
+    {
+        self::$dataDecodersTestHelper = new DataDecodersTestHelper();
+        self::$dataDecodersTestHelper->setDataFormat(self::DATA_FORMAT_YAML);
     }
 
     /**
@@ -77,25 +107,6 @@ class YamlDataDecoderTest extends AbstractDataDecoderTest
      * This method is called before a test is executed.
      */
     protected function setUp()
-    {
-        $this->initialiseDataDecoder();
-    }
-
-    /**
-     * Provide relative path
-     * of the data file used for data decoder test.
-     *
-     * @return string
-     */
-    protected function provideFixtureFilePath()
-    {
-        return self::FIXTURE_FILE;
-    }
-
-    /**
-     * Initialise data decoder fixture.
-     */
-    private function initialiseDataDecoder()
     {
         $this->yamlDataDecoder = new YamlDataDecoder();
     }

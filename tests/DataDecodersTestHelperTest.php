@@ -12,9 +12,9 @@
 namespace Exorg\DataCoder;
 
 /**
- * DataDecodersTest.
+ * DataDecodersTestHelperTest.
  * PHPUnit base test class for
- * Decoder classes.
+ * DataDecodersTestHelper.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -22,146 +22,127 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataDecodersTest extends DataCodersTest
+class DataDecodersTestHelperTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Directory with the files containing encoded data
-     * in various formats.
+     * Instance of tested class.
      *
-     * @var string
+     * @var DataDecodersTestHelper
      */
-    const ENCODED_DATA_SUBDIRECTORY = 'encoded';
+    private $dataDecodersTestHelper = null;
 
     /**
-     * Directory with the files containing decoded data
-     * from various formats.
-     *
-     * @var string
+     * Test if Exorg\DataCoder\DataDecodersTestHelper class
+     * has been created.
      */
-    const DECODED_DATA_SUBDIRECTORY = 'decoded';
-
-    /**
-     * Base of the name (with no extension)
-     * of the file with encoded data.
-     *
-     * @var string
-     */
-    const ENCODED_DATA_BASE_FILENAME = 'data';
-
-    /**
-     * Loads input data to pass
-     * to the Decoder class.
-     *
-     * @return string
-     */
-    public function loadDataToDecode()
+    public function testDataDecodersTestHelperClassExists()
     {
-        $fullFilePath = __DIR__
-            . DIRECTORY_SEPARATOR
-            . self::FILES_DIRECTORY
-            . DIRECTORY_SEPARATOR
-            . self::ENCODED_DATA_SUBDIRECTORY
-            . DIRECTORY_SEPARATOR
-            . self::ENCODED_DATA_BASE_FILENAME
-            . '.'
-            . $this->getDataFormat();
-
-        $data = file_get_contents($fullFilePath);
-
-        return $data;
+        $this->assertTrue(
+            class_exists('Exorg\DataCoder\DataDecodersTestHelper')
+        );
     }
 
     /**
-     * Returns expected result
-     * of the decoding operation.
-     *
-     * @return array
+     * Test if loadDataToDecode function
+     * has been defined.
      */
-    public function getExpectedDecodingResult()
+    public function testLoadDataToDecodeFunctionExists()
     {
-        $fullFilePath = __DIR__
-            . DIRECTORY_SEPARATOR
-            . self::FILES_DIRECTORY
-            . DIRECTORY_SEPARATOR
-            . self::DECODED_DATA_SUBDIRECTORY
-            . DIRECTORY_SEPARATOR
-            . $this->getDataFormat()
-            . '.php';
-
-        $code = file_get_contents($fullFilePath);
-
-        // Define variable $result
-        // and assing to it expected result
-        // of decoding operation.
-        eval($code);
-
-        return $result;
+        $this->assertTrue(
+            method_exists(
+                $this->dataDecodersTestHelper,
+                'loadDataToDecode'
+            )
+        );
     }
 
     /**
-     * Test for self function loadDataToDecode.
+     * Test for function loadDataToDecode.
      */
-    public function testSelfLoadDataToDecode()
+    public function testLoadDataToDecode()
     {
         $expectedData = (string) microtime();
         $this->writeContentToSelfTestEncodedFile($expectedData);
 
-        $this->setDataFormat('self-test');
-        $actualData = $this->loadDataToDecode();
+        $this->dataDecodersTestHelper->setDataFormat('self-test');
+        $actualData = $this->dataDecodersTestHelper->loadDataToDecode();
 
         $this->assertEquals($expectedData, $actualData);
     }
 
     /**
-     * Test for self function loadDataToDecode
+     * Test for function loadDataToDecode
      * when improper format data has been set.
      *
      * @expectedException PHPUnit_Framework_Error_Warning
      */
-    public function testSelfLoadDataToDecodeWithImproperDataFormat()
+    public function testLoadDataToDecodeWithImproperDataFormat()
     {
         $expectedData = (string) microtime();
         $this->writeContentToSelfTestEncodedFile($expectedData);
 
-        $this->setDataFormat('another');
-        $actualData = $this->loadDataToDecode();
+        $this->dataDecodersTestHelper->setDataFormat('another');
+        $actualData = $this->dataDecodersTestHelper->loadDataToDecode();
 
         $this->assertNotEquals($expectedData, $actualData);
     }
 
     /**
-     * Test for self function getExpectedDecodingResult.
+     * Test if getExpectedDecodingResult function
+     * has been defined.
      */
-    public function testSelfGetExpectedDecodingResult()
+    public function testGetExpectedDecodingResultFunctionExists()
+    {
+        $this->assertTrue(
+            method_exists(
+                $this->dataDecodersTestHelper,
+                'loadDataToDecode'
+            )
+        );
+    }
+
+    /**
+     * Test for function getExpectedDecodingResult.
+     */
+    public function testGetExpectedDecodingResult()
     {
         $expectedResult = array(
             'value' => (string) microtime(),
         );
         $this->writeResultToSelfTestDecodedFile($expectedResult);
 
-        $this->setDataFormat('self-test');
-        $actualResult = $this->getExpectedDecodingResult();
+        $this->dataDecodersTestHelper->setDataFormat('self-test');
+        $actualResult = $this->dataDecodersTestHelper->getExpectedDecodingResult();
 
         $this->assertEquals($expectedResult, $actualResult);
     }
 
     /**
-     * Test for self function getExpectedDecodingResult
+     * Test for function getExpectedDecodingResult
      * when improper format data has been set.
      *
      * @expectedException PHPUnit_Framework_Error_Warning
      */
-    public function testSelfGetExpectedDecodingResultWithImproperDataFormat()
+    public function testGetExpectedDecodingResultWithImproperDataFormat()
     {
         $expectedResult = array(
             'value' => (string) microtime(),
         );
         $this->writeResultToSelfTestDecodedFile($expectedResult);
 
-        $this->setDataFormat('another');
-        $actualResult = $this->getExpectedDecodingResult();
+        $this->dataDecodersTestHelper->setDataFormat('another');
+        $actualResult = $this->dataDecodersTestHelper->getExpectedDecodingResult();
 
         $this->assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * Sets up the fixture, for example, open a network connection.
+     * This method is called before a test is executed.
+     */
+    protected function setUp()
+    {
+        $this->dataDecodersTestHelper = new DataDecodersTestHelper();
     }
 
     /**

@@ -21,12 +21,19 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDataDecoderTest extends AbstractDataDecoderTest
+class JsonDataDecoderTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Relative path to the fixture with decoding data.
+     * Decoded data format.
      */
-    const FIXTURE_FILE = 'fixtures/data.json';
+    const DATA_FORMAT_JSON = 'json';
+
+    /**
+     * Test helper for Data Decoders.
+     *
+     * @var DataDecodersTestHelper
+     */
+    private static $dataDecodersTestHelper = null;
 
     /**
      * Instance of tested class.
@@ -41,13 +48,27 @@ class JsonDataDecoderTest extends AbstractDataDecoderTest
      */
     public function testJsonDataDecoderClassExists()
     {
-        $jsonDataDecoder = new JsonDataDecoder();
-
-        $this->assertInstanceOf('Exorg\DataCoder\JsonDataDecoder', $jsonDataDecoder);
+        $this->assertTrue(
+            class_exists('Exorg\DataCoder\JsonDataDecoder')
+        );
     }
 
     /**
-     * Test decodeData method doesn't accept data of incorrect format.
+     * Test if decodeData function
+     * has been defined.
+     */
+    public function testDecodeDataFunctionExists()
+    {
+        $this->assertTrue(
+            method_exists(
+                $this->jsonDataDecoder,
+                'decodeData'
+            )
+        );
+    }
+
+    /**
+     * Test decodeData function doesn't accept data of incorrect format.
      *
      * @expectedException \Exorg\DataCoder\DataFormatInvalidException
      */
@@ -59,17 +80,26 @@ class JsonDataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Test decodeData method accepts data of correct format
+     * Test decodeData function accepts data of correct format
      * and properly parses data.
      */
     public function testDecodeDataWithCorrectData()
     {
-        $data = $this->provideDecodedData();
+        $data = self::$dataDecodersTestHelper->loadDataToDecode();
+        $expectedResult = self::$dataDecodersTestHelper->getExpectedDecodingResult();
 
-        $expectedResult = self::provideExpectedResultOfDecodedData();
         $actualResult = $this->jsonDataDecoder->decodeData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * This method is called before the first test of this test class is run.
+     */
+    public static function setUpBeforeClass()
+    {
+        self::$dataDecodersTestHelper = new DataDecodersTestHelper();
+        self::$dataDecodersTestHelper->setDataFormat(self::DATA_FORMAT_JSON);
     }
 
     /**
@@ -77,25 +107,6 @@ class JsonDataDecoderTest extends AbstractDataDecoderTest
      * This method is called before a test is executed.
      */
     protected function setUp()
-    {
-        $this->initialiseDataDecoder();
-    }
-
-    /**
-     * Provide relative path
-     * of the data file used for data decoder test.
-     *
-     * @return string
-     */
-    protected function provideFixtureFilePath()
-    {
-        return self::FIXTURE_FILE;
-    }
-
-    /**
-     * Initialise data decoder fixture.
-     */
-    private function initialiseDataDecoder()
     {
         $this->jsonDataDecoder = new JsonDataDecoder();
     }

@@ -33,16 +33,6 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     private $datafileDecoder;
 
     /**
-     * Wrapped by decapsulator
-     * tested class instance,
-     * with non-public functions and properties
-     * accessible.
-     *
-     * @var ExOrg\Decapsulator\ObjectDecapsulator
-     */
-    private $datafileDecoderDecapsulated;
-
-    /**
      * Test Exorg\DataCoder\DatafileDecoder class
      * has been implemented.
      */
@@ -65,21 +55,6 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
                 'setDataFormat'
             )
         );
-    }
-
-    /**
-     * Test setDataFormat($dataFormat) method
-     * sets proper property.
-     */
-    public function testSetDataFormatFunction()
-    {
-        $expectedDataFormat = 'FIRSTNONEXISTENT';
-
-        $this->datafileDecoder->setDataFormat($expectedDataFormat);
-
-        $actualDataFormat = $this->datafileDecoderDecapsulated->dataFormat;
-
-        $this->assertEquals($expectedDataFormat, $actualDataFormat);
     }
 
     /**
@@ -109,28 +84,67 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test setDataFormat($dataFormat) method
+     * sets proper property.
+     *
+     * @dataProvider dataFormatsResultsProvider
+     */
+    public function testSetDataFormatFunction($dataFormat, $expectedResult)
+    {
+        $this->datafileDecoder->setDataFormat($dataFormat);
+
+        $actualResult = $this->datafileDecoder->decodeFile(__DIR__ . '/data/encoded/data.dummy');
+
+        $this->assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * Test if decodeFile($filePath) method
+     * has been defined.
+     */
+    public function testDecodeFileFunctionExists()
+    {
+        $this->assertTrue(
+            method_exists(
+                $this->datafileDecoder,
+                'decodeFile'
+            )
+        );
+    }
+
+    /**
+     * Test decodeFile function returns proper result.
+     */
+    public function testDecodeFile()
+    {
+        $expectedResult = "<DUMMY DATA>Dummy data</DUMMY DATA>";
+
+        $actualResult = $this->datafileDecoder->decodeFile(__DIR__ . '/data/encoded/data.dummy');
+
+        $this->assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * Provides data formats
+     * and expected results returned by proper decoders.
+     *
+     * @return array
+     */
+    public function dataFormatsResultsProvider()
+    {
+        return array(
+            array('dummy1', '<DUMMY 1 DATA/>'),
+            array('dummy2', '<DUMMY 2 DATA/>'),
+            array('dummy3', '<DUMMY 3 DATA/>'),
+        );
+    }
+
+    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
     protected function setUp()
     {
-        $this->initialiseDatafileDecoder();
-        $this->initialiseDatafileDecoderDecapsulated();
-    }
-
-    /**
-     * Initialise DatafileDecoder fixture.
-     */
-    private function initialiseDatafileDecoder()
-    {
         $this->datafileDecoder = new DatafileDecoder();
-    }
-
-    /**
-     * Initialise DatafileDecoderDecapsulated fixture.
-     */
-    private function initialiseDatafileDecoderDecapsulated()
-    {
-        $this->datafileDecoderDecapsulated = ObjectDecapsulator::buildForObject($this->datafileDecoder);
     }
 }

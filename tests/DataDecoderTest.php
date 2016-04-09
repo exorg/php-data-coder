@@ -23,7 +23,7 @@ use Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataDecoderTest extends AbstractDataDecoderTest
+class DataDecoderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Relative path to the fixture of decoded data file.
@@ -36,24 +36,6 @@ class DataDecoderTest extends AbstractDataDecoderTest
      * @var DataDecoder
      */
     private $dataDecoder;
-
-    /**
-     * Wrapped by decapsulator
-     * tested class instance,
-     * with non-public functions and properties
-     * accessible.
-     *
-     * @var ExOrg\Decapsulator\ObjectDecapsulator
-     */
-    private $dataDecoderDecapsulated;
-
-    /**
-     * Data decoding strategy mock.
-     * Mocked DataDecodingStrategyInterface.
-     *
-     * @var mixed
-     */
-    private $dataDecodingStrategyMock;
 
     /**
      * Test Exorg\DataCoder\DataDecoder class
@@ -78,21 +60,6 @@ class DataDecoderTest extends AbstractDataDecoderTest
                 'setDataFormat'
             )
         );
-    }
-
-    /**
-     * Test setDataFormat($dataFormat) method
-     * sets proper property.
-     */
-    public function testSetDataFormatFunction()
-    {
-        $expectedDataFormat = 'FIRSTNONEXISTENT';
-
-        $this->dataDecoder->setDataFormat($expectedDataFormat);
-
-        $actualDataFormat = $this->dataDecoderDecapsulated->dataFormat;
-
-        $this->assertEquals($expectedDataFormat, $actualDataFormat);
     }
 
     /**
@@ -122,34 +89,65 @@ class DataDecoderTest extends AbstractDataDecoderTest
     }
 
     /**
-     * Test setDataFormat($dataFormat) method
-     * sets proper decoding strategy.
+     * Test setDataFormat function sets proper format
+     * that allows to build proper Data Decoder.
+     *
+     * @dataProvider dataFormatsResultsProvider
      */
-    public function testSetDataFormatFunctionSetsDecodingStrategy()
+    public function testSetDataFormat($dataFormat, $expectedResult)
     {
-        $dataFormat = 'FIRSTNONEXISTENT';
-
         $this->dataDecoder->setDataFormat($dataFormat);
 
-        $dataDecodingStrategy = $this->dataDecoderDecapsulated->dataDecodingStrategy;
+        $actualResult = $this->dataDecoder->decodeData('');
 
-        $this->assertInstanceOf('\Exorg\DataCoder\FirstnonexistentDataDecoder', $dataDecodingStrategy);
+        $this->assertEquals($expectedResult, $actualResult);
     }
 
     /**
-     * Test decode data returns proper result.
+     * Test decodeData function returns proper result.
+     *
+     * @dataProvider dataProvider
      */
-    public function testDecodeData()
+    public function testDecodeData($data)
     {
-        $this->setUpDataDecodingStrategyForDecodeDataTest();
-        $this->setUpDataDecoderWithStrategy();
+        $this->dataDecoder->setDataFormat('dummy');
 
-        $data = $this->provideDecodedData();
+        $expectedResult = "<DUMMY DATA>"
+            . $data
+            . "</DUMMY DATA>";
 
-        $expectedResult = $this->provideExpectedResultOfDecodedData();
         $actualResult = $this->dataDecoder->decodeData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * Provides data formats
+     * and expected results returned by proper decoders.
+     *
+     * @return array
+     */
+    public function dataFormatsResultsProvider()
+    {
+        return array(
+            array('dummy1', '<DUMMY 1 DATA/>'),
+            array('dummy2', '<DUMMY 2 DATA/>'),
+            array('dummy3', '<DUMMY 3 DATA/>'),
+        );
+    }
+
+    /**
+     * Provides data to decode.
+     *
+     * @return array
+     */
+    public function dataProvider()
+    {
+        return array(
+            array('apple'),
+            array('pear'),
+            array('plum'),
+        );
     }
 
     /**
@@ -158,69 +156,6 @@ class DataDecoderTest extends AbstractDataDecoderTest
      */
     protected function setUp()
     {
-        $this->initialiseDataDecoder();
-        $this->initialiseDataDecoderDecapsulated();
-        $this->initialiseDataDecodingStrategyMock();
-    }
-
-    /**
-     * Provide relative path
-     * of the data file used for decoding strategy test.
-     *
-     * @return string
-     */
-    protected function provideFixtureFilePath()
-    {
-        return self::FIXTURE_FILE;
-    }
-
-    /**
-     * Initialise DataDecoder fixture.
-     */
-    private function initialiseDataDecoder()
-    {
         $this->dataDecoder = new DataDecoder();
-    }
-
-    /**
-     * Initialise DataDecoderDecapsulated fixture.
-     */
-    private function initialiseDataDecoderDecapsulated()
-    {
-        $this->dataDecoderDecapsulated = ObjectDecapsulator::buildForObject($this->dataDecoder);
-    }
-
-    /**
-     * Initialise data decoding strategy mock.
-     */
-    private function initialiseDataDecodingStrategyMock()
-    {
-        $this->dataDecodingStrategyMock = $this->getMockBuilder('Exorg\DataCoder\DataDecodingStrategyInterface')
-            ->setMethods(array('decodeData'))
-            ->getMock();
-    }
-
-    /**
-     * Set up DataDecodingStrategy mock
-     * and prepare for configure DataDecoder with it
-     * to test decodeData method.
-     */
-    private function setUpDataDecodingStrategyForDecodeDataTest()
-    {
-        $this->dataDecodingStrategyMock
-            ->expects($this->once())
-            ->method('decodeData')
-            ->with('result -> success')
-            ->will(
-                $this->returnValue($this->provideExpectedResultOfDecodedData())
-            );
-    }
-
-    /**
-     * Set up DataDecoder with DataDecodingStrategy mock.
-     */
-    private function setUpDataDecoderWithStrategy()
-    {
-        $this->dataDecoderDecapsulated->dataDecodingStrategy = $this->dataDecodingStrategyMock;
     }
 }

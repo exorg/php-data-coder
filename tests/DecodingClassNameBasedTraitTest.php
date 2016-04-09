@@ -86,9 +86,9 @@ class DecodingClassNameBasedTraitTest extends \PHPUnit_Framework_TestCase
         $namespace = '\Exorg\DataCoder\\';
 
         return array(
-            array('FirstnonexistentFileDecoder', $namespace . 'FirstnonexistentDataDecoder'),
-            array('SecondnonexistentFileDecoder', $namespace . 'SecondnonexistentDataDecoder'),
-            array('ThirdnonexistentFileDecoder', $namespace . 'ThirdnonexistentDataDecoder'),
+            array('Dummy1FileDecoder', $namespace . 'Dummy1DataDecoder'),
+            array('Dummy2FileDecoder', $namespace . 'Dummy2DataDecoder'),
+            array('Dummy3FileDecoder', $namespace . 'Dummy3DataDecoder'),
         );
     }
 }

@@ -104,6 +104,20 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test if decodeData($data) method
+     * has been defined.
+     */
+    public function testDecodeDataFunctionExists()
+    {
+        $this->assertTrue(
+            method_exists(
+                $this->dataDecoder,
+                'decodeData'
+            )
+        );
+    }
+
+    /**
      * Test decodeData function returns proper result.
      *
      * @dataProvider dataProvider

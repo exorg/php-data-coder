@@ -113,9 +113,50 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test decodeFile function returns proper result.
+     * Test decodeFile method throws exception
+     * when improper format has been set directly.
+     *
+     * @expectedException Exorg\DataCoder\DecoderClassNotFoundException
      */
-    public function testDecodeFile()
+    public function testDecodeFileWhenImproperFormatIsSet()
+    {
+        $this->datafileDecoder->setDataFormat('nonexistent');
+        $this->datafileDecoder->decodeFile(__DIR__ . '/data/encoded/data.anotherdummy');
+    }
+
+    /**
+     * Test decodeFile method properly decodes data file
+     * when format has been set directly.
+     */
+    public function testDecodeFileWhenFormatIsSet()
+    {
+        $expectedResult = "<DUMMY DATA>Another dummy data</DUMMY DATA>";
+
+        $this->datafileDecoder->setDataFormat('dummy');
+        $actualResult = $this->datafileDecoder->decodeFile(__DIR__ . '/data/encoded/data.anotherdummy');
+
+        $this->assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * Test decodeFile function throws exception
+     * when data format hasn't been set
+     * and decoder must recognize format by file extension
+     * but file has improper extension.
+     *
+     * @expectedException Exorg\DataCoder\DecoderClassNotFoundException
+     */
+    public function testDecodeFileWhenFormatIsNotSetAndFileHasImproperExtension()
+    {
+        $this->datafileDecoder->decodeFile(__DIR__ . '/data/encoded/data.nonexistent');
+    }
+
+    /**
+     * Test decodeFile function returns proper result
+     * when data format hasn't been set
+     * and decoder must recognize format by file extension.
+     */
+    public function testDecodeFileWhenFormatIsNotSet()
     {
         $expectedResult = "<DUMMY DATA>Dummy data</DUMMY DATA>";
 

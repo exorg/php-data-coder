@@ -25,6 +25,8 @@ namespace Exorg\DataCoder;
  */
 class DatafileDecoder
 {
+    use DecodingDataFormatBasedTrait;
+
     /**
      * Decoded data format.
      *
@@ -62,8 +64,8 @@ class DatafileDecoder
         $fileFormat = $this->establishDataFormat();
         $fileData = $this->getDataFileContent();
 
-        $datafileContentDecoder = new DatafileContentDecoder($fileFormat);
-        $result = $datafileContentDecoder->decodeData($fileData);
+        $dataDecoder = $this->buildDecoderForDataFormat($fileFormat);
+        $result = $dataDecoder->decodeData($fileData);
 
         return $result;
     }

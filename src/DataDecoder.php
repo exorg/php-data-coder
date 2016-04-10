@@ -88,7 +88,7 @@ class DataDecoder
             && (!empty($dataFormat));
 
         if (!$dataFormatIsValid) {
-            throw new DataFormatInvalidException(
+            throw new \InvalidArgumentException(
                 'Data format '
                 . $dataFormat
                 . ' is invalid'

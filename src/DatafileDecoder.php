@@ -136,7 +136,7 @@ class DatafileDecoder
             && (!empty($dataFormat));
 
         if (!$dataFormatIsValid) {
-            throw new DataFormatInvalidException(
+            throw new \InvalidArgumentException(
                 'Data format '
                 . $dataFormat
                 . ' is invalid'

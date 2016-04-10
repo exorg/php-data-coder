@@ -26,5 +26,4 @@ namespace Exorg\DataCoder;
  */
 class DecoderClassNotFoundException extends \Exception
 {
-
 }

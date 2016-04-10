@@ -41,10 +41,9 @@ class YamlDataDecoder implements DataDecodingStrategyInterface
         if ($parsingSuccessful) {
             return $parsedData;
         } else {
-            $message = 'Invalid YAML data format.';
-            $exception = new DataFormatInvalidException($message);
-
-            throw $exception;
+            throw new DataFormatInvalidException(
+                'Invalid YAML data format.'
+            );
         }
     }
 

@@ -39,10 +39,9 @@ class JsonDataDecoder implements DataDecodingStrategyInterface
         if ($parsingSuccessful) {
             return $parsedData;
         } else {
-            $message = 'Invalid JSON data format.';
-            $exception = new DataFormatInvalidException($message);
-
-            throw $exception;
+            throw new DataFormatInvalidException(
+                'Invalid JSON data format.'
+            );
         }
     }
 }

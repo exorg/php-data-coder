@@ -66,7 +66,7 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
      * Test setDataFormat($dataFormat) method
      * sets proper decoding strategy.
      *
-     * @expectedException Exorg\DataCoder\DataFormatInvalidException
+     * @expectedException \InvalidArgumentException
      */
     public function testSetDataFormatFunctionWithEmptyDataFormat()
     {
@@ -79,7 +79,7 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
      * Test setDataFormat($dataFormat) method
      * sets proper decoding strategy.
      *
-     * @expectedException Exorg\DataCoder\DataFormatInvalidException
+     * @expectedException \InvalidArgumentException
      */
     public function testSetDataFormatFunctionWithNullDataFormat()
     {

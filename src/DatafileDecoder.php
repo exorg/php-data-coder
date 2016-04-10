@@ -60,6 +60,14 @@ class DatafileDecoder
      */
     public function decodeFile($filePath)
     {
+        if (!file_exists($filePath)) {
+            throw new NonexistentFileException(
+                'File '
+                . $filePath
+                . ' does not exist.'
+            );
+        }
+
         $this->setUpFileInfo($filePath);
         $fileFormat = $this->establishDataFormat();
         $fileData = $this->getDataFileContent();

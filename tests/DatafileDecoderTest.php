@@ -114,6 +114,17 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test decodeFile method throws exception
+     * when file doesn't exist.
+     *
+     * @expectedException Exorg\DataCoder\NonexistentFileException
+     */
+    public function testDecodeFileWhenFileDoesNotExist()
+    {
+        $this->datafileDecoder->decodeFile(__DIR__ . '/nonexistent');
+    }
+
+    /**
+     * Test decodeFile method throws exception
      * when improper format has been set directly.
      *
      * @expectedException Exorg\DataCoder\DecoderClassNotFoundException

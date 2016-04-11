@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * NonexistentFileExceptionTest.
- * PHPUnit test class for NonexistentFileException class.
+ * DataFormatInvalidExceptionTest.
+ * PHPUnit test class for DataFormatInvalidException class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,16 +21,16 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class NonexistentFileExceptionTest extends \PHPUnit_Framework_TestCase
+class DataFormatInvalidExceptionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test if Exorg\DataCoder\NonexistentFileException class
+     * Test if Exorg\DataCoder\DataFormatInvalidException class
      * has been created.
      */
     public function testNonexistentFileExceptionTestClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\NonexistentFileException')
+            class_exists('Exorg\DataCoder\DataFormatInvalidException')
         );
     }
 }

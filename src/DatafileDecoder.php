@@ -14,7 +14,6 @@ namespace Exorg\DataCoder;
 /**
  * DatafileDecoder.
  * Decode data file content
- *
  * according to given format.
  *
  * @package DataCoder
@@ -35,11 +34,11 @@ class DatafileDecoder
     private $dataFormat;
 
     /**
-     * Parsed file info.
+     * Decoded file.
      *
-     * @var \SplFileInfo
+     * @var File
      */
-    protected $fileInfo;
+    protected $file;
 
     /**
      * Set format of decoded data.
@@ -60,49 +59,15 @@ class DatafileDecoder
      */
     public function decodeFile($filePath)
     {
-        if (!file_exists($filePath)) {
-            throw new NonexistentFileException(
-                'File '
-                . $filePath
-                . ' does not exist.'
-            );
-        }
+        $this->file = new File($filePath);
 
-        $this->setUpFileInfo($filePath);
         $fileFormat = $this->establishDataFormat();
-        $fileData = $this->getDataFileContent();
+        $fileData = $this->file->getContent();
 
         $dataDecoder = $this->buildDecoderForDataFormat($fileFormat);
         $result = $dataDecoder->decodeData($fileData);
 
         return $result;
-    }
-
-    /**
-     * Set-up file info.
-     *
-     * @param string $filePath
-     */
-    private function setUpFileInfo($filePath)
-    {
-        $this->fileInfo = new \SplFileInfo($filePath);
-    }
-
-    /**
-     * Read file and get content.
-     *
-     * @throws FileReadingErrorException
-     */
-    private function getDataFileContent()
-    {
-        $fileObject = $this->fileInfo->openFile();
-        $dataFileContent = '';
-
-        while (!$fileObject->eof()) {
-            $dataFileContent .= $fileObject->fgetc();
-        }
-
-        return $dataFileContent;
     }
 
     /**
@@ -118,7 +83,7 @@ class DatafileDecoder
         if ($dataFormatIsSetDirectly) {
             $dataFormat = $this->dataFormat;
         } else {
-            $dataFormat = $this->fileInfo->getExtension();
+            $dataFormat = $this->file->getExtension();
         }
 
         return $dataFormat;

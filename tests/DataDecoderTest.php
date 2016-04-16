@@ -26,11 +26,6 @@ use Exorg\Decapsulator\ObjectDecapsulator;
 class DataDecoderTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Relative path to the fixture of decoded data file.
-     */
-    const FIXTURE_FILE = 'fixtures/data';
-
-    /**
      * Instance of tested class.
      *
      * @var DataDecoder

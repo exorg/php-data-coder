@@ -36,7 +36,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
     {
         $expectedFileContent = 'Self test';
 
-        $filePath = $this->buildFileFixturePath('self-test');
+        $filePath = self::buildFileFixturePath('self-test');
 
         $actualFileContent = file_get_contents($filePath);
 
@@ -87,7 +87,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructorWhenFileDoesNotExist()
     {
-        $filePath = $this->buildFileFixturePath('nonexistent');
+        $filePath = self::buildFileFixturePath('nonexistent');
 
         $file = new File($filePath);
 
@@ -100,7 +100,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructorWhenFileExists()
     {
-        $filePath = $this->buildFileFixturePath('file.ext');
+        $filePath = self::buildFileFixturePath('file.ext');
 
         $file = new File($filePath);
 
@@ -156,7 +156,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetContentFunctionWhenFileDoesNotExist()
     {
-        $filePath = $this->buildFileFixturePath('nonexistent');
+        $filePath = self::buildFileFixturePath('nonexistent');
 
         $file = new File($filePath);
 
@@ -171,7 +171,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetContentFunctionWhenFileIsNotWritableExist()
     {
-        $filePath = $this->buildFileFixturePath('unreadable');
+        $filePath = self::buildFileFixturePath('unreadable');
 
         $file = new File($filePath);
 
@@ -216,10 +216,10 @@ class FileTest extends \PHPUnit_Framework_TestCase
     public function filePathContentProvider()
     {
         return array(
-            array($this->buildFileFixturePath('file'), 'File'),
-            array($this->buildFileFixturePath('file.ext'), 'File with extension'),
-            array($this->buildFileFixturePath('file.dat'), 'File with another extension'),
-            array($this->buildFileFixturePath('directory/file'), 'File in directory'),
+            array(self::buildFileFixturePath('file'), 'File'),
+            array(self::buildFileFixturePath('file.ext'), 'File with extension'),
+            array(self::buildFileFixturePath('file.dat'), 'File with another extension'),
+            array(self::buildFileFixturePath('directory/file'), 'File in directory'),
         );
     }
 
@@ -228,7 +228,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      */
     public static function setUpBeforeClass()
     {
-        exec("chmod a-r " . __DIR__ . '/files/unreadable');
+        exec("chmod a-r " . self::buildFileFixturePath('unreadable'));
     }
 
     /**
@@ -238,7 +238,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      */
     public static function tearDownAfterClass()
     {
-        exec("chmod a+r " . __DIR__ . '/files/unreadable');
+        exec("chmod a+r " . self::buildFileFixturePath('unreadable'));
     }
 
     /**
@@ -247,7 +247,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * @param string $fileName
      * @return string
      */
-    private function buildFileFixturePath($fileName)
+    private static function buildFileFixturePath($fileName)
     {
         $absoluteFilePath = __DIR__
             . DIRECTORY_SEPARATOR

@@ -14,7 +14,6 @@ namespace Exorg\DataCoder;
 /**
  * DatafileDecoder.
  * Decode data file content
- *
  * according to given format.
  *
  * @package DataCoder

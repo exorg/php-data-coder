@@ -82,8 +82,13 @@ class DatafileDecoder
 
         if ($dataFormatIsSetDirectly) {
             $dataFormat = $this->dataFormat;
-        } else {
+        } elseif (!empty($this->file->getExtension())) {
             $dataFormat = $this->file->getExtension();
+        } else {
+            throw new \LogicException(
+                'File has no extension and format has not been set directly. '
+                . 'File format cannot be established.'
+            );
         }
 
         return $dataFormat;

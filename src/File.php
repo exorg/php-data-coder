@@ -64,19 +64,19 @@ class File
     /**
      * Read file content.
      *
-     * @throws NonexistentFileException
+     * @throws FileException
      * @return string
      */
     public function getContent()
     {
         if (!file_exists($this->path)) {
-            throw new NonexistentFileException(
+            throw new FileException(
                 'File '
                 . $this->path
                 . ' does not exist.'
             );
         } elseif (!is_readable($this->path)) {
-            throw new NonexistentFileException(
+            throw new FileException(
                 'File '
                 . $this->path
                 . ' cannot be read.'

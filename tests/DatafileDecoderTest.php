@@ -123,7 +123,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      * Test decodeFile method throws exception
      * when file doesn't exist.
      *
-     * @expectedException Exorg\DataCoder\NonexistentFileException
+     * @expectedException Exorg\DataCoder\FileException
      */
     public function testDecodeFileWhenFileDoesNotExist()
     {

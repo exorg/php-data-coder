@@ -152,7 +152,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * Test getContent function throws exception
      * when file doesn't exist.
      *
-     * @expectedException \Exorg\DataCoder\NonexistentFileException
+     * @expectedException \Exorg\DataCoder\FileException
      */
     public function testGetContentFunctionWhenFileDoesNotExist()
     {
@@ -167,7 +167,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * Test getContent function throws exception
      * when file is not writable.
      *
-     * @expectedException \Exorg\DataCoder\NonexistentFileException
+     * @expectedException \Exorg\DataCoder\FileException
      */
     public function testGetContentFunctionWhenFileIsNotWritableExist()
     {

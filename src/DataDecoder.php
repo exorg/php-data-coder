@@ -25,7 +25,7 @@ namespace Exorg\DataCoder;
  */
 class DataDecoder
 {
-    use DecodingDataFormatBasedTrait;
+    use CoderBuildingTrait;
 
     /**
      * Decoded data format.
@@ -60,7 +60,7 @@ class DataDecoder
      */
     private function setUpDataDecodingStrategy()
     {
-        $this->dataDecodingStrategy = $this->buildDecoderForDataFormat($this->dataFormat);
+        $this->dataDecodingStrategy = $this->buildCoder();
     }
 
     /**

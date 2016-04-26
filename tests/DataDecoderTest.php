@@ -119,11 +119,11 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeData($data)
     {
-        $this->dataDecoder->setDataFormat('dummy');
+        $this->dataDecoder->setDataFormat('format');
 
-        $expectedResult = "<DUMMY DATA>"
+        $expectedResult = "<FORMAT DATA>"
             . $data
-            . "</DUMMY DATA>";
+            . "</FORMAT DATA>";
 
         $actualResult = $this->dataDecoder->decodeData($data);
 
@@ -139,9 +139,9 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
     public function dataFormatsResultsProvider()
     {
         return array(
-            array('dummy1', '<DUMMY 1 DATA/>'),
-            array('dummy2', '<DUMMY 2 DATA/>'),
-            array('dummy3', '<DUMMY 3 DATA/>'),
+            array('format1', '<FORMAT 1 DATA/>'),
+            array('format2', '<FORMAT 2 DATA/>'),
+            array('format3', '<FORMAT 3 DATA/>'),
         );
     }
 

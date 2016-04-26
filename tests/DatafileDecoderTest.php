@@ -97,7 +97,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetDataFormatFunction($dataFormat, $expectedResult)
     {
-        $dataFilePath = self::buildDataFixturePath('data.dummy');
+        $dataFilePath = self::buildDataFixturePath('data.format');
 
         $this->datafileDecoder->setDataFormat($dataFormat);
         $actualResult = $this->datafileDecoder->decodeFile($dataFilePath);
@@ -127,7 +127,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWhenFileDoesNotExist()
     {
-        $dataFilePath = self::buildDataFixturePath('noexistent.dummy');
+        $dataFilePath = self::buildDataFixturePath('noexistent.format');
 
         $this->datafileDecoder->decodeFile($dataFilePath);
     }
@@ -140,7 +140,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWhenImproperFormatIsSet()
     {
-        $dataFilePath = self::buildDataFixturePath('data.dummy');
+        $dataFilePath = self::buildDataFixturePath('data.format');
 
         $this->datafileDecoder->setDataFormat('nonexistent');
         $this->datafileDecoder->decodeFile($dataFilePath);
@@ -152,11 +152,11 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWhenFormatIsSet()
     {
-        $expectedResult = "<DUMMY DATA>Another dummy data</DUMMY DATA>";
+        $expectedResult = "<FORMAT DATA>Another dummy data</FORMAT DATA>";
 
-        $dataFilePath = self::buildDataFixturePath('data.anotherdummy');
+        $dataFilePath = self::buildDataFixturePath('data.anotherformat');
 
-        $this->datafileDecoder->setDataFormat('dummy');
+        $this->datafileDecoder->setDataFormat('format');
         $actualResult = $this->datafileDecoder->decodeFile($dataFilePath);
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -172,7 +172,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWhenFormatIsNotSetAndFileHasImproperExtension()
     {
-        $dataFilePath = self::buildDataFixturePath('data.nonexistent');
+        $dataFilePath = self::buildDataFixturePath('data.nonexistentformat');
 
         $this->datafileDecoder->decodeFile($dataFilePath);
     }
@@ -199,9 +199,9 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWhenFormatIsNotSet()
     {
-        $expectedResult = "<DUMMY DATA>Dummy data</DUMMY DATA>";
+        $expectedResult = "<FORMAT DATA>Dummy data</FORMAT DATA>";
 
-        $dataFilePath = self::buildDataFixturePath('data.dummy');
+        $dataFilePath = self::buildDataFixturePath('data.format');
 
         $actualResult = $this->datafileDecoder->decodeFile($dataFilePath);
 
@@ -217,9 +217,9 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     public function dataFormatsResultsProvider()
     {
         return array(
-            array('dummy1', '<DUMMY 1 DATA/>'),
-            array('dummy2', '<DUMMY 2 DATA/>'),
-            array('dummy3', '<DUMMY 3 DATA/>'),
+            array('format1', '<FORMAT 1 DATA/>'),
+            array('format2', '<FORMAT 2 DATA/>'),
+            array('format3', '<FORMAT 3 DATA/>'),
         );
     }
 

@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * DecoderClassNotFoundExceptionTest.
- * PHPUnit test class for DecoderClassNotFoundException class.
+ * Dummy class for testing
+ * CoderBuildingTrait.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,16 +21,14 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DecoderClassNotFoundExceptionTest extends \PHPUnit_Framework_TestCase
+class DummyClassFormat1Encoder
 {
-    /**
-     * Test if Exorg\DataCoder\DecoderClassNotFoundException class
-     * has been created.
-     */
-    public function testDecoderClassNotFoundExceptionClassExists()
+    use CoderBuildingTrait;
+
+    private $dataFormat = 'format1';
+
+    public function runBuildCoder()
     {
-        $this->assertTrue(
-            class_exists('Exorg\DataCoder\DecoderClassNotFoundException')
-        );
+        return $this->buildCoder();
     }
 }

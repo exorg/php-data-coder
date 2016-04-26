@@ -12,11 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * DecoderClassNotFoundException.
- * Exception thrown to indicate
- * that Decoder class,
- * needed to handle the given data format,
- * doesn't exist.
+ * Dummy class for testing
+ * CoderBuildingTrait.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -24,6 +21,12 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DecoderClassNotFoundException extends \Exception
+class Format2DummyClassEncoder
 {
+    use CoderBuildingTrait;
+
+    public function runBuildCoder()
+    {
+        return $this->buildCoder();
+    }
 }

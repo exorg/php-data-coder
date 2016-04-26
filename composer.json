@@ -34,7 +34,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Exorg\\DataCoder\\": "tests/"
+            "Exorg\\DataCoder\\": [
+            	"tests/", 
+            	"tests/classes"
+            ]
         }
     }
 }

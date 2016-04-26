@@ -136,7 +136,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      * Test decodeFile method throws exception
      * when improper format has been set directly.
      *
-     * @expectedException Exorg\DataCoder\DecoderClassNotFoundException
+     * @expectedException Exorg\DataCoder\CoderClassNotFoundException
      */
     public function testDecodeFileWhenImproperFormatIsSet()
     {
@@ -168,7 +168,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      * and decoder must recognize format by file extension
      * but file has improper extension.
      *
-     * @expectedException Exorg\DataCoder\DecoderClassNotFoundException
+     * @expectedException Exorg\DataCoder\CoderClassNotFoundException
      */
     public function testDecodeFileWhenFormatIsNotSetAndFileHasImproperExtension()
     {

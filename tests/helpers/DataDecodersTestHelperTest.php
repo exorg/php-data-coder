@@ -74,7 +74,7 @@ class DataDecodersTestHelperTest extends \PHPUnit_Framework_TestCase
      * Test for function loadDataToDecode
      * when improper format data has been set.
      *
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException UnexpectedValueException
      */
     public function testLoadDataToDecodeWithImproperDataFormat()
     {
@@ -83,8 +83,6 @@ class DataDecodersTestHelperTest extends \PHPUnit_Framework_TestCase
 
         $this->dataDecodersTestHelper->setDataFormat('another');
         $actualData = $this->dataDecodersTestHelper->loadDataToDecode();
-
-        $this->assertNotEquals($expectedData, $actualData);
     }
 
     /**
@@ -121,7 +119,7 @@ class DataDecodersTestHelperTest extends \PHPUnit_Framework_TestCase
      * Test for function getExpectedDecodingResult
      * when improper format data has been set.
      *
-     * @expectedException PHPUnit_Framework_Error_Warning
+     * @expectedException UnexpectedValueException
      */
     public function testGetExpectedDecodingResultWithImproperDataFormat()
     {
@@ -132,8 +130,6 @@ class DataDecodersTestHelperTest extends \PHPUnit_Framework_TestCase
 
         $this->dataDecodersTestHelper->setDataFormat('another');
         $actualResult = $this->dataDecodersTestHelper->getExpectedDecodingResult();
-
-        $this->assertEquals($expectedResult, $actualResult);
     }
 
     /**
@@ -153,7 +149,7 @@ class DataDecodersTestHelperTest extends \PHPUnit_Framework_TestCase
      */
     private function writeContentToSelfTestEncodedFile($content)
     {
-        $filePath = __DIR__ . "/data/encoded/data.self-test";
+        $filePath = __DIR__ . "/../data/encoded/data.self-test";
         file_put_contents($filePath, $content);
     }
 
@@ -171,7 +167,7 @@ class DataDecodersTestHelperTest extends \PHPUnit_Framework_TestCase
         }
         $content .= ');';
 
-        $filePath = __DIR__ . "/data/decoded/self-test.php";
+        $filePath = __DIR__ . "/../data/decoded/self-test.php";
         file_put_contents($filePath, $content);
     }
 }

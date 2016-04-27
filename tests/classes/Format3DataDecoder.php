@@ -12,7 +12,6 @@
 namespace Exorg\DataCoder;
 
 /**
- * Dummy3DataDecoder.
  * Dummy data decoder for testing purposes only.
  *
  * @package DataCoder
@@ -21,7 +20,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Dummy3DataDecoder
+class Format3DataDecoder
 {
     /**
      * Simulate data decodind
@@ -33,6 +32,6 @@ class Dummy3DataDecoder
      */
     public function decodeData($data)
     {
-        return "<DUMMY 3 DATA/>";
+        return "<FORMAT 3 DATA/>";
     }
 }

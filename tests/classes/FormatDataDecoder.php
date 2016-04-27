@@ -12,7 +12,7 @@
 namespace Exorg\DataCoder;
 
 /**
- * Dummy2DataDecoder.
+ * DummyDataDecoder.
  * Dummy data decoder for testing purposes only.
  *
  * @package DataCoder
@@ -21,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Dummy2DataDecoder
+class FormatDataDecoder
 {
     /**
      * Simulate data decodind
@@ -33,6 +33,8 @@ class Dummy2DataDecoder
      */
     public function decodeData($data)
     {
-        return "<DUMMY 2 DATA/>";
+        return "<FORMAT DATA>"
+            . $data
+            . "</FORMAT DATA>";
     }
 }

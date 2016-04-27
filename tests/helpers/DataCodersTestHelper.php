@@ -30,7 +30,7 @@ class DataCodersTestHelper
      * They are inputs and the expected results
      * of the encoding/decoding operations.
      */
-    const FILES_DIRECTORY = 'data';
+    const FILES_DIRECTORY = '../data';
 
     /**
      * Format of the encoded/decoded data.
@@ -65,17 +65,57 @@ class DataCodersTestHelper
      *
      * @param string $filePath
      * @return string
+     * @throws UnexpectedValueException
      */
-    public function loadFileContent($dataFilePath)
+    public function loadFileContent($partialFilePath)
     {
-        $fullFilePath = __DIR__
-            . DIRECTORY_SEPARATOR
-            . self::FILES_DIRECTORY
-            . DIRECTORY_SEPARATOR
-            . trim($dataFilePath);
+        $fullFilePath = $this->buildFullPathFromPartialFilePath($partialFilePath);
+
+        $this->validateFilePath($fullFilePath);
 
         $dataFileContent = file_get_contents($fullFilePath);
 
         return $dataFileContent;
     }
+
+    /**
+     * Validate existance and avability
+     * of the file defined by absolute path.
+     *
+     * @param string $filePath
+     * @throws UnexpectedValueException
+     */
+    private function validateFilePath($filePath)
+    {
+        $fileIsAvailable = file_exists($filePath)
+            && is_readable($filePath);
+
+        if (!$fileIsAvailable) {
+            throw new UnexpectedValueException(
+                "File "
+                . $filePath
+                . " doesn't exist or is not readable."
+            );
+        }
+    }
+
+    /**
+     * Builds full absolute file path
+     * from partial relative file path.
+     *
+     * @param string $partialFilePath
+     * @return string
+     */
+    private function buildFullPathFromPartialFilePath($partialFilePath)
+    {
+        $fullFilePath = __DIR__
+            . DIRECTORY_SEPARATOR
+            . self::FILES_DIRECTORY
+            . DIRECTORY_SEPARATOR
+            . trim($partialFilePath);
+
+        return $fullFilePath;
+    }
+
+
 }

@@ -22,4 +22,16 @@ namespace Exorg\DataCoder;
  */
 class Format1DataDecoder
 {
+    /**
+     * Simulates data decodind
+     * and return expected result.
+     *
+     * @param string $data
+     * @return array
+     * @throws DataFormatInvalidException
+     */
+    public function decodeData($data)
+    {
+        return "<FORMAT 1 DATA/>";
+    }
 }

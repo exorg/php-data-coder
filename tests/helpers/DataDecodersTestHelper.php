@@ -50,17 +50,13 @@ class DataDecodersTestHelper extends DataCodersTestHelper
      */
     public function loadDataToDecode()
     {
-        $fullFilePath = __DIR__
-            . DIRECTORY_SEPARATOR
-            . self::FILES_DIRECTORY
-            . DIRECTORY_SEPARATOR
-            . self::ENCODED_DATA_SUBDIRECTORY
+        $partialDataFilePath = self::ENCODED_DATA_SUBDIRECTORY
             . DIRECTORY_SEPARATOR
             . self::ENCODED_DATA_BASE_FILENAME
             . '.'
             . $this->getDataFormat();
 
-        $data = file_get_contents($fullFilePath);
+        $data = $this->loadFileContent($partialDataFilePath);
 
         return $data;
     }
@@ -73,21 +69,17 @@ class DataDecodersTestHelper extends DataCodersTestHelper
      */
     public function getExpectedDecodingResult()
     {
-        $fullFilePath = __DIR__
-            . DIRECTORY_SEPARATOR
-            . self::FILES_DIRECTORY
-            . DIRECTORY_SEPARATOR
-            . self::DECODED_DATA_SUBDIRECTORY
+        $partialResultCodeFilePath = self::DECODED_DATA_SUBDIRECTORY
             . DIRECTORY_SEPARATOR
             . $this->getDataFormat()
             . '.php';
 
-        $code = file_get_contents($fullFilePath);
+        $resultCode = $this->loadFileContent($partialResultCodeFilePath);
 
         // Define variable $result
         // and assing to it expected result
         // of decoding operation.
-        eval($code);
+        eval($resultCode);
 
         return $result;
     }

@@ -127,7 +127,7 @@ class DataCodersTestHelperTest extends \PHPUnit_Framework_TestCase
      */
     protected function writeContentToSelfTestFile($content)
     {
-        $filePath = __DIR__ . "/data/self-test";
+        $filePath = __DIR__ . "/../data/self-test";
         file_put_contents($filePath, $content);
     }
 }

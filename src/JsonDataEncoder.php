@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * JsonDataDecoder.
- * Data decoder for JSON format.
+ * JsonDataEncoder.
+ * Data encoder for JSON format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,27 +21,29 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDataDecoder implements DataDecodingStrategyInterface
+class JsonDataEncoder implements DataEncodingStrategyInterface
 {
     /**
      * Decode given JSON data to PHP array.
      *
      * @param string $data
      * @return array
-     * @throws DataFormatInvalidException
+     * @throws \InvalidArgumentException
      */
-    public function decodeData($data)
+    public function encodeData($data)
     {
-        $decodedData = json_decode($data, true);
+        $dataTypeIsCorrect = is_array($data)
+            || ($data instanceof \stdClass);
 
-        $parsingSuccessful = !(is_null($decodedData));
-
-        if ($parsingSuccessful) {
-            return $decodedData;
-        } else {
-            throw new DataFormatInvalidException(
-                'Invalid JSON data format.'
+        if (!$dataTypeIsCorrect) {
+            throw new \InvalidArgumentException(
+                'Invalid type of data.
+                 It must be either an array or object od stdClass'
             );
         }
+
+        $encodedData = json_encode($data, JSON_PRETTY_PRINT);
+
+        return $encodedData;
     }
 }

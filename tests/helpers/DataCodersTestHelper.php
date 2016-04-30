@@ -117,7 +117,7 @@ class DataCodersTestHelper
      * @return string
      * @throws UnexpectedValueException
      */
-    protected function loadFileContent($partialFilePath)
+    private function loadFileContent($partialFilePath)
     {
         $fullFilePath = $this->buildFullPathFromPartialFilePath($partialFilePath);
 

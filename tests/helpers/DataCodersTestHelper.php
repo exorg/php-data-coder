@@ -79,6 +79,48 @@ class DataCodersTestHelper
     }
 
     /**
+     * Loads encoded data
+     * from the data file.
+     *
+     * @return string
+     */
+    public function loadEncodedData()
+    {
+        $partialDataFilePath = self::ENCODED_DATA_SUBDIRECTORY
+            . DIRECTORY_SEPARATOR
+            . self::ENCODED_DATA_BASE_FILENAME
+            . '.'
+            . $this->getDataFormat();
+
+        $data = $this->loadFileContent($partialDataFilePath);
+
+        return $data;
+    }
+
+    /**
+     * Loads decoded data
+     * form the code snippet file.
+     *
+     * @return array
+     */
+    public function loadDecodedData()
+    {
+        $partialCodeFilePath = self::DECODED_DATA_SUBDIRECTORY
+            . DIRECTORY_SEPARATOR
+            . $this->dataFormat
+            . '.php';
+
+        $resultCode = $this->loadFileContent($partialCodeFilePath);
+
+        // Define variable $result
+        // and assing to it expected result
+        // of decoding operation.
+        eval($resultCode);
+
+        return $result;
+    }
+
+    /**
      * Loads content of the data file.
      *
      * @param string $filePath

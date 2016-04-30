@@ -69,16 +69,6 @@ class DataCodersTestHelper
     }
 
     /**
-     * Returns data format.
-     *
-     * @return string
-     */
-    protected function getDataFormat()
-    {
-        return $this->dataFormat;
-    }
-
-    /**
      * Loads encoded data
      * from the data file.
      *
@@ -90,7 +80,7 @@ class DataCodersTestHelper
             . DIRECTORY_SEPARATOR
             . self::ENCODED_DATA_BASE_FILENAME
             . '.'
-            . $this->getDataFormat();
+            . $this->dataFormat;
 
         $data = $this->loadFileContent($partialDataFilePath);
 

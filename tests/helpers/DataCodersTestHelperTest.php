@@ -57,58 +57,93 @@ class DataCodersTestHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if getDataFormat function
+     * Test if loadEncodedData function
      * has been defined.
      */
-    public function testGetDataFormatFunctionExists()
+    public function testLoadEncodedDataFunctionExists()
     {
         $this->assertTrue(
             method_exists(
                 $this->dataCodersTestHelper,
-                'getDataFormat'
+                'loadEncodedData'
             )
         );
     }
 
     /**
-     * Test for functions setDataFormat
-     * and getDataFormat.
-     *
-     * @dataProvider dataFormatsProvider
-     * @param string $expectedDataFormat
+     * Test for function loadEncodedData.
      */
-    public function testAccessorsForDataFormat($expectedDataFormat)
+    public function testLoadEncodedData()
     {
-        $this->dataCodersTestHelper->setDataFormat($expectedDataFormat);
-        $actualDataFormat = $this->dataCodersTestHelper->getDataFormat();
+        $expectedData = (string) microtime();
+        $this->writeContentToSelfTestEncodedFile($expectedData);
 
-        $this->assertEquals($expectedDataFormat, $actualDataFormat);
+        $this->dataCodersTestHelper->setDataFormat('self-test');
+        $actualData = $this->dataCodersTestHelper->loadEncodedData();
+
+        $this->assertEquals($expectedData, $actualData);
     }
 
     /**
-     * Test for function loadFileContent.
+     * Test for function loadEncodedData
+     * when improper format data has been set.
+     *
+     * @expectedException UnexpectedValueException
      */
-    public function testLoadFileContent()
+    public function testLoadEncodedDataWithImproperDataFormat()
     {
-        $expectedFileContent = (string) microtime();
-        $this->writeContentToSelfTestFile($expectedFileContent);
+        $expectedData = (string) microtime();
+        $this->writeContentToSelfTestEncodedFile($expectedData);
 
-        $actualFileContent = $this->dataCodersTestHelper->loadFileContent('self-test');
-
-        $this->assertEquals($expectedFileContent, $actualFileContent);
+        $this->dataCodersTestHelper->setDataFormat('another');
+        $actualData = $this->dataCodersTestHelper->loadEncodedData();
     }
 
     /**
-     * Data formats examples provider.
-     *
-     * @return array
+     * Test if loadDecodedData function
+     * has been defined.
      */
-    public function dataFormatsProvider()
+    public function testLoadDecodedDataFunctionExists()
     {
-        return array(
-            array('format'),
-            array('another-format'),
+        $this->assertTrue(
+            method_exists(
+                $this->dataCodersTestHelper,
+                'loadDecodedData'
+            )
         );
+    }
+
+    /**
+     * Test for function loadDecodedData.
+     */
+    public function testLoadDecodedData()
+    {
+        $expectedResult = array(
+            'value' => (string) microtime(),
+        );
+        $this->writeResultToSelfTestDecodedFile($expectedResult);
+
+        $this->dataCodersTestHelper->setDataFormat('self-test');
+        $actualResult = $this->dataCodersTestHelper->loadDecodedData();
+
+        $this->assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * Test for function loadDecodedData
+     * when improper format data has been set.
+     *
+     * @expectedException UnexpectedValueException
+     */
+    public function testLoadDecodedDataWithImproperDataFormat()
+    {
+        $expectedResult = array(
+            'value' => (string) microtime(),
+        );
+        $this->writeResultToSelfTestDecodedFile($expectedResult);
+
+        $this->dataCodersTestHelper->setDataFormat('another');
+        $actualResult = $this->dataCodersTestHelper->loadDecodedData();
     }
 
     /**
@@ -121,13 +156,32 @@ class DataCodersTestHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Writes content to the special self test file.
+     * Writes content to the special self test file
+     * from directory with encoded data.
      *
      * @param string $content
      */
-    protected function writeContentToSelfTestFile($content)
+    private function writeContentToSelfTestEncodedFile($content)
     {
-        $filePath = __DIR__ . "/../data/self-test";
+        $filePath = __DIR__ . "/../data/encoded/data.self-test";
+        file_put_contents($filePath, $content);
+    }
+
+    /**
+     * Writes result to the special self test file
+     * from directory with decoded data.
+     *
+     * @param string $content
+     */
+    private function writeResultToSelfTestDecodedFile($result)
+    {
+        $content = "\$result = array(\n";
+        foreach ($result as $key => $value) {
+            $content .= "    '$key' => '$value',\n";
+        }
+        $content .= ');';
+
+        $filePath = __DIR__ . "/../data/decoded/self-test.php";
         file_put_contents($filePath, $content);
     }
 }

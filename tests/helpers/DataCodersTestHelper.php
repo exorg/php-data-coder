@@ -33,6 +33,24 @@ class DataCodersTestHelper
     const FILES_DIRECTORY = '../data';
 
     /**
+     * Directory with the files containing encoded data
+     * in various formats.
+     */
+    const ENCODED_DATA_SUBDIRECTORY = 'encoded';
+
+    /**
+     * Directory with the files containing decoded data
+     * from various formats.
+     */
+    const DECODED_DATA_SUBDIRECTORY = 'decoded';
+
+    /**
+     * Base of the name (with no extension)
+     * of the file with encoded data.
+     */
+    const ENCODED_DATA_BASE_FILENAME = 'data';
+
+    /**
      * Format of the encoded/decoded data.
      *
      * @var string
@@ -51,13 +69,45 @@ class DataCodersTestHelper
     }
 
     /**
-     * Returns data format.
+     * Loads encoded data
+     * from the data file.
      *
      * @return string
      */
-    public function getDataFormat()
+    public function loadEncodedData()
     {
-        return $this->dataFormat;
+        $partialDataFilePath = self::ENCODED_DATA_SUBDIRECTORY
+            . DIRECTORY_SEPARATOR
+            . self::ENCODED_DATA_BASE_FILENAME
+            . '.'
+            . $this->dataFormat;
+
+        $data = $this->loadFileContent($partialDataFilePath);
+
+        return $data;
+    }
+
+    /**
+     * Loads decoded data
+     * form the code snippet file.
+     *
+     * @return array
+     */
+    public function loadDecodedData()
+    {
+        $partialCodeFilePath = self::DECODED_DATA_SUBDIRECTORY
+            . DIRECTORY_SEPARATOR
+            . $this->dataFormat
+            . '.php';
+
+        $resultCode = $this->loadFileContent($partialCodeFilePath);
+
+        // Define variable $result
+        // and assing to it expected result
+        // of decoding operation.
+        eval($resultCode);
+
+        return $result;
     }
 
     /**
@@ -67,7 +117,7 @@ class DataCodersTestHelper
      * @return string
      * @throws UnexpectedValueException
      */
-    public function loadFileContent($partialFilePath)
+    private function loadFileContent($partialFilePath)
     {
         $fullFilePath = $this->buildFullPathFromPartialFilePath($partialFilePath);
 
@@ -91,7 +141,7 @@ class DataCodersTestHelper
             && is_readable($filePath);
 
         if (!$fileIsAvailable) {
-            throw new UnexpectedValueException(
+            throw new \UnexpectedValueException(
                 "File "
                 . $filePath
                 . " doesn't exist or is not readable."
@@ -116,6 +166,4 @@ class DataCodersTestHelper
 
         return $fullFilePath;
     }
-
-
 }

@@ -31,9 +31,9 @@ class YamlDataDecoderTest extends \PHPUnit_Framework_TestCase
     /**
      * Test helper for Data Decoders.
      *
-     * @var DataDecodersTestHelper
+     * @var DataCodersTestHelper
      */
-    private static $dataDecodersTestHelper = null;
+    private static $dataCodersTestHelper = null;
 
     /**
      * Instance of tested class.
@@ -85,8 +85,8 @@ class YamlDataDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeDataWithCorrectData()
     {
-        $data = self::$dataDecodersTestHelper->loadDataToDecode();
-        $expectedResult = self::$dataDecodersTestHelper->getExpectedDecodingResult();
+        $data = self::$dataCodersTestHelper->loadEncodedData();
+        $expectedResult = self::$dataCodersTestHelper->loadDecodedData();
 
         $actualResult = $this->yamlDataDecoder->decodeData($data);
 
@@ -98,8 +98,8 @@ class YamlDataDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public static function setUpBeforeClass()
     {
-        self::$dataDecodersTestHelper = new DataDecodersTestHelper();
-        self::$dataDecodersTestHelper->setDataFormat(self::DATA_FORMAT_YAML);
+        self::$dataCodersTestHelper = new DataCodersTestHelper();
+        self::$dataCodersTestHelper->setDataFormat(self::DATA_FORMAT_YAML);
     }
 
     /**

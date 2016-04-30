@@ -33,6 +33,24 @@ class DataCodersTestHelper
     const FILES_DIRECTORY = '../data';
 
     /**
+     * Directory with the files containing encoded data
+     * in various formats.
+     */
+    const ENCODED_DATA_SUBDIRECTORY = 'encoded';
+
+    /**
+     * Directory with the files containing decoded data
+     * from various formats.
+     */
+    const DECODED_DATA_SUBDIRECTORY = 'decoded';
+
+    /**
+     * Base of the name (with no extension)
+     * of the file with encoded data.
+     */
+    const ENCODED_DATA_BASE_FILENAME = 'data';
+
+    /**
      * Format of the encoded/decoded data.
      *
      * @var string
@@ -55,7 +73,7 @@ class DataCodersTestHelper
      *
      * @return string
      */
-    public function getDataFormat()
+    protected function getDataFormat()
     {
         return $this->dataFormat;
     }
@@ -67,7 +85,7 @@ class DataCodersTestHelper
      * @return string
      * @throws UnexpectedValueException
      */
-    public function loadFileContent($partialFilePath)
+    protected function loadFileContent($partialFilePath)
     {
         $fullFilePath = $this->buildFullPathFromPartialFilePath($partialFilePath);
 
@@ -91,7 +109,7 @@ class DataCodersTestHelper
             && is_readable($filePath);
 
         if (!$fileIsAvailable) {
-            throw new UnexpectedValueException(
+            throw new \UnexpectedValueException(
                 "File "
                 . $filePath
                 . " doesn't exist or is not readable."
@@ -116,6 +134,4 @@ class DataCodersTestHelper
 
         return $fullFilePath;
     }
-
-
 }

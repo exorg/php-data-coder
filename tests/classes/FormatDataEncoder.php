@@ -12,6 +12,7 @@
 namespace Exorg\DataCoder;
 
 /**
+ * FormatDataEncoder.
  * Dummy data encoder for testing purposes only.
  *
  * @package DataCoder
@@ -20,10 +21,10 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Format2DataEncoder
+class FormatDataEncoder
 {
     /**
-     * Simulates data encoding
+     * Simulate data encoding
      * and return expected result.
      *
      * @param string $data
@@ -31,6 +32,8 @@ class Format2DataEncoder
      */
     public function encodeData($data)
     {
-        return "<FORMAT 2 ENCODED DATA/>";
+        return "<FORMAT ENCODED DATA>"
+            . $data
+            . "</FORMAT ENCODED DATA>";
     }
 }

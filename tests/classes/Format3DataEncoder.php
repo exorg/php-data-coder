@@ -20,7 +20,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Format2DataEncoder
+class Format3DataEncoder
 {
     /**
      * Simulates data encoding
@@ -31,6 +31,6 @@ class Format2DataEncoder
      */
     public function encodeData($data)
     {
-        return "<FORMAT 2 ENCODED DATA/>";
+        return "<FORMAT 3 ENCODED DATA/>";
     }
 }

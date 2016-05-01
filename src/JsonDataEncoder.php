@@ -24,21 +24,20 @@ namespace Exorg\DataCoder;
 class JsonDataEncoder implements DataEncodingStrategyInterface
 {
     /**
-     * Decode given JSON data to PHP array.
+     * Encode given PHP array to JSON data.
      *
-     * @param string $data
-     * @return array
+     * @param array $data
+     * @return string
      * @throws \InvalidArgumentException
      */
     public function encodeData($data)
     {
-        $dataTypeIsCorrect = is_array($data)
-            || ($data instanceof \stdClass);
+        $dataTypeIsCorrect = is_array($data);
 
         if (!$dataTypeIsCorrect) {
             throw new \InvalidArgumentException(
                 'Invalid type of data.
-                 It must be either an array or object od stdClass'
+                 It must be an array.'
             );
         }
 

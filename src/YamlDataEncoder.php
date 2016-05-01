@@ -37,7 +37,7 @@ class YamlDataEncoder implements DataEncodingStrategyInterface
         if (!$dataTypeIsCorrect) {
             throw new \InvalidArgumentException(
                 'Invalid type of data.
-                 It must be either an array or object od stdClass'
+                 It must be an array.'
             );
         }
 

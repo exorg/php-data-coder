@@ -80,26 +80,12 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test encodeData function accepts data of correct array type
+     * Test encodeData function accepts data of correct type
      * and properly parses data.
      */
-    public function testDecodeDataWithCorrectArrayData()
+    public function testDecodeDataWithCorrectData()
     {
         $data = self::$dataCodersTestHelper->loadDecodedData();
-        $expectedResult = self::$dataCodersTestHelper->loadEncodedData();
-
-        $actualResult = $this->jsonDataEncoder->encodeData($data);
-
-        $this->assertEquals($expectedResult, $actualResult);
-    }
-
-    /**
-     * Test encodeData function accepts data of correct stdClass type
-     * and properly parses data.
-     */
-    public function testDecodeDataWithCorrectObjectData()
-    {
-        $data = (object) self::$dataCodersTestHelper->loadDecodedData();
         $expectedResult = self::$dataCodersTestHelper->loadEncodedData();
 
         $actualResult = $this->jsonDataEncoder->encodeData($data);

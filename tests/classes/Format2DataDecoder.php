@@ -27,11 +27,10 @@ class Format2DataDecoder
      * and return expected result.
      *
      * @param string $data
-     * @return array
-     * @throws DataFormatInvalidException
+     * @return string
      */
     public function decodeData($data)
     {
-        return "<FORMAT 2 DATA/>";
+        return "<FORMAT 2 DECODED DATA/>";
     }
 }

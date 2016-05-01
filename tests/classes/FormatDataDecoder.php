@@ -12,7 +12,7 @@
 namespace Exorg\DataCoder;
 
 /**
- * DummyDataDecoder.
+ * FormatDataDecoder.
  * Dummy data decoder for testing purposes only.
  *
  * @package DataCoder
@@ -28,13 +28,12 @@ class FormatDataDecoder
      * and return expected result.
      *
      * @param string $data
-     * @return array
-     * @throws DataFormatInvalidException
+     * @return string
      */
     public function decodeData($data)
     {
-        return "<FORMAT DATA>"
+        return "<FORMAT DECODED DATA>"
             . $data
-            . "</FORMAT DATA>";
+            . "</FORMAT DECODED DATA>";
     }
 }

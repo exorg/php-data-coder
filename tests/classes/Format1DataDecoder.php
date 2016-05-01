@@ -27,11 +27,10 @@ class Format1DataDecoder
      * and return expected result.
      *
      * @param string $data
-     * @return array
-     * @throws DataFormatInvalidException
+     * @return string
      */
     public function decodeData($data)
     {
-        return "<FORMAT 1 DATA/>";
+        return "<FORMAT 1 DECODED DATA/>";
     }
 }

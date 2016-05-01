@@ -25,14 +25,8 @@ namespace Exorg\DataCoder;
  */
 class DataDecoder
 {
+    use DataFormatConfigurableTrait;
     use CoderBuildingTrait;
-
-    /**
-     * Decoded data format.
-     *
-     * @var string
-     */
-    private $dataFormat;
 
     /**
      * Data decoding strategy.
@@ -42,15 +36,18 @@ class DataDecoder
     private $dataDecodingStrategy;
 
     /**
-     * Set format of decoded data.
+     * Decode data.
      *
-     * @param string $dataFormat
+     * @param array $data
+     * @return array
      */
-    public function setDataFormat($dataFormat)
+    public function decodeData($data)
     {
-        $this->validateDataFormat($dataFormat);
-        $this->dataFormat = $dataFormat;
         $this->setUpDataDecodingStrategy();
+
+        $decodedData = $this->dataDecodingStrategy->decodeData($data);
+
+        return $decodedData;
     }
 
     /**
@@ -61,38 +58,5 @@ class DataDecoder
     private function setUpDataDecodingStrategy()
     {
         $this->dataDecodingStrategy = $this->buildCoder();
-    }
-
-    /**
-     * Decode data.
-     *
-     * @param array $data
-     * @return array
-     */
-    public function decodeData($data)
-    {
-        $decodedData = $this->dataDecodingStrategy->decodeData($data);
-
-        return $decodedData;
-    }
-
-    /**
-     * Validate data format.
-     *
-     * @param unknown $dataFormat
-     * @throws DataFormatInvalidException
-     */
-    public function validateDataFormat($dataFormat)
-    {
-        $dataFormatIsValid = (!is_null($dataFormat))
-            && (!empty($dataFormat));
-
-        if (!$dataFormatIsValid) {
-            throw new \InvalidArgumentException(
-                'Data format '
-                . $dataFormat
-                . ' is invalid'
-            );
-        }
     }
 }

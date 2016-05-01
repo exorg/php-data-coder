@@ -24,14 +24,8 @@ namespace Exorg\DataCoder;
  */
 class DatafileDecoder
 {
+    use DataFormatConfigurableTrait;
     use CoderBuildingTrait;
-
-    /**
-     * Decoded data format.
-     *
-     * @var string
-     */
-    private $dataFormat;
 
     /**
      * Decoded file.
@@ -39,17 +33,6 @@ class DatafileDecoder
      * @var File
      */
     protected $file;
-
-    /**
-     * Set format of decoded data.
-     *
-     * @param string $dataFormat
-     */
-    public function setDataFormat($dataFormat)
-    {
-        $this->validateDataFormat($dataFormat);
-        $this->dataFormat = $dataFormat;
-    }
 
     /**
      * Decode file content according to file type.
@@ -85,26 +68,6 @@ class DatafileDecoder
             throw new \LogicException(
                 'File has no extension and format has not been set directly. '
                 . 'File format cannot be established.'
-            );
-        }
-    }
-
-    /**
-     * Validate data format.
-     *
-     * @param unknown $dataFormat
-     * @throws DataFormatInvalidException
-     */
-    public function validateDataFormat($dataFormat)
-    {
-        $dataFormatIsValid = (!is_null($dataFormat))
-            && (!empty($dataFormat));
-
-        if (!$dataFormatIsValid) {
-            throw new \InvalidArgumentException(
-                'Data format '
-                . $dataFormat
-                . ' is invalid'
             );
         }
     }

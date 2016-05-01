@@ -25,6 +25,7 @@ namespace Exorg\DataCoder;
 class DatafileDecoder
 {
     use DataFormatConfigurableTrait;
+    use DataFormatEstablishableTrait;
     use CoderBuildingTrait;
 
     /**
@@ -51,24 +52,5 @@ class DatafileDecoder
         $result = $dataDecoder->decodeData($fileData);
 
         return $result;
-    }
-
-    /**
-     * Establish the dataFormat
-     * if not set directly.
-     */
-    private function establishDataFormat()
-    {
-        $dataFormatIsSetDirectly = isset($this->dataFormat);
-        $fileHasExtension = !empty($this->file->getExtension());
-
-        if (!$dataFormatIsSetDirectly && $fileHasExtension) {
-            $this->dataFormat = strtolower($this->file->getExtension());
-        } elseif (!$dataFormatIsSetDirectly) {
-            throw new \LogicException(
-                'File has no extension and format has not been set directly. '
-                . 'File format cannot be established.'
-            );
-        }
     }
 }

@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * JsonDataEncoder.
- * Data encoder for JSON format.
+ * YamlDataEncoder.
+ * Data encoder for YAML format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,10 +21,10 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDataEncoder implements DataEncodingStrategyInterface
+class YamlDataEncoder implements DataEncodingStrategyInterface
 {
     /**
-     * Encode given PHP array to JSON data.
+     * Encode given PHP array YAML data.
      *
      * @param array $data
      * @return string
@@ -41,7 +41,7 @@ class JsonDataEncoder implements DataEncodingStrategyInterface
             );
         }
 
-        $encodedData = json_encode($data, JSON_PRETTY_PRINT);
+        $encodedData = yaml_emit($data);
 
         return $encodedData;
     }

@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * JsonDataEncoderTest.
- * PHPUnit test class for JsonDataEncoder class.
+ * YamlDataEncoderTest.
+ * PHPUnit test class for YamlDataEncoder class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,12 +21,12 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
+class YamlDataEncoderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Encoded data format.
      */
-    const DATA_FORMAT_JSON = 'json';
+    const DATA_FORMAT_YAML = 'yaml';
 
     /**
      * Test helper for Data Encoders.
@@ -38,18 +38,18 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
     /**
      * Instance of tested class.
      *
-     * @var JsonDataEncoder
+     * @var YamlDataEncoder
      */
-    private $jsonDataEncoder;
+    private $yamlDataEncoder;
 
     /**
-     * Test JsonDataEncoder class
+     * Test YamlDataEncoder class
      * has been implemented.
      */
-    public function testJsonDataEncoderClassExists()
+    public function testYamlDataEncoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\JsonDataEncoder')
+            class_exists('Exorg\DataCoder\YamlDataEncoder')
         );
     }
 
@@ -61,7 +61,7 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             method_exists(
-                $this->jsonDataEncoder,
+                $this->yamlDataEncoder,
                 'encodeData'
             )
         );
@@ -76,7 +76,7 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
     {
         $data = '';
 
-        $this->jsonDataEncoder->encodeData($data);
+        $this->yamlDataEncoder->encodeData($data);
     }
 
     /**
@@ -88,7 +88,7 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
         $data = self::$dataCodersTestHelper->loadDecodedData();
         $expectedResult = self::$dataCodersTestHelper->loadEncodedData();
 
-        $actualResult = $this->jsonDataEncoder->encodeData($data);
+        $actualResult = $this->yamlDataEncoder->encodeData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -99,7 +99,7 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
     public static function setUpBeforeClass()
     {
         self::$dataCodersTestHelper = new DataCodersTestHelper();
-        self::$dataCodersTestHelper->setDataFormat(self::DATA_FORMAT_JSON);
+        self::$dataCodersTestHelper->setDataFormat(self::DATA_FORMAT_YAML);
     }
 
     /**
@@ -108,6 +108,6 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->jsonDataEncoder = new JsonDataEncoder();
+        $this->yamlDataEncoder = new YamlDataEncoder();
     }
 }

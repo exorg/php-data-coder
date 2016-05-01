@@ -14,8 +14,8 @@ namespace Exorg\DataCoder;
 use Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
- * DataDecoderTest.
- * PHPUnit test class for DataDecoder class.
+ * DataEncoderTest.
+ * PHPUnit test class for DataEncoder class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -23,23 +23,23 @@ use Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataDecoderTest extends \PHPUnit_Framework_TestCase
+class DataEncoderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Instance of tested class.
      *
-     * @var DataDecoder
+     * @var DataEncoder
      */
-    private $dataDecoder;
+    private $dataEncoder;
 
     /**
-     * Test Exorg\DataCoder\DataDecoder class
+     * Test Exorg\DataCoder\DataEncoder class
      * has been implemented.
      */
-    public function testDataDecoderClassExists()
+    public function testDataEncoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\DataDecoder')
+            class_exists('Exorg\DataCoder\DataEncoder')
         );
     }
 
@@ -51,7 +51,7 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             method_exists(
-                $this->dataDecoder,
+                $this->dataEncoder,
                 'setDataFormat'
             )
         );
@@ -67,7 +67,7 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
     {
         $dataFormat = '';
 
-        $this->dataDecoder->setDataFormat($dataFormat);
+        $this->dataEncoder->setDataFormat($dataFormat);
     }
 
     /**
@@ -80,73 +80,73 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
     {
         $dataFormat = null;
 
-        $this->dataDecoder->setDataFormat($dataFormat);
+        $this->dataEncoder->setDataFormat($dataFormat);
     }
 
     /**
      * Test setDataFormat function sets proper format
-     * that allows to build proper Data Decoder.
+     * that allows to build proper Data Encoder.
      *
      * @dataProvider dataFormatsResultsProvider
      */
     public function testSetDataFormat($dataFormat, $expectedResult)
     {
-        $this->dataDecoder->setDataFormat($dataFormat);
+        $this->dataEncoder->setDataFormat($dataFormat);
 
-        $actualResult = $this->dataDecoder->decodeData('');
+        $actualResult = $this->dataEncoder->encodeData('');
 
         $this->assertEquals($expectedResult, $actualResult);
     }
 
     /**
-     * Test if decodeData($data) method
+     * Test if encodeData($data) method
      * has been defined.
      */
-    public function testDecodeDataFunctionExists()
+    public function testEncodeDataFunctionExists()
     {
         $this->assertTrue(
             method_exists(
-                $this->dataDecoder,
-                'decodeData'
+                $this->dataEncoder,
+                'encodeData'
             )
         );
     }
 
     /**
-     * Test decodeData function returns proper result.
+     * Test encodeData function returns proper result.
      *
      * @dataProvider dataProvider
      */
-    public function testDecodeData($data)
+    public function testEncodeData($data)
     {
-        $this->dataDecoder->setDataFormat('format');
+        $this->dataEncoder->setDataFormat('format');
 
-        $expectedResult = "<FORMAT DECODED DATA>"
+        $expectedResult = "<FORMAT ENCODED DATA>"
             . $data
-            . "</FORMAT DECODED DATA>";
+            . "</FORMAT ENCODED DATA>";
 
-        $actualResult = $this->dataDecoder->decodeData($data);
+        $actualResult = $this->dataEncoder->encodeData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
 
     /**
      * Provides data formats
-     * and expected results returned by proper decoders.
+     * and expected results returned by proper encoders.
      *
      * @return array
      */
     public function dataFormatsResultsProvider()
     {
         return array(
-            array('format1', '<FORMAT 1 DECODED DATA/>'),
-            array('format2', '<FORMAT 2 DECODED DATA/>'),
-            array('format3', '<FORMAT 3 DECODED DATA/>'),
+            array('format1', '<FORMAT 1 ENCODED DATA/>'),
+            array('format2', '<FORMAT 2 ENCODED DATA/>'),
+            array('format3', '<FORMAT 3 ENCODED DATA/>'),
         );
     }
 
     /**
-     * Provides data to decode.
+     * Provides data to encode.
      *
      * @return array
      */
@@ -165,6 +165,6 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->dataDecoder = new DataDecoder();
+        $this->dataEncoder = new DataEncoder();
     }
 }

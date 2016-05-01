@@ -152,7 +152,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWhenFormatIsSet()
     {
-        $expectedResult = "<FORMAT DATA>Another dummy data</FORMAT DATA>";
+        $expectedResult = "<FORMAT DECODED DATA>Another dummy data</FORMAT DECODED DATA>";
 
         $dataFilePath = self::buildDataFixturePath('data.anotherformat');
 
@@ -199,7 +199,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWhenFormatIsNotSet()
     {
-        $expectedResult = "<FORMAT DATA>Dummy data</FORMAT DATA>";
+        $expectedResult = "<FORMAT DECODED DATA>Dummy data</FORMAT DECODED DATA>";
 
         $dataFilePath = self::buildDataFixturePath('data.format');
 
@@ -217,9 +217,9 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     public function dataFormatsResultsProvider()
     {
         return array(
-            array('format1', '<FORMAT 1 DATA/>'),
-            array('format2', '<FORMAT 2 DATA/>'),
-            array('format3', '<FORMAT 3 DATA/>'),
+            array('format1', '<FORMAT 1 DECODED DATA/>'),
+            array('format2', '<FORMAT 2 DECODED DATA/>'),
+            array('format3', '<FORMAT 3 DECODED DATA/>'),
         );
     }
 

@@ -22,4 +22,15 @@ namespace Exorg\DataCoder;
  */
 class Format2DataEncoder
 {
+    /**
+     * Simulates data encoding
+     * and return expected result.
+     *
+     * @param string $data
+     * @return string
+     */
+    public function encodeData($data)
+    {
+        return "<FORMAT 2 ENCODED DATA/>";
+    }
 }

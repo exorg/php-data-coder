@@ -27,11 +27,10 @@ class Format3DataDecoder
      * and return expected result.
      *
      * @param string $data
-     * @return array
-     * @throws DataFormatInvalidException
+     * @return string
      */
     public function decodeData($data)
     {
-        return "<FORMAT 3 DATA/>";
+        return "<FORMAT 3 DECODED DATA/>";
     }
 }

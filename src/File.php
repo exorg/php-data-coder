@@ -69,22 +69,88 @@ class File
      */
     public function getContent()
     {
-        if (!file_exists($this->path)) {
-            throw new FileException(
-                'File '
-                . $this->path
-                . ' does not exist.'
-            );
-        } elseif (!is_readable($this->path)) {
-            throw new FileException(
-                'File '
-                . $this->path
-                . ' cannot be read.'
-            );
-        }
+        $this->validatePathToRead($this->path);
 
         $fileContent = file_get_contents($this->path);
 
         return $fileContent;
+    }
+
+    /**
+     * Write file content.
+     *
+     * @param string $content
+     * @throws \InvalidArgumentException
+     * @throws FileException
+     */
+    public function setContent($content)
+    {
+        $this->validateContent($content);
+        $this->validatePathToWrite($this->path);
+
+        $fileContent = file_put_contents($this->path, $content);
+    }
+
+    /**
+     * Validate file path
+     * and check if file can be read.
+     *
+     * @param unknown $path
+     * @throws FileException
+     */
+    private static function validatePathToRead($path)
+    {
+        if (!file_exists($path)) {
+            throw new FileException(
+                'File '
+                . $path
+                . ' does not exist.'
+            );
+        } elseif (!is_readable($path)) {
+            throw new FileException(
+                'File '
+                . $path
+                . ' cannot be read.'
+            );
+        }
+    }
+
+    /**
+     * Validate file path
+     * and check if file can be written.
+     *
+     * @param unknown $path
+     * @throws FileException
+     */
+    private static function validatePathToWrite($path)
+    {
+        $directoryPath = dirname($path);
+
+        if ((file_exists($path) && !is_writable($path))
+        || (!file_exists($path) && !is_writable($directoryPath))) {
+            throw new FileException(
+                'File '
+                . $path
+                . ' cannot be written.'
+            );
+        }
+    }
+
+    /**
+     * Validate file content.
+     *
+     * @param string $content
+     * @throws \InvalidArgumentException
+     */
+    private function validateContent($content)
+    {
+        $contentIsValid = is_string($content);
+
+        if (!$contentIsValid) {
+            throw new \InvalidArgumentException(
+                'Improper file content.
+                Must be string.'
+            );
+        }
     }
 }

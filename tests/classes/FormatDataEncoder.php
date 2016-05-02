@@ -27,13 +27,13 @@ class FormatDataEncoder
      * Simulate data encoding
      * and return expected result.
      *
-     * @param string $data
+     * @param array $data
      * @return string
      */
     public function encodeData($data)
     {
         return "<FORMAT ENCODED DATA>"
-            . $data
+            . array_shift(array_values($data))
             . "</FORMAT ENCODED DATA>";
     }
 }

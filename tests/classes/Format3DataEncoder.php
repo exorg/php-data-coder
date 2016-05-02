@@ -26,7 +26,7 @@ class Format3DataEncoder
      * Simulates data encoding
      * and return expected result.
      *
-     * @param string $data
+     * @param array $data
      * @return string
      */
     public function encodeData($data)

@@ -115,6 +115,7 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
     /**
      * Test encodeData function returns proper result.
      *
+     * @param array $data
      * @dataProvider dataProvider
      */
     public function testEncodeData($data)
@@ -122,10 +123,10 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
         $this->dataEncoder->setDataFormat('format');
 
         $expectedResult = "<FORMAT ENCODED DATA>"
-            . $data
+            . array_shift(array_values($data))
             . "</FORMAT ENCODED DATA>";
 
-        $actualResult = $this->dataEncoder->encodeData($data);
+        $actualResult = $this->dataEncoder->encodeData($data, 'file');
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -153,9 +154,9 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
     public function dataProvider()
     {
         return array(
-            array('apple'),
-            array('pear'),
-            array('plum'),
+            array(array('apple')),
+            array(array('pear')),
+            array(array('plum')),
         );
     }
 

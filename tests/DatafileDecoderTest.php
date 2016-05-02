@@ -26,10 +26,11 @@ use Exorg\Decapsulator\ObjectDecapsulator;
 class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Relative path of directory with data fixtures
-     * used in tests.
+     * Helper for handling data file fixtures.
+     *
+     * @var DataFileFixturesHelper
      */
-    const DATA_FIXTURES_RELATIVE_PATH = 'data/encoded';
+    private static $dataFileFixturesHelper = null;
 
     /**
      * Instance of tested class.
@@ -97,7 +98,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetDataFormatFunction($dataFormat, $expectedResult)
     {
-        $dataFilePath = self::buildDataFixturePath('data.format');
+        $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.format');
 
         $this->datafileDecoder->setDataFormat($dataFormat);
         $actualResult = $this->datafileDecoder->decodeFile($dataFilePath);
@@ -127,7 +128,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWhenFileDoesNotExist()
     {
-        $dataFilePath = self::buildDataFixturePath('noexistent.format');
+        $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('noexistent.format');
 
         $this->datafileDecoder->decodeFile($dataFilePath);
     }
@@ -140,7 +141,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWhenImproperFormatIsSet()
     {
-        $dataFilePath = self::buildDataFixturePath('data.format');
+        $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.format');
 
         $this->datafileDecoder->setDataFormat('nonexistent');
         $this->datafileDecoder->decodeFile($dataFilePath);
@@ -154,7 +155,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     {
         $expectedResult = "<FORMAT DECODED DATA>Another dummy data</FORMAT DECODED DATA>";
 
-        $dataFilePath = self::buildDataFixturePath('data.anotherformat');
+        $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.anotherformat');
 
         $this->datafileDecoder->setDataFormat('format');
         $actualResult = $this->datafileDecoder->decodeFile($dataFilePath);
@@ -172,7 +173,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWhenFormatIsNotSetAndFileHasImproperExtension()
     {
-        $dataFilePath = self::buildDataFixturePath('data.nonexistentformat');
+        $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.nonexistentformat');
 
         $this->datafileDecoder->decodeFile($dataFilePath);
     }
@@ -187,7 +188,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWhenFormatIsNotSetAnFileHasNotExtension()
     {
-        $dataFilePath = self::buildDataFixturePath('data');
+        $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data');
 
         $this->datafileDecoder->decodeFile($dataFilePath);
     }
@@ -201,7 +202,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     {
         $expectedResult = "<FORMAT DECODED DATA>Dummy data</FORMAT DECODED DATA>";
 
-        $dataFilePath = self::buildDataFixturePath('data.format');
+        $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.format');
 
         $actualResult = $this->datafileDecoder->decodeFile($dataFilePath);
 
@@ -224,28 +225,19 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * This method is called before the first test of this test class is run.
+     */
+    public static function setUpBeforeClass()
+    {
+        self::$dataFileFixturesHelper = new DataFileFixturesHelper();
+    }
+
+    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
     protected function setUp()
     {
         $this->datafileDecoder = new DatafileDecoder();
-    }
-
-    /**
-     * Returns absolute path to the data fixture.
-     *
-     * @param string $dataFileName
-     * @return string
-     */
-    private static function buildDataFixturePath($dataFileName)
-    {
-        $absoluteFilePath = __DIR__
-            . DIRECTORY_SEPARATOR
-            . self::DATA_FIXTURES_RELATIVE_PATH
-            . DIRECTORY_SEPARATOR
-            . $dataFileName;
-
-        return $absoluteFilePath;
     }
 }

@@ -29,11 +29,11 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
     const DATA_FORMAT_JSON = 'json';
 
     /**
-     * Test helper for Data Encoders.
+     * Helper for handling data file fixtures.
      *
-     * @var DataCodersTestHelper
+     * @var DataFileFixturesHelper
      */
-    private static $dataCodersTestHelper = null;
+    private static $dataFileFixturesHelper = null;
 
     /**
      * Instance of tested class.
@@ -85,8 +85,8 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeDataWithCorrectData()
     {
-        $data = self::$dataCodersTestHelper->loadDecodedData();
-        $expectedResult = self::$dataCodersTestHelper->loadEncodedData();
+        $data = self::$dataFileFixturesHelper->loadDecodedData();
+        $expectedResult = self::$dataFileFixturesHelper->loadEncodedData();
 
         $actualResult = $this->jsonDataEncoder->encodeData($data);
 
@@ -98,8 +98,8 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
      */
     public static function setUpBeforeClass()
     {
-        self::$dataCodersTestHelper = new DataCodersTestHelper();
-        self::$dataCodersTestHelper->setDataFormat(self::DATA_FORMAT_JSON);
+        self::$dataFileFixturesHelper = new DataFileFixturesHelper();
+        self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_JSON);
     }
 
     /**

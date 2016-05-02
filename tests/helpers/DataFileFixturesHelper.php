@@ -12,9 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * DataCodersTestHelper.
- * Helper for test classes for
- * Encoder/Decoder classes.
+ * DataFileFixturesHelper.
+ * Allows to handle data file fixtures.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -22,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataCodersTestHelper
+class DataFileFixturesHelper
 {
     /**
      * Directory with the files containing data
@@ -43,6 +42,11 @@ class DataCodersTestHelper
      * from various formats.
      */
     const DECODED_DATA_SUBDIRECTORY = 'decoded';
+
+    /**
+     * Directory where data files are saved.
+     */
+    const CREATED_DATA_SUBDIRECTORY = 'created';
 
     /**
      * Base of the name (with no extension)
@@ -76,13 +80,13 @@ class DataCodersTestHelper
      */
     public function loadEncodedData()
     {
-        $partialDataFilePath = self::ENCODED_DATA_SUBDIRECTORY
-            . DIRECTORY_SEPARATOR
-            . self::ENCODED_DATA_BASE_FILENAME
+        $fileName = self::ENCODED_DATA_BASE_FILENAME
             . '.'
             . $this->dataFormat;
 
-        $data = $this->loadFileContent($partialDataFilePath);
+        $dataFilePath = $this->buildEncodedFilePath($fileName);
+
+        $data = $this->loadFileContent($dataFilePath);
 
         return $data;
     }
@@ -95,12 +99,12 @@ class DataCodersTestHelper
      */
     public function loadDecodedData()
     {
-        $partialCodeFilePath = self::DECODED_DATA_SUBDIRECTORY
-            . DIRECTORY_SEPARATOR
-            . $this->dataFormat
+        $fileName = $this->dataFormat
             . '.php';
 
-        $resultCode = $this->loadFileContent($partialCodeFilePath);
+        $codeFilePath = $this->buildDecodedFilePath($fileName);
+
+        $resultCode = $this->loadFileContent($codeFilePath);
 
         // Define variable $result
         // and assing to it expected result
@@ -111,19 +115,65 @@ class DataCodersTestHelper
     }
 
     /**
+     * Build path to the encoded data file.
+     *
+     * @param string $fileName
+     */
+    public function buildEncodedFilePath($fileName)
+    {
+        $partialDataFilePath = self::ENCODED_DATA_SUBDIRECTORY
+            . DIRECTORY_SEPARATOR
+            . $fileName;
+
+        $fullDataFilePath = $this->buildFullPathFromPartialFilePath($partialDataFilePath);
+
+        return $fullDataFilePath;
+    }
+
+    /**
+     * Build path to the decoded data file.
+     *
+     * @param string $fileName
+     */
+    public function buildDecodedFilePath($fileName)
+    {
+        $partialDataFilePath = self::DECODED_DATA_SUBDIRECTORY
+            . DIRECTORY_SEPARATOR
+            . $fileName;
+
+        $fullDataFilePath = $this->buildFullPathFromPartialFilePath($partialDataFilePath);
+
+        return $fullDataFilePath;
+    }
+
+    /**
+     * Build path to the created data file.
+     *
+     * @param string $fileName
+     */
+    public function buildCreatedFilePath($fileName)
+    {
+        $partialDataFilePath = self::CREATED_DATA_SUBDIRECTORY
+            . DIRECTORY_SEPARATOR
+            . $fileName;
+
+        $fullDataFilePath = $this->buildFullPathFromPartialFilePath($partialDataFilePath);
+
+        return $fullDataFilePath;
+    }
+
+    /**
      * Loads content of the data file.
      *
      * @param string $filePath
      * @return string
      * @throws UnexpectedValueException
      */
-    private function loadFileContent($partialFilePath)
+    private function loadFileContent($filePath)
     {
-        $fullFilePath = $this->buildFullPathFromPartialFilePath($partialFilePath);
+        $this->validateFilePath($filePath);
 
-        $this->validateFilePath($fullFilePath);
-
-        $dataFileContent = file_get_contents($fullFilePath);
+        $dataFileContent = file_get_contents($filePath);
 
         return $dataFileContent;
     }
@@ -158,9 +208,13 @@ class DataCodersTestHelper
      */
     private function buildFullPathFromPartialFilePath($partialFilePath)
     {
-        $fullFilePath = __DIR__
+        $fullUncanonizedDirectoryPath = __DIR__
             . DIRECTORY_SEPARATOR
-            . self::FILES_DIRECTORY
+            . self::FILES_DIRECTORY;
+
+        $fullDirectoryPath = realpath($fullUncanonizedDirectoryPath);
+
+        $fullFilePath = $fullDirectoryPath
             . DIRECTORY_SEPARATOR
             . trim($partialFilePath);
 

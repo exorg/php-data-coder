@@ -147,6 +147,84 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test if buildEncodedFilePath($fileName) function
+     * has been defined.
+     */
+    public function testBuildEncodedFilePathFunctionExists()
+    {
+        $this->assertTrue(
+            method_exists(
+                $this->dataFileFixturesHelper,
+                'buildEncodedFilePath'
+            )
+        );
+    }
+
+    /**
+     * Test if buildEncodedFilePath($fileName) function
+     * builds proper path.
+     */
+    public function testBuildEncodedFilePath()
+    {
+        $expectedPath = realpath(__DIR__ . '/../data/encoded/data.self-test');
+        $actualPath = $this->dataFileFixturesHelper->buildEncodedFilePath('data.self-test');
+
+        $this->assertEquals($expectedPath, $actualPath);
+    }
+
+    /**
+     * Test if buildDecodedFilePath($fileName) function
+     * has been defined.
+     */
+    public function testBuildDecodedFilePathFunctionExists()
+    {
+        $this->assertTrue(
+            method_exists(
+                $this->dataFileFixturesHelper,
+                'buildDecodedFilePath'
+            )
+        );
+    }
+
+    /**
+     * Test if buildDecodedFilePath($fileName) function
+     * builds proper path.
+     */
+    public function testBuildDecodedFilePath()
+    {
+        $expectedPath = realpath(__DIR__ . '/../data/decoded/self-test.php');
+        $actualPath = $this->dataFileFixturesHelper->buildDecodedFilePath('self-test.php');
+
+        $this->assertEquals($expectedPath, $actualPath);
+    }
+
+    /**
+     * Test if buildCreatedFilePath($fileName) function
+     * has been defined.
+     */
+    public function testBuildCreatedFilePathFunctionExists()
+    {
+        $this->assertTrue(
+            method_exists(
+                $this->dataFileFixturesHelper,
+                'buildCreatedFilePath'
+            )
+        );
+    }
+
+    /**
+     * Test if buildCreatedFilePath($fileName) function
+     * builds proper path.
+     */
+    public function testBuildCreatedFilePath()
+    {
+        $expectedPath = realpath(__DIR__ . '/../data/created/') . DIRECTORY_SEPARATOR . 'self-test';
+        $actualPath = $this->dataFileFixturesHelper->buildCreatedFilePath('self-test');
+
+        $this->assertEquals($expectedPath, $actualPath);
+    }
+
+    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */

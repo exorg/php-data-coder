@@ -12,9 +12,9 @@
 namespace Exorg\DataCoder;
 
 /**
- * DataCodersTestHelperTest.
+ * DataFileFixturesHelperTest.
  * PHPUnit base test class for
- * DataCodersTestHelper.
+ * DataFileFixturesHelper.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -22,23 +22,23 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataCodersTestHelperTest extends \PHPUnit_Framework_TestCase
+class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Instance of tested class.
      *
-     * @var DataCodersTestHelper
+     * @var DataFileFixturesHelper
      */
-    private $dataCodersTestHelper = null;
+    private $dataFileFixturesHelper = null;
 
     /**
-     * Test if Exorg\DataCoder\DataCodersTestHelper class
+     * Test if Exorg\DataCoder\DataFileFixturesHelper class
      * has been created.
      */
     public function testDataCodersTestHelperClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\DataCodersTestHelper')
+            class_exists('Exorg\DataCoder\DataFileFixturesHelper')
         );
     }
 
@@ -50,7 +50,7 @@ class DataCodersTestHelperTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             method_exists(
-                $this->dataCodersTestHelper,
+                $this->dataFileFixturesHelper,
                 'setDataFormat'
             )
         );
@@ -64,7 +64,7 @@ class DataCodersTestHelperTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             method_exists(
-                $this->dataCodersTestHelper,
+                $this->dataFileFixturesHelper,
                 'loadEncodedData'
             )
         );
@@ -78,8 +78,8 @@ class DataCodersTestHelperTest extends \PHPUnit_Framework_TestCase
         $expectedData = (string) microtime();
         $this->writeContentToSelfTestEncodedFile($expectedData);
 
-        $this->dataCodersTestHelper->setDataFormat('self-test');
-        $actualData = $this->dataCodersTestHelper->loadEncodedData();
+        $this->dataFileFixturesHelper->setDataFormat('self-test');
+        $actualData = $this->dataFileFixturesHelper->loadEncodedData();
 
         $this->assertEquals($expectedData, $actualData);
     }
@@ -95,8 +95,8 @@ class DataCodersTestHelperTest extends \PHPUnit_Framework_TestCase
         $expectedData = (string) microtime();
         $this->writeContentToSelfTestEncodedFile($expectedData);
 
-        $this->dataCodersTestHelper->setDataFormat('another');
-        $actualData = $this->dataCodersTestHelper->loadEncodedData();
+        $this->dataFileFixturesHelper->setDataFormat('another');
+        $actualData = $this->dataFileFixturesHelper->loadEncodedData();
     }
 
     /**
@@ -107,7 +107,7 @@ class DataCodersTestHelperTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             method_exists(
-                $this->dataCodersTestHelper,
+                $this->dataFileFixturesHelper,
                 'loadDecodedData'
             )
         );
@@ -123,8 +123,8 @@ class DataCodersTestHelperTest extends \PHPUnit_Framework_TestCase
         );
         $this->writeResultToSelfTestDecodedFile($expectedResult);
 
-        $this->dataCodersTestHelper->setDataFormat('self-test');
-        $actualResult = $this->dataCodersTestHelper->loadDecodedData();
+        $this->dataFileFixturesHelper->setDataFormat('self-test');
+        $actualResult = $this->dataFileFixturesHelper->loadDecodedData();
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -142,8 +142,8 @@ class DataCodersTestHelperTest extends \PHPUnit_Framework_TestCase
         );
         $this->writeResultToSelfTestDecodedFile($expectedResult);
 
-        $this->dataCodersTestHelper->setDataFormat('another');
-        $actualResult = $this->dataCodersTestHelper->loadDecodedData();
+        $this->dataFileFixturesHelper->setDataFormat('another');
+        $actualResult = $this->dataFileFixturesHelper->loadDecodedData();
     }
 
     /**
@@ -152,7 +152,7 @@ class DataCodersTestHelperTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->dataCodersTestHelper = new DataCodersTestHelper();
+        $this->dataFileFixturesHelper = new DataFileFixturesHelper();
     }
 
     /**

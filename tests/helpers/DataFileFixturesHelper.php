@@ -12,9 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * DataCodersTestHelper.
- * Helper for test classes for
- * Encoder/Decoder classes.
+ * DataFileFixturesHelper.
+ * Allows to handle data file fixtures.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -22,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataCodersTestHelper
+class DataFileFixturesHelper
 {
     /**
      * Directory with the files containing data

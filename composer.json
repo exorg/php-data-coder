@@ -29,15 +29,32 @@
     },
     "autoload": {
         "psr-4": {
-            "Exorg\\DataCoder\\": "src/"
+            "Exorg\\DataCoder\\": [
+            	"src/",
+            	"src/data_encoders/",
+            	"src/data_decoders/",
+            	"src/datafile_encoders/",
+            	"src/datafile_decoders/",
+            	"src/data_format/",
+            	"src/coder_builder/",
+            	"src/file/"
+            ]
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Exorg\\DataCoder\\": [
             	"tests/",
-            	"tests/helpers",
-            	"tests/classes"
+            	"tests/testing_environment/",
+            	"tests/testing_environment/helpers/",
+            	"tests/testing_environment/classes/",
+            	"tests/data_encoders/",
+            	"tests/data_decoders/",
+            	"tests/datafile_encoders/",
+            	"tests/datafile_decoders/",
+            	"tests/data_format/",
+            	"tests/coder_builder/",
+            	"tests/file/"
             ]
         }
     }

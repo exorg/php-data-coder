@@ -14,8 +14,8 @@ namespace Exorg\DataCoder;
 use Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
- * JsonDatafileDecoderTest.
- * PHPUnit test class for JsonDatafileDecoder class.
+ * YamlDatafileDecoderTest.
+ * PHPUnit test class for YamlDatafileDecoder class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -23,12 +23,12 @@ use Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
+class YamlDatafileDecoderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Decoded data format.
      */
-    const DATA_FORMAT_JSON = 'json';
+    const DATA_FORMAT_YAML = 'yaml';
 
     /**
      * Helper for handling data file fixtures.
@@ -40,18 +40,18 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
     /**
      * Instance of tested class.
      *
-     * @var JsonDatafileDecoder
+     * @var YamlDatafileDecoder
      */
-    private $jsonDatafileDecoder;
+    private $yamlDatafileDecoder;
 
     /**
-     * Test Exorg\DataCoder\JsonDatafileDecoder class
+     * Test Exorg\DataCoder\YamlDatafileDecoder class
      * has been implemented.
      */
-    public function testJsonDatafileDecoderClassExists()
+    public function testYamlDatafileDecoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\JsonDatafileDecoder')
+            class_exists('Exorg\DataCoder\YamlDatafileDecoder')
         );
     }
 
@@ -63,7 +63,7 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             method_exists(
-                $this->jsonDatafileDecoder,
+                $this->yamlDatafileDecoder,
                 'decodeFile'
             )
         );
@@ -79,7 +79,7 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
     {
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('noexistent.format');
 
-        $this->jsonDatafileDecoder->decodeFile($dataFilePath);
+        $this->yamlDatafileDecoder->decodeFile($dataFilePath);
     }
 
     /**
@@ -91,7 +91,7 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
     {
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.nonexistentformat');
 
-        $this->jsonDatafileDecoder->decodeFile($dataFilePath);
+        $this->yamlDatafileDecoder->decodeFile($dataFilePath);
     }
 
     /**
@@ -100,10 +100,10 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWithCorrectData()
     {
-        $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.json');
+        $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.yaml');
         $expectedResult = self::$dataFileFixturesHelper->loadDecodedData();
 
-        $actualResult = $this->jsonDatafileDecoder->decodeFile($dataFilePath);
+        $actualResult = $this->yamlDatafileDecoder->decodeFile($dataFilePath);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -114,7 +114,7 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
     public static function setUpBeforeClass()
     {
         self::$dataFileFixturesHelper = new DataFileFixturesHelper();
-        self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_JSON);
+        self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_YAML);
     }
 
     /**
@@ -123,6 +123,6 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->jsonDatafileDecoder = new JsonDatafileDecoder();
+        $this->yamlDatafileDecoder = new YamlDatafileDecoder();
     }
 }

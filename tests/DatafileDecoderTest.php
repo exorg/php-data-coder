@@ -219,7 +219,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('format1', '<FORMAT 1 DECODED DATA/>'),
-            array('format2', '<FORMAT 2 DECODED DATA/>'),
+            array('Format2', '<FORMAT 2 DECODED DATA/>'),
             array('format3', '<FORMAT 3 DECODED DATA/>'),
         );
     }

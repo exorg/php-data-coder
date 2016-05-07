@@ -32,8 +32,8 @@ class FormatDataDecoder
      */
     public function decodeData($data)
     {
-        return "<FORMAT DECODED DATA>"
+        return array("<FORMAT DECODED DATA>"
             . $data
-            . "</FORMAT DECODED DATA>";
+            . "</FORMAT DECODED DATA>");
     }
 }

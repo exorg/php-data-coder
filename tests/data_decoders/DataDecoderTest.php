@@ -121,9 +121,9 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
     {
         $this->dataDecoder->setDataFormat('format');
 
-        $expectedResult = "<FORMAT DECODED DATA>"
+        $expectedResult = array("<FORMAT DECODED DATA>"
             . $data
-            . "</FORMAT DECODED DATA>";
+            . "</FORMAT DECODED DATA>");
 
         $actualResult = $this->dataDecoder->decodeData($data);
 
@@ -139,9 +139,9 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
     public function dataFormatsResultsProvider()
     {
         return array(
-            array('format1', '<FORMAT 1 DECODED DATA/>'),
-            array('Format2', '<FORMAT 2 DECODED DATA/>'),
-            array('FORMAT3', '<FORMAT 3 DECODED DATA/>'),
+            array('format1', array('<FORMAT 1 DECODED DATA/>')),
+            array('Format2', array('<FORMAT 2 DECODED DATA/>')),
+            array('FORMAT3', array('<FORMAT 3 DECODED DATA/>')),
         );
     }
 

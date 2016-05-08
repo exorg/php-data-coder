@@ -59,6 +59,19 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test setDataFormat function
+     * thows exception when dataFormat type is improper.
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetDataFormatFunctionWithNotStringDataFormat()
+    {
+        $dataFormat = 1024;
+
+        $this->dataDecoder->setDataFormat($dataFormat);
+    }
+
+    /**
+     * Test setDataFormat function
      * thows exception when dataFormat is null.
      *
      * @expectedException \InvalidArgumentException

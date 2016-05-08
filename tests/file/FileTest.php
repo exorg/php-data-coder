@@ -197,7 +197,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * Test getContent function
      * returns proper content.
      *
-     * @dataProvider fileForReadPathContentProvider
+     * @dataProvider fileForReadPathAndContentProvider
      */
     public function testGetContentFunction($filePath, $fileContent)
     {
@@ -268,7 +268,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * Test setContent function
      * returns proper content.
      *
-     * @dataProvider fileForWritePathContentProvider
+     * @dataProvider fileForWritePathAndContentProvider
      * @param string $filePath
      * @param string $fileContent
      */
@@ -303,7 +303,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function fileForReadPathContentProvider()
+    public function fileForReadPathAndContentProvider()
     {
         return array(
             array(self::buildFileFixturePath('file-for-read'), 'File for read'),
@@ -319,7 +319,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function fileForWritePathContentProvider()
+    public function fileForWritePathAndContentProvider()
     {
         return array(
             array(self::buildFileFixturePath('file-for-write'), 'File for write'),
@@ -360,8 +360,6 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * This method is called after the last test of this test class is run.
-     *
-     * @since Method available since Release 3.4.0
      */
     public static function tearDownAfterClass()
     {
@@ -400,7 +398,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Reset special permissions formfiles to default.
+     * Reset permissions for files to default.
      */
     private static function resetPermissionsForFiles()
     {

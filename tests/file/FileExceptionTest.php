@@ -27,7 +27,7 @@ class FileExceptionTest extends \PHPUnit_Framework_TestCase
      * Test if Exorg\DataCoder\NonexistentFileException class
      * has been created.
      */
-    public function testNonexistentFileExceptionTestClassExists()
+    public function testFileExceptionTestClassExists()
     {
         $this->assertTrue(
             class_exists('Exorg\DataCoder\FileException')

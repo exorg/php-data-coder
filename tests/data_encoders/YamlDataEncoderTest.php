@@ -44,7 +44,7 @@ class YamlDataEncoderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test YamlDataEncoder class
-     * has been implemented.
+     * has been created.
      */
     public function testYamlDataEncoderClassExists()
     {
@@ -61,14 +61,15 @@ class YamlDataEncoderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             method_exists(
-                $this->yamlDataEncoder,
+                'Exorg\DataCoder\YamlDataEncoder',
                 'encodeData'
             )
         );
     }
 
     /**
-     * Test encodeData function doesn't accept data of incorrect type.
+     * Test encodeData function
+     * throws exception when data is not an array.
      *
      * @expectedException InvalidArgumentException
      */
@@ -80,10 +81,10 @@ class YamlDataEncoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test encodeData function accepts data of correct type
-     * and properly parses data.
+     * Test encodeData function properly encodes data
+     * in the YAML format.
      */
-    public function testDecodeDataWithCorrectData()
+    public function testEncodeData()
     {
         $data = self::$dataFileFixturesHelper->loadDecodedData();
         $expectedResult = self::$dataFileFixturesHelper->loadEncodedData();

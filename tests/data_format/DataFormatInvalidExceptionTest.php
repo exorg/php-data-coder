@@ -27,7 +27,7 @@ class DataFormatInvalidExceptionTest extends \PHPUnit_Framework_TestCase
      * Test if Exorg\DataCoder\DataFormatInvalidException class
      * has been created.
      */
-    public function testNonexistentFileExceptionTestClassExists()
+    public function testDataFormatInvalidExceptionClassExists()
     {
         $this->assertTrue(
             class_exists('Exorg\DataCoder\DataFormatInvalidException')

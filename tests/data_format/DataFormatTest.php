@@ -39,7 +39,7 @@ class DataFormatTest extends \PHPUnit_Framework_TestCase
      * that means data format abbreviations
      * corresponding data format full names defined.
      *
-     * @dataProvider formatAbbreviationFullNameProvider
+     * @dataProvider formatAbbreviationAndFullNameProvider
      * @param string $formatAbbreviation
      * @param string $formatFullName
      */
@@ -56,7 +56,7 @@ class DataFormatTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function formatAbbreviationFullNameProvider()
+    public function formatAbbreviationAndFullNameProvider()
     {
         return array(
             array('JSON', 'JSON'),

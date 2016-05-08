@@ -13,7 +13,7 @@ namespace Exorg\DataCoder;
 
 /**
  * DataFormatInvalidException.
- * Exception indicating that parsed data has incorrect format.
+ * Exception indicating that data has incorrect format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>

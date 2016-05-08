@@ -26,6 +26,8 @@ trait DataFormatEstablishableTrait
     /**
      * Establish the dataFormat
      * if not set directly.
+     *
+     * @throws \LogicException
      */
     private function establishDataFormat()
     {

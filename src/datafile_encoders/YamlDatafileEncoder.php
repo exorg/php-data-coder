@@ -28,6 +28,7 @@ class YamlDatafileEncoder
      *
      * @param array $data
      * @param string $filePath
+     * @throws \InvalidArgumentException
      */
     public function encodeFile($data, $filePath)
     {

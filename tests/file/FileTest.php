@@ -56,6 +56,19 @@ class FileTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test if constructor throws exception
+     * when file path argument type is improper.
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testConstructorWhenFilePathIsNotString()
+    {
+        $filePath = 1024;
+
+        new File($filePath);
+    }
+
+    /**
+     * Test if constructor throws exception
      * when file path argument is null.
      *
      * @expectedException \InvalidArgumentException

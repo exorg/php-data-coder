@@ -46,7 +46,7 @@ class JsonDatafileEncoderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test Exorg\DataCoder\JsonDatafileEncoder class
-     * has been implemented.
+     * has been created.
      */
     public function testJsonDatafileEncoderClassExists()
     {
@@ -56,21 +56,22 @@ class JsonDatafileEncoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if encodeFile($filePath) function
+     * Test if encodeFile function
      * has been defined.
      */
     public function testEncodeFileFunctionExists()
     {
         $this->assertTrue(
             method_exists(
-                $this->jsonDatafileEncoder,
+                'Exorg\DataCoder\JsonDatafileEncoder',
                 'encodeFile'
             )
         );
     }
 
     /**
-     * Test encodeFile function doesn't accept data of incorrect type.
+     * Test encodeFile function throws exception
+     * when type of data is incorrect.
      *
      * @expectedException \InvalidArgumentException
      */
@@ -83,10 +84,10 @@ class JsonDatafileEncoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test encodeFile function accepts data of correct type
-     * and properly encodes data.
+     * Test encodeFile encodes data properly
+     * and saves it to the proper file.
      */
-    public function testEncodeFileWithCorrectData()
+    public function testEncodeFile()
     {
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.json');
         $data = self::$dataFileFixturesHelper->loadDecodedData();

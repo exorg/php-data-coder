@@ -13,7 +13,7 @@ namespace Exorg\DataCoder;
 
 /**
  * YamlDatafileEncoder.
- * Encodes YAML data and saves to file.
+ * Datafile encoder for YAML format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -24,25 +24,18 @@ namespace Exorg\DataCoder;
 class YamlDatafileEncoder
 {
     /**
-     * Encoded file.
-     *
-     * @var File
-     */
-    protected $file;
-
-    /**
-     * Encode data and write to file.
+     * Encode YAML data and write to the file.
      *
      * @param array $data
      * @param string $filePath
      */
     public function encodeFile($data, $filePath)
     {
-        $this->file = new File($filePath);
+        $file = new File($filePath);
 
         $dataEncoder = new YamlDataEncoder();
         $fileData = $dataEncoder->encodeData($data);
 
-        $this->file->setContent($fileData);
+        $file->setContent($fileData);
     }
 }

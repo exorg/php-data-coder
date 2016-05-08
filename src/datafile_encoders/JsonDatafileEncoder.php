@@ -13,7 +13,7 @@ namespace Exorg\DataCoder;
 
 /**
  * JsonDatafileEncoder.
- * Encodes JSON data and saves to file.
+ * Datafile encoder for JSON format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -24,25 +24,18 @@ namespace Exorg\DataCoder;
 class JsonDatafileEncoder
 {
     /**
-     * Encoded file.
-     *
-     * @var File
-     */
-    protected $file;
-
-    /**
-     * Encode data and write to file.
+     * Encode JSON data and write to the file.
      *
      * @param array $data
      * @param string $filePath
      */
     public function encodeFile($data, $filePath)
     {
-        $this->file = new File($filePath);
+        $file = new File($filePath);
 
         $dataEncoder = new JsonDataEncoder();
         $fileData = $dataEncoder->encodeData($data);
 
-        $this->file->setContent($fileData);
+        $file->setContent($fileData);
     }
 }

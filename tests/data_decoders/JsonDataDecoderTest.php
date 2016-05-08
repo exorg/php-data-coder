@@ -69,12 +69,25 @@ class JsonDataDecoderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test decodeData function
+     * throws exception when data is not string.
+     *
+     * @expectedException InvalidArgumentException
+     */
+    public function testDecodeDataWithNotStringData()
+    {
+        $data = 1024;
+
+        $this->jsonDataDecoder->decodeData($data);
+    }
+
+    /**
+     * Test decodeData function
      * throws exception when data is incorrect
      * and doesn't fit to the JSON format.
      *
      * @expectedException \Exorg\DataCoder\DataFormatInvalidException
      */
-    public function testDecodeDataWithIncorrectData()
+    public function testDecodeDataWithDataInIncorrectFormat()
     {
         $data = '';
 

@@ -73,7 +73,7 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException InvalidArgumentException
      */
-    public function testEncodeDataWithIncorrectData()
+    public function testEncodeDataWithNotArrayData()
     {
         $data = '';
 

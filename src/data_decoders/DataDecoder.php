@@ -13,9 +13,8 @@ namespace Exorg\DataCoder;
 
 /**
  * DataDecoder.
- * Expansible Universal Data Decoder.
- * Provide decoding strategies for basic format of data files
- * with possibility to extending for another formats.
+ * Allows to decode data
+ * accordingly the chosen data format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -29,13 +28,6 @@ class DataDecoder
     use CoderBuildingTrait;
 
     /**
-     * Data decoding strategy.
-     *
-     * @var DataDecodingStrategyInterface
-     */
-    private $dataDecodingStrategy;
-
-    /**
      * Decode data.
      *
      * @param array $data
@@ -43,20 +35,10 @@ class DataDecoder
      */
     public function decodeData($data)
     {
-        $this->setUpDataDecodingStrategy();
+        $dataDecodingStrategy = $this->buildCoder();
 
-        $decodedData = $this->dataDecodingStrategy->decodeData($data);
+        $decodedData = $dataDecodingStrategy->decodeData($data);
 
         return $decodedData;
-    }
-
-    /**
-     * Set-up data decoding strategy.
-     *
-     * @param DataDecodingStrategyInterface $dataDecodingStrategy
-     */
-    private function setUpDataDecodingStrategy()
-    {
-        $this->dataDecodingStrategy = $this->buildCoder();
     }
 }

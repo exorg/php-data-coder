@@ -24,7 +24,7 @@ namespace Exorg\DataCoder;
 class YamlDataDecoder implements DataDecodingStrategyInterface
 {
     /**
-     * Decode given Yaml data to PHP array.
+     * Decode given YAML data to PHP array.
      *
      * @param string $data
      * @return array

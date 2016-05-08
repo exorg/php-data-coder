@@ -46,7 +46,7 @@ class YamlDatafileDecoderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test Exorg\DataCoder\YamlDatafileDecoder class
-     * has been implemented.
+     * has been created.
      */
     public function testYamlDatafileDecoderClassExists()
     {
@@ -56,14 +56,14 @@ class YamlDatafileDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if decodeFile($filePath) function
+     * Test if decodeFile function
      * has been defined.
      */
     public function testDecodeFileFunctionExists()
     {
         $this->assertTrue(
             method_exists(
-                $this->yamlDatafileDecoder,
+                'Exorg\DataCoder\YamlDatafileDecoder',
                 'decodeFile'
             )
         );
@@ -83,7 +83,8 @@ class YamlDatafileDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test decodeFile function doesn't accept data of incorrect format.
+     * Test decodeFile function throws exception
+     * when data in the file have incorrect format.
      *
      * @expectedException \Exorg\DataCoder\DataFormatInvalidException
      */
@@ -95,8 +96,8 @@ class YamlDatafileDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test decodeFile function accepts data of correct format
-     * and properly decodes data.
+     * Test decodeFile function properly decodes file data
+     * with YAML format.
      */
     public function testDecodeFileWithCorrectData()
     {

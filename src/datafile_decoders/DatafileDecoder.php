@@ -13,8 +13,9 @@ namespace Exorg\DataCoder;
 
 /**
  * DatafileDecoder.
- * Decode data file content
- * according to given format.
+ * Allows to decode data file
+ * accordingly the data format set directly
+ * or defined by file extension.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -29,14 +30,14 @@ class DatafileDecoder
     use CoderBuildingTrait;
 
     /**
-     * Decoded file.
+     * Datafile.
      *
      * @var File
      */
     protected $file;
 
     /**
-     * Decode file content according to file type.
+     * Decode file content.
      *
      * @param string $filePath
      * @return array

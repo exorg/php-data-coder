@@ -13,7 +13,7 @@ namespace Exorg\DataCoder;
 
 /**
  * DataFileFixturesHelper.
- * Allows to handle data file fixtures.
+ * Helps to handle data file fixtures.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -52,35 +52,35 @@ class DataFileFixturesHelper
      * Base of the name (with no extension)
      * of the file with encoded data.
      */
-    const ENCODED_DATA_BASE_FILENAME = 'data';
+    const ENCODED_DATA_FILENAME_BASE = 'data';
 
     /**
      * Format of the encoded/decoded data.
+     * Must be lowercase.
      *
      * @var string
      */
     protected $dataFormat = null;
 
     /**
-     * Sets data format.
-     * Should be lowercase.
+     * Set data format.
      *
      * @param string $dataFormat
      */
     public function setDataFormat($dataFormat)
     {
-        $this->dataFormat = $dataFormat;
+        $this->dataFormat = strtolower($dataFormat);
     }
 
     /**
-     * Loads encoded data
+     * Load encoded data
      * from the data file.
      *
      * @return string
      */
     public function loadEncodedData()
     {
-        $fileName = self::ENCODED_DATA_BASE_FILENAME
+        $fileName = self::ENCODED_DATA_FILENAME_BASE
             . '.'
             . $this->dataFormat;
 
@@ -92,15 +92,14 @@ class DataFileFixturesHelper
     }
 
     /**
-     * Loads decoded data
+     * Load decoded data
      * form the code snippet file.
      *
      * @return array
      */
     public function loadDecodedData()
     {
-        $fileName = $this->dataFormat
-            . '.php';
+        $fileName = $this->dataFormat . '.php';
 
         $codeFilePath = $this->buildDecodedFilePath($fileName);
 
@@ -163,7 +162,7 @@ class DataFileFixturesHelper
     }
 
     /**
-     * Loads content of the data file.
+     * Load content of the data file.
      *
      * @param string $filePath
      * @return string
@@ -200,7 +199,7 @@ class DataFileFixturesHelper
     }
 
     /**
-     * Builds full absolute file path
+     * Build full absolute file path
      * from partial relative file path.
      *
      * @param string $partialFilePath

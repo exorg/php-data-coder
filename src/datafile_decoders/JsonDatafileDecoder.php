@@ -13,7 +13,7 @@ namespace Exorg\DataCoder;
 
 /**
  * JsonDatafileDecoder.
- * Decodes JSON data file content.
+ * Datafile decoder for JSON format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -24,13 +24,6 @@ namespace Exorg\DataCoder;
 class JsonDatafileDecoder
 {
     /**
-     * Decoded file.
-     *
-     * @var File
-     */
-    protected $file;
-
-    /**
      * Decode file content.
      *
      * @param string $filePath
@@ -38,9 +31,9 @@ class JsonDatafileDecoder
      */
     public function decodeFile($filePath)
     {
-        $this->file = new File($filePath);
+        $file = new File($filePath);
 
-        $fileData = $this->file->getContent();
+        $fileData = $file->getContent();
 
         $dataDecoder = new JsonDataDecoder();
         $result = $dataDecoder->decodeData($fileData);

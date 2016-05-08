@@ -41,7 +41,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test Exorg\DataCoder\DatafileDecoder class
-     * has been implemented.
+     * has been created.
      */
     public function testDatafileDecoderClassExists()
     {
@@ -58,28 +58,15 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             method_exists(
-                $this->datafileDecoder,
+                'Exorg\DataCoder\DatafileDecoder',
                 'setDataFormat'
             )
         );
     }
 
     /**
-     * Test setDataFormat($dataFormat) method
-     * sets proper decoding strategy.
-     *
-     * @expectedException \InvalidArgumentException
-     */
-    public function testSetDataFormatFunctionWithEmptyDataFormat()
-    {
-        $dataFormat = '';
-
-        $this->datafileDecoder->setDataFormat($dataFormat);
-    }
-
-    /**
-     * Test setDataFormat($dataFormat) method
-     * sets proper decoding strategy.
+     * Test setDataFormat function
+     * thows exception when dataFormat is null.
      *
      * @expectedException \InvalidArgumentException
      */
@@ -91,10 +78,23 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test setDataFormat($dataFormat) method
-     * sets proper property.
+     * Test setDataFormat function
+     * thows exception when dataFormat is empty string.
      *
-     * @dataProvider dataFormatsResultsProvider
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetDataFormatFunctionWithEmptyDataFormat()
+    {
+        $dataFormat = '';
+
+        $this->datafileDecoder->setDataFormat($dataFormat);
+    }
+
+    /**
+     * Test setDataFormat function sets proper format
+     * that allows to build proper Data Decoder.
+     *
+     * @dataProvider dataFormatsAndResultsProvider
      */
     public function testSetDataFormatFunction($dataFormat, $expectedResult)
     {
@@ -107,21 +107,21 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if decodeFile($filePath) method
+     * Test if decodeFile function
      * has been defined.
      */
     public function testDecodeFileFunctionExists()
     {
         $this->assertTrue(
             method_exists(
-                $this->datafileDecoder,
+                'Exorg\DataCoder\DatafileDecoder',
                 'decodeFile'
             )
         );
     }
 
     /**
-     * Test decodeFile method throws exception
+     * Test decodeFile function throws exception
      * when file doesn't exist.
      *
      * @expectedException Exorg\DataCoder\FileException
@@ -134,7 +134,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test decodeFile method throws exception
+     * Test decodeFile function throws exception
      * when improper format has been set directly.
      *
      * @expectedException Exorg\DataCoder\CoderClassNotFoundException
@@ -148,12 +148,12 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test decodeFile method properly decodes data file
+     * Test decodeFile function properly decodes data file
      * when format has been set directly.
      */
     public function testDecodeFileWhenFormatIsSet()
     {
-        $expectedResult = "<FORMAT DECODED DATA>Another dummy data</FORMAT DECODED DATA>";
+        $expectedResult = array("<FORMAT DECODED DATA>Another dummy data</FORMAT DECODED DATA>");
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.anotherformat');
 
@@ -200,7 +200,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testDecodeFileWhenFormatIsNotSet()
     {
-        $expectedResult = "<FORMAT DECODED DATA>Dummy data</FORMAT DECODED DATA>";
+        $expectedResult = array("<FORMAT DECODED DATA>Dummy data</FORMAT DECODED DATA>");
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.format');
 
@@ -210,17 +210,17 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Provides data formats
+     * Provide data formats
      * and expected results returned by proper decoders.
      *
      * @return array
      */
-    public function dataFormatsResultsProvider()
+    public function dataFormatsAndResultsProvider()
     {
         return array(
-            array('format1', '<FORMAT 1 DECODED DATA/>'),
-            array('Format2', '<FORMAT 2 DECODED DATA/>'),
-            array('format3', '<FORMAT 3 DECODED DATA/>'),
+            array('format1', array('<FORMAT 1 DECODED DATA/>')),
+            array('Format2', array('<FORMAT 2 DECODED DATA/>')),
+            array('format3', array('<FORMAT 3 DECODED DATA/>')),
         );
     }
 

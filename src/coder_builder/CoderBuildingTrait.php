@@ -17,7 +17,7 @@ namespace Exorg\DataCoder;
  * of the proper type (encoder/decoder)
  * and processing proper data format.
  * This coder building process is based on dataFormat property
- * and the name of using class.
+ * and the name of the class using this trait.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -28,16 +28,16 @@ namespace Exorg\DataCoder;
 trait CoderBuildingTrait
 {
     /**
-     * Name of the class that uses trait
-     * without namespace.
+     * Name of the class (without namespace)
+     * that uses trait.
      *
      * @var string
      */
     private $currentClassName;
 
     /**
-     * Name of the class that uses trait
-     * without namespace
+     * Name of the class (without namespace)
+     * that uses trait,
      * divided into segments
      * begun with upper case letter.
      *
@@ -46,7 +46,7 @@ trait CoderBuildingTrait
     private $currentClassNameSegments;
 
     /**
-     * Builds instance of a proper data coder
+     * Build instance of a proper data coder
      * of the proper type (encoder/decoder)
      * and processing proper data format.
      */
@@ -54,15 +54,7 @@ trait CoderBuildingTrait
     {
         $coderClassName = $this->buildCoderClassName();
 
-        $coderClassExists = class_exists($coderClassName);
-
-        if (!$coderClassExists) {
-            throw new CoderClassNotFoundException(
-                'Data Coder class '
-                . $coderClassName
-                . ' not found.'
-            );
-        }
+        $this->validateCoderClassExistance($coderClassName);
 
         $dataCoder = new $coderClassName();
 
@@ -70,7 +62,7 @@ trait CoderBuildingTrait
     }
 
     /**
-     * Builds name of a proper data coder class
+     * Build name of a proper data coder class
      * of the proper type (encoder/decoder)
      * and processing proper data format.
      *
@@ -80,13 +72,9 @@ trait CoderBuildingTrait
     {
         $this->currentClassName = $this->extractCurrentClassName();
         $this->currentClassNameSegments = $this->splitCurrentClassName();
-        $coderTypePostfix = $this->extractCurrentClassNamePostfix();
 
-        if ($this->dataFormatIsDefined()) {
-            $dataFormatPrefix = ucfirst(strtolower($this->dataFormat));
-        } else {
-            $dataFormatPrefix = $this->extractCurrentClassNamePrefix();
-        }
+        $dataFormatPrefix = $this->establishDataFormatPrefix();
+        $coderTypePostfix = $this->extractCurrentClassNamePostfix();
 
         $coderClassName = __NAMESPACE__
             . '\\'
@@ -98,7 +86,24 @@ trait CoderBuildingTrait
     }
 
     /**
-     * Extracts class name of current class
+     * Validate existance of the Coder class
+     * defined by class name.
+     *
+     * @param string $coderClassName
+     */
+    private function validateCoderClassExistance($coderClassName)
+    {
+        if (!class_exists($coderClassName)) {
+            throw new CoderClassNotFoundException(
+                'Data Coder class '
+                . $coderClassName
+                . ' not found.'
+            );
+        }
+    }
+
+    /**
+     * Extract class name of current class
      * from the whole namespaced path.
      *
      * @return string
@@ -112,7 +117,7 @@ trait CoderBuildingTrait
     }
 
     /**
-     * Splits current class name up
+     * Split current class name up
      * into segmants
      * begun with upper case letter.
      *
@@ -120,13 +125,23 @@ trait CoderBuildingTrait
      */
     private function splitCurrentClassName()
     {
-        $classNameParts = preg_split('/(?=[A-Z])/', $this->currentClassName, null, PREG_SPLIT_NO_EMPTY);
+        /**
+         * Every uppercase letter
+         * is the beginning of new segment.
+         */
+        $splittingSeparatorPattern = '/(?=[A-Z])/';
+        $classNameParts = preg_split(
+            $splittingSeparatorPattern,
+            $this->currentClassName,
+            null,
+            PREG_SPLIT_NO_EMPTY
+        );
 
         return $classNameParts;
     }
 
     /**
-     * Extracts name prefix of current class.
+     * Extract name prefix of current class.
      * Prefix means first word
      * of the pascal case class name.
      */
@@ -138,7 +153,7 @@ trait CoderBuildingTrait
     }
 
     /**
-     * Extracts name postfix of current class.
+     * Extract name postfix of current class.
      * Postfix means the last word
      * of the pascal case class name.
      */
@@ -150,7 +165,24 @@ trait CoderBuildingTrait
     }
 
     /**
-     * Checks if dataFormat property is defined
+     * Establish source of data format prefix
+     * and retrieve prefix from that source.
+     *
+     * @return string
+     */
+    private function establishDataFormatPrefix()
+    {
+        if ($this->dataFormatIsDefined()) {
+            $dataFormatPrefix = ucfirst(strtolower($this->dataFormat));
+        } else {
+            $dataFormatPrefix = $this->extractCurrentClassNamePrefix();
+        }
+
+        return $dataFormatPrefix;
+    }
+
+    /**
+     * Check if dataFormat property is defined
      * in the current class.
      *
      * @return boolean

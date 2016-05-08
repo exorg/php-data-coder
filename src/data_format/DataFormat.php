@@ -14,7 +14,7 @@ namespace Exorg\DataCoder;
 use Garoevans\PhpEnum\Enum;
 
 /**
- * DataFormats.
+ * DataFormat.
  * Data Formats enumeration.
  *
  * @package DataCoder

@@ -50,7 +50,7 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             method_exists(
-                $this->dataFileFixturesHelper,
+                'Exorg\DataCoder\DataFileFixturesHelper',
                 'setDataFormat'
             )
         );
@@ -64,10 +64,22 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             method_exists(
-                $this->dataFileFixturesHelper,
+                'Exorg\DataCoder\DataFileFixturesHelper',
                 'loadEncodedData'
             )
         );
+    }
+
+    /**
+     * Test for function loadEncodedData
+     * when improper format data has been set.
+     *
+     * @expectedException UnexpectedValueException
+     */
+    public function testLoadEncodedDataWithImproperDataFormat()
+    {
+        $this->dataFileFixturesHelper->setDataFormat('another');
+        $actualData = $this->dataFileFixturesHelper->loadEncodedData();
     }
 
     /**
@@ -85,21 +97,6 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for function loadEncodedData
-     * when improper format data has been set.
-     *
-     * @expectedException UnexpectedValueException
-     */
-    public function testLoadEncodedDataWithImproperDataFormat()
-    {
-        $expectedData = (string) microtime();
-        $this->writeContentToSelfTestEncodedFile($expectedData);
-
-        $this->dataFileFixturesHelper->setDataFormat('another');
-        $actualData = $this->dataFileFixturesHelper->loadEncodedData();
-    }
-
-    /**
      * Test if loadDecodedData function
      * has been defined.
      */
@@ -107,10 +104,22 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             method_exists(
-                $this->dataFileFixturesHelper,
+                'Exorg\DataCoder\DataFileFixturesHelper',
                 'loadDecodedData'
             )
         );
+    }
+
+    /**
+     * Test for function loadDecodedData
+     * when improper format data has been set.
+     *
+     * @expectedException UnexpectedValueException
+     */
+    public function testLoadDecodedDataWithImproperDataFormat()
+    {
+        $this->dataFileFixturesHelper->setDataFormat('another');
+        $actualResult = $this->dataFileFixturesHelper->loadDecodedData();
     }
 
     /**
@@ -130,38 +139,21 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for function loadDecodedData
-     * when improper format data has been set.
-     *
-     * @expectedException UnexpectedValueException
-     */
-    public function testLoadDecodedDataWithImproperDataFormat()
-    {
-        $expectedResult = array(
-            'value' => (string) microtime(),
-        );
-        $this->writeResultToSelfTestDecodedFile($expectedResult);
-
-        $this->dataFileFixturesHelper->setDataFormat('another');
-        $actualResult = $this->dataFileFixturesHelper->loadDecodedData();
-    }
-
-    /**
-     * Test if buildEncodedFilePath($fileName) function
+     * Test if buildEncodedFilePath function
      * has been defined.
      */
     public function testBuildEncodedFilePathFunctionExists()
     {
         $this->assertTrue(
             method_exists(
-                $this->dataFileFixturesHelper,
+                'Exorg\DataCoder\DataFileFixturesHelper',
                 'buildEncodedFilePath'
             )
         );
     }
 
     /**
-     * Test if buildEncodedFilePath($fileName) function
+     * Test if buildEncodedFilePath function
      * builds proper path.
      */
     public function testBuildEncodedFilePath()
@@ -173,21 +165,21 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if buildDecodedFilePath($fileName) function
+     * Test if buildDecodedFilePath function
      * has been defined.
      */
     public function testBuildDecodedFilePathFunctionExists()
     {
         $this->assertTrue(
             method_exists(
-                $this->dataFileFixturesHelper,
+                'Exorg\DataCoder\DataFileFixturesHelper',
                 'buildDecodedFilePath'
             )
         );
     }
 
     /**
-     * Test if buildDecodedFilePath($fileName) function
+     * Test if buildDecodedFilePath function
      * builds proper path.
      */
     public function testBuildDecodedFilePath()
@@ -199,21 +191,21 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if buildCreatedFilePath($fileName) function
+     * Test if buildCreatedFilePath function
      * has been defined.
      */
     public function testBuildCreatedFilePathFunctionExists()
     {
         $this->assertTrue(
             method_exists(
-                $this->dataFileFixturesHelper,
+                'Exorg\DataCoder\DataFileFixturesHelper',
                 'buildCreatedFilePath'
             )
         );
     }
 
     /**
-     * Test if buildCreatedFilePath($fileName) function
+     * Test if buildCreatedFilePath function
      * builds proper path.
      */
     public function testBuildCreatedFilePath()
@@ -225,7 +217,7 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Sets up the fixture, for example, open a network connection.
+     * Set up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
     protected function setUp()
@@ -234,7 +226,7 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Writes content to the special self test file
+     * Write content to the special self test file
      * from directory with encoded data.
      *
      * @param string $content
@@ -246,7 +238,7 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Writes result to the special self test file
+     * Write result to the special self test file
      * from directory with decoded data.
      *
      * @param string $content

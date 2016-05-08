@@ -34,7 +34,7 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test Exorg\DataCoder\DataEncoder class
-     * has been implemented.
+     * has been created.
      */
     public function testDataEncoderClassExists()
     {
@@ -44,35 +44,22 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if setDataFormat($dataFormat) method
+     * Test if setDataFormat function
      * has been defined.
      */
     public function testSetDataFormatFunctionExists()
     {
         $this->assertTrue(
             method_exists(
-                $this->dataEncoder,
+                'Exorg\DataCoder\DataEncoder',
                 'setDataFormat'
             )
         );
     }
 
     /**
-     * Test setDataFormat($dataFormat) method
-     * sets proper decoding strategy.
-     *
-     * @expectedException \InvalidArgumentException
-     */
-    public function testSetDataFormatFunctionWithEmptyDataFormat()
-    {
-        $dataFormat = '';
-
-        $this->dataEncoder->setDataFormat($dataFormat);
-    }
-
-    /**
-     * Test setDataFormat($dataFormat) method
-     * sets proper decoding strategy.
+     * Test setDataFormat function
+     * thows exception when dataFormat is null.
      *
      * @expectedException \InvalidArgumentException
      */
@@ -84,10 +71,23 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test setDataFormat function
+     * thows exception when dataFormat is empty string.
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetDataFormatFunctionWithEmptyDataFormat()
+    {
+        $dataFormat = '';
+
+        $this->dataEncoder->setDataFormat($dataFormat);
+    }
+
+    /**
      * Test setDataFormat function sets proper format
      * that allows to build proper Data Encoder.
      *
-     * @dataProvider dataFormatsResultsProvider
+     * @dataProvider dataFormatsAndResultsProvider
      */
     public function testSetDataFormat($dataFormat, $expectedResult)
     {
@@ -99,21 +99,22 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if encodeData($data) method
+     * Test if encodeData function
      * has been defined.
      */
     public function testEncodeDataFunctionExists()
     {
         $this->assertTrue(
             method_exists(
-                $this->dataEncoder,
+                'Exorg\DataCoder\DataEncoder',
                 'encodeData'
             )
         );
     }
 
     /**
-     * Test encodeData function returns proper result.
+     * Test encodeData function
+     * encodes data properly.
      *
      * @param array $data
      * @dataProvider dataProvider
@@ -132,12 +133,12 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Provides data formats
+     * Provide data formats
      * and expected results returned by proper encoders.
      *
      * @return array
      */
-    public function dataFormatsResultsProvider()
+    public function dataFormatsAndResultsProvider()
     {
         return array(
             array('format1', '<FORMAT 1 ENCODED DATA/>'),
@@ -147,7 +148,7 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Provides data to encode.
+     * Provide data to encode.
      *
      * @return array
      */

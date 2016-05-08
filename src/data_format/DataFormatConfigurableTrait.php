@@ -24,16 +24,17 @@ namespace Exorg\DataCoder;
 trait DataFormatConfigurableTrait
 {
     /**
-     * Decoded data format.
+     * Data format.
      *
      * @var string
      */
     private $dataFormat;
 
     /**
-     * Set format of decoded data.
+     * Set format of the processed data.
      *
      * @param string $dataFormat
+     * @throws \InvalidArgumentException
      */
     public function setDataFormat($dataFormat)
     {
@@ -44,7 +45,7 @@ trait DataFormatConfigurableTrait
     /**
      * Validate data format.
      *
-     * @param unknown $dataFormat
+     * @param string $dataFormat
      * @throws DataFormatInvalidException
      */
     public function validateDataFormat($dataFormat)

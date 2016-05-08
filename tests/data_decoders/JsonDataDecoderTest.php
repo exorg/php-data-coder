@@ -44,7 +44,7 @@ class JsonDataDecoderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test JsonDataDecoder class
-     * has been implemented.
+     * has been created.
      */
     public function testJsonDataDecoderClassExists()
     {
@@ -61,14 +61,16 @@ class JsonDataDecoderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(
             method_exists(
-                $this->jsonDataDecoder,
+                'Exorg\DataCoder\JsonDataDecoder',
                 'decodeData'
             )
         );
     }
 
     /**
-     * Test decodeData function doesn't accept data of incorrect format.
+     * Test decodeData function
+     * throws exception when data is incorrect
+     * and doesn't fit to the JSON format.
      *
      * @expectedException \Exorg\DataCoder\DataFormatInvalidException
      */
@@ -80,10 +82,10 @@ class JsonDataDecoderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test decodeData function accepts data of correct format
-     * and properly parses data.
+     * Test encodeData function properly decodes data
+     * in the proper JSON format.
      */
-    public function testDecodeDataWithCorrectData()
+    public function testDecodeData()
     {
         $data = self::$dataFileFixturesHelper->loadEncodedData();
         $expectedResult = self::$dataFileFixturesHelper->loadDecodedData();

@@ -24,6 +24,12 @@ namespace Exorg\DataCoder;
 class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * Namespace of the dummy coders classes
+     * used to test trait.
+     */
+    const DUMMY_CODERS_NAMESPACE = __NAMESPACE__;
+
+    /**
      * Test Exorg\DatafilesParser\CoderBuildingTrait trait
      * has been implemented.
      */
@@ -50,7 +56,7 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test if buildCoder() function throws an exception
-     * when tested trait using class has improper postfix
+     * when class using tested trait has improper postfix
      * with no assumed coder type.
      * It checks classes either with or without dataFormat.
      *
@@ -65,9 +71,8 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test if buildCoder() function throws an exception
-     * when tested trait using class has improper prefix
-     * with no assumed coder type.
-     * It checks classes either with or without dataFormat.
+     * when class using tested trait has improper prefix
+     * with no assumed data format.
      *
      * @dataProvider traitUsingClassObjectsWithImproperPrefixProvider
      * @expectedException \Exorg\DataCoder\CoderClassNotFoundException
@@ -80,11 +85,9 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test if buildCoder() function throws an exception
-     * when tested trait using class has improper dataFormat value
-     * with no assumed coder type.
-     * It checks classes either with or without dataFormat.
+     * when tested trait using class has improper dataFormat value.
      *
-     * @dataProvider traitUsingClassObjectsWithImproperDataFormat
+     * @dataProvider traitUsingClassObjectsWithImproperDataFormatProvider
      * @expectedException \Exorg\DataCoder\CoderClassNotFoundException
      * @param mixed $traitUsingClassObject
      */
@@ -100,11 +103,11 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
      * with assumed coder type.
      * It checks classes either with or without dataFormat.
      *
-     * @dataProvider traitUsingClassObjectsAndBuiltCoderClasses
+     * @dataProvider traitUsingClassObjectsAndBuiltCoderClassesProvider
      * @param mixed $traitUsingClassObject
      * @param mixed $expectedCoderObject
      */
-    public function testBuildCoderWhenTraitUsingClassHasProperPostfix($traitUsingClassObject, $expectedCoderClass)
+    public function testBuildCoder($traitUsingClassObject, $expectedCoderClass)
     {
         $actualCoderObject = $traitUsingClassObject->runBuildCoder();
 
@@ -112,7 +115,8 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tested trait using class objects with improper postfix.
+     * Provide objects of the classes that use tested trait
+     * and have improper postfix.
      *
      * @return array
      */
@@ -127,7 +131,8 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tested trait using class objects with improper prefix.
+     * Provide objects of the classes that use tested trait
+     * and have improper prefix.
      *
      * @return array
      */
@@ -140,11 +145,12 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tested trait using class objects with improper dataFormat values.
+     * Provide objects of the classes that use tested trait
+     * and have improper dataFormat values.
      *
      * @return array
      */
-    public function traitUsingClassObjectsWithImproperDataFormat()
+    public function traitUsingClassObjectsWithImproperDataFormatProvider()
     {
         return array(
             array(new DummyClassFormatNullEncoder()),
@@ -155,24 +161,24 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Tested trait using class objects
-     * with proper postfixes, prefixes, dataFormat values
+     * Provide objects of the classes that use tested trait
+     * and have improper proper postfixes, prefixes and dataFormat values
      * and classes of the Coder objects
      * should be returned by buildCoder() function.
      *
      * @return array
      */
-    public function traitUsingClassObjectsAndBuiltCoderClasses()
+    public function traitUsingClassObjectsAndBuiltCoderClassesProvider()
     {
         return array(
-            array(new DummyClassFormat1Encoder(), __NAMESPACE__ . '\Format1DataEncoder'),
-            array(new DummyClassFormat1Decoder(), __NAMESPACE__ . '\Format1DataDecoder'),
-            array(new DummyClassFormat2Encoder(), __NAMESPACE__ . '\Format2DataEncoder'),
-            array(new DummyClassFormat2Decoder(), __NAMESPACE__ . '\Format2DataDecoder'),
-            array(new Format1DummyClassEncoder(), __NAMESPACE__ . '\Format1DataEncoder'),
-            array(new Format1DummyClassDecoder(), __NAMESPACE__ . '\Format1DataDecoder'),
-            array(new Format2DummyClassEncoder(), __NAMESPACE__ . '\Format2DataEncoder'),
-            array(new Format2DummyClassDecoder(), __NAMESPACE__ . '\Format2DataDecoder'),
+            array(new DummyClassFormat1Encoder(), self::DUMMY_CODERS_NAMESPACE . '\Format1DataEncoder'),
+            array(new DummyClassFormat1Decoder(), self::DUMMY_CODERS_NAMESPACE . '\Format1DataDecoder'),
+            array(new DummyClassFormat2Encoder(), self::DUMMY_CODERS_NAMESPACE . '\Format2DataEncoder'),
+            array(new DummyClassFormat2Decoder(), self::DUMMY_CODERS_NAMESPACE . '\Format2DataDecoder'),
+            array(new Format1DummyClassEncoder(), self::DUMMY_CODERS_NAMESPACE . '\Format1DataEncoder'),
+            array(new Format1DummyClassDecoder(), self::DUMMY_CODERS_NAMESPACE . '\Format1DataDecoder'),
+            array(new Format2DummyClassEncoder(), self::DUMMY_CODERS_NAMESPACE . '\Format2DataEncoder'),
+            array(new Format2DummyClassDecoder(), self::DUMMY_CODERS_NAMESPACE . '\Format2DataDecoder'),
         );
     }
 }

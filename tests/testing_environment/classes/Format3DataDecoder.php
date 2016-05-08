@@ -27,10 +27,10 @@ class Format3DataDecoder
      * and return expected result.
      *
      * @param string $data
-     * @return string
+     * @return array
      */
     public function decodeData($data)
     {
-        return "<FORMAT 3 DECODED DATA/>";
+        return array("<FORMAT 3 DECODED DATA/>");
     }
 }

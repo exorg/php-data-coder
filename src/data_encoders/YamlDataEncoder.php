@@ -24,7 +24,7 @@ namespace Exorg\DataCoder;
 class YamlDataEncoder implements DataEncodingStrategyInterface
 {
     /**
-     * Encode given PHP array YAML data.
+     * Encode given PHP array to YAML data.
      *
      * @param array $data
      * @return string

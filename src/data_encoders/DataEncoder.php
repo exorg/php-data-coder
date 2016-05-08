@@ -13,9 +13,8 @@ namespace Exorg\DataCoder;
 
 /**
  * DataEncoder.
- * Expansible Universal Data Encoder.
- * Provide decoding strategies for basic format of data files
- * with possibility to extending for another formats.
+ * Allows to encode data
+ * accordingly the chosen data format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -29,13 +28,6 @@ class DataEncoder
     use CoderBuildingTrait;
 
     /**
-     * Data encoding strategy.
-     *
-     * @var DataEncodingStrategyInterface
-     */
-    private $dataEncodingStrategy;
-
-    /**
      * Encode data.
      *
      * @param array $data
@@ -43,20 +35,10 @@ class DataEncoder
      */
     public function encodeData($data)
     {
-        $this->setUpDataEncodingStrategy();
+        $dataEncodingStrategy = $this->buildCoder();
 
-        $encodedData = $this->dataEncodingStrategy->encodeData($data);
+        $encodedData = $dataEncodingStrategy->encodeData($data);
 
         return $encodedData;
-    }
-
-    /**
-     * Set-up data decoding strategy.
-     *
-     * @param DataEncodingStrategyInterface $dataEncodingStrategy
-     */
-    private function setUpDataEncodingStrategy()
-    {
-        $this->dataEncodingStrategy = $this->buildCoder();
     }
 }

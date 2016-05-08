@@ -13,8 +13,10 @@ namespace Exorg\DataCoder;
 
 /**
  * NonexistentFileException.
- * Exception indicating that decoded file doesn't exist
- * cannot be written in the given place
+ * Exception indicating that file
+ * either doesn't exist
+ * or cannot be read from the given place
+ * or cannot be written in the given place
  * or has improper access mode.
  *
  * @package DataCoder

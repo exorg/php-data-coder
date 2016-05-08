@@ -14,8 +14,8 @@ namespace Exorg\DataCoder;
 /**
  * File.
  * Provides needed informations
- * about the file
- * and performs basic operations.
+ * about the file defined by absolute path
+ * and performs basic operations on file.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -95,7 +95,7 @@ class File
      * Validate file path
      * and check if file can be read.
      *
-     * @param unknown $path
+     * @param string $path
      * @throws FileException
      */
     private static function validatePathToRead($path)
@@ -119,7 +119,7 @@ class File
      * Validate file path
      * and check if file can be written.
      *
-     * @param unknown $path
+     * @param string $path
      * @throws FileException
      */
     private static function validatePathToWrite($path)

@@ -141,7 +141,7 @@ class DatafileEncoderTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException Exorg\DataCoder\CoderClassNotFoundException
      */
-    public function testEncodeFileWhenImproperFormatIsSet()
+    public function testEncodeFileWhenImproperDataFormatIsSet()
     {
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.format');
 
@@ -153,7 +153,7 @@ class DatafileEncoderTest extends \PHPUnit_Framework_TestCase
      * Test encodeFile function properly encodes data file
      * when format has been set directly.
      */
-    public function testEncodeFileWhenFormatIsSet()
+    public function testEncodeFileWhenDataFormatIsSet()
     {
         $expectedResult = "<FORMAT ENCODED DATA>Another dummy data</FORMAT ENCODED DATA>";
 
@@ -175,7 +175,7 @@ class DatafileEncoderTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException Exorg\DataCoder\CoderClassNotFoundException
      */
-    public function testEncodeFileWhenFormatIsNotSetAndFileHasImproperExtension()
+    public function testEncodeFileWhenDataFormatIsNotSetAndFileHasImproperExtension()
     {
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.nonexistentformat');
 
@@ -190,7 +190,7 @@ class DatafileEncoderTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \LogicException
      */
-    public function testEncodeFileWhenFormatIsNotSetAnFileHasNotExtension()
+    public function testEncodeFileWhenDataFormatIsNotSetAnFileHasNotExtension()
     {
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data');
 
@@ -202,7 +202,7 @@ class DatafileEncoderTest extends \PHPUnit_Framework_TestCase
      * when data format hasn't been set
      * and encoder must recognize format by file extension.
      */
-    public function testEncodeFileWhenFormatIsNotSet()
+    public function testEncodeFileWhenDataFormatIsNotSet()
     {
         $expectedResult = "<FORMAT ENCODED DATA>Dummy data</FORMAT ENCODED DATA>";
 

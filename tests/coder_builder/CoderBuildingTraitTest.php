@@ -41,7 +41,7 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if buildCoder() function
+     * Test if buildCoder function
      * has been defined.
      */
     public function testBuildCoderFunctionExists()
@@ -55,7 +55,7 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if buildCoder() function throws an exception
+     * Test if buildCoder function throws an exception
      * when class using tested trait has improper postfix
      * with no assumed coder type.
      * It checks classes either with or without dataFormat.
@@ -70,7 +70,7 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if buildCoder() function throws an exception
+     * Test if buildCoder function throws an exception
      * when class using tested trait has improper prefix
      * with no assumed data format.
      *
@@ -84,7 +84,7 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if buildCoder() function throws an exception
+     * Test if buildCoder function throws an exception
      * when tested trait using class has improper dataFormat value.
      *
      * @dataProvider traitUsingClassObjectsWithImproperDataFormatProvider
@@ -97,7 +97,7 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test if buildCoder() function does not throw an exception
+     * Test if buildCoder function does not throw an exception
      * and build Coder instance of the proper class
      * when tested trait using class has proper postfix
      * with assumed coder type.
@@ -164,7 +164,7 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
      * Provide objects of the classes that use tested trait
      * and have improper proper postfixes, prefixes and dataFormat values
      * and classes of the Coder objects
-     * should be returned by buildCoder() function.
+     * should be returned by buildCoder function.
      *
      * @return array
      */

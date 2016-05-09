@@ -99,7 +99,7 @@ class YamlDatafileDecoderTest extends \PHPUnit_Framework_TestCase
      * Test decodeFile function properly decodes file data
      * with YAML format.
      */
-    public function testDecodeFileWithCorrectData()
+    public function testDecodeFile()
     {
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.yaml');
         $expectedResult = self::$dataFileFixturesHelper->loadDecodedData();

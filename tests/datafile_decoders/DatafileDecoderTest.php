@@ -152,7 +152,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException Exorg\DataCoder\CoderClassNotFoundException
      */
-    public function testDecodeFileWhenImproperFormatIsSet()
+    public function testDecodeFileWhenImproperDataFormatIsSet()
     {
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.format');
 
@@ -164,7 +164,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      * Test decodeFile function properly decodes data file
      * when format has been set directly.
      */
-    public function testDecodeFileWhenFormatIsSet()
+    public function testDecodeFileWhenDataFormatIsSet()
     {
         $expectedResult = array("<FORMAT DECODED DATA>Another dummy data</FORMAT DECODED DATA>");
 
@@ -184,7 +184,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException Exorg\DataCoder\CoderClassNotFoundException
      */
-    public function testDecodeFileWhenFormatIsNotSetAndFileHasImproperExtension()
+    public function testDecodeFileWhenDataFormatIsNotSetAndFileHasImproperExtension()
     {
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.nonexistentformat');
 
@@ -199,7 +199,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \LogicException
      */
-    public function testDecodeFileWhenFormatIsNotSetAnFileHasNotExtension()
+    public function testDecodeFileWhenDataFormatIsNotSetAnFileHasNotExtension()
     {
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data');
 
@@ -211,7 +211,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      * when data format hasn't been set
      * and decoder must recognize format by file extension.
      */
-    public function testDecodeFileWhenFormatIsNotSet()
+    public function testDecodeFileWhenDataFormatIsNotSet()
     {
         $expectedResult = array("<FORMAT DECODED DATA>Dummy data</FORMAT DECODED DATA>");
 

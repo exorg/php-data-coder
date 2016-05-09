@@ -21,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDataDecoder implements DataDecodingStrategyInterface
+class YamlDataDecoder extends AbstractDataDecoder implements DataDecodingStrategyInterface
 {
     /**
      * Decode given YAML data to PHP array.
@@ -45,21 +45,6 @@ class YamlDataDecoder implements DataDecodingStrategyInterface
         } else {
             throw new DataFormatInvalidException(
                 'Invalid YAML data format.'
-            );
-        }
-    }
-
-    /**
-     * Validate data.
-     *
-     * @param string $data
-     * @throws \InvalidArgumentException
-     */
-    private function validateData($data)
-    {
-        if (!is_string($data)) {
-            throw new \InvalidArgumentException(
-                'Data must be a string.'
             );
         }
     }

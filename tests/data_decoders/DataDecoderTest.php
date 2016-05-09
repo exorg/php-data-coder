@@ -63,7 +63,7 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \InvalidArgumentException
      */
-    public function testSetDataFormatFunctionWithNotStringDataFormat()
+    public function testSetDataFormatWithNotStringDataFormat()
     {
         $dataFormat = 1024;
 
@@ -76,7 +76,7 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \InvalidArgumentException
      */
-    public function testSetDataFormatFunctionWithNullDataFormat()
+    public function testSetDataFormatWithNullDataFormat()
     {
         $dataFormat = null;
 
@@ -89,7 +89,7 @@ class DataDecoderTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \InvalidArgumentException
      */
-    public function testSetDataFormatFunctionWithEmptyDataFormat()
+    public function testSetDataFormatWithEmptyDataFormat()
     {
         $dataFormat = '';
 

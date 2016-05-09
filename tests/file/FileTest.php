@@ -140,7 +140,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider filePathExtensionProvider
      */
-    public function testGetExtensionFunction($filePath, $fileExtension)
+    public function testGetExtension($filePath, $fileExtension)
     {
         $file = new File($filePath);
 
@@ -167,7 +167,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \Exorg\DataCoder\FileException
      */
-    public function testGetContentFunctionWhenFileDoesNotExist()
+    public function testGetContentWhenFileDoesNotExist()
     {
         $filePath = self::buildFileFixturePath('nonexistent');
 
@@ -182,7 +182,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \Exorg\DataCoder\FileException
      */
-    public function testGetContentFunctionWhenFileIsNotReadable()
+    public function testGetContentWhenFileIsNotReadable()
     {
         $filePath = self::buildFileFixturePath('unreadable-file');
 
@@ -197,7 +197,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \Exorg\DataCoder\FileException
      */
-    public function testGetContentFunctionWhenDirectoryIsNotReadable()
+    public function testGetContentWhenDirectoryIsNotReadable()
     {
         $filePath = self::buildFileFixturePath('unreadable-directory/file-for-read');
 
@@ -212,7 +212,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider fileForReadPathAndContentProvider
      */
-    public function testGetContentFunction($filePath, $fileContent)
+    public function testGetContent($filePath, $fileContent)
     {
         $file = new File($filePath);
 
@@ -240,7 +240,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * @dataProvider improperFileContentProvider
      * @expectedException InvalidArgumentException
      */
-    public function testSetContentFunctionWhenContentIsImproper($content)
+    public function testSetContentWhenContentIsImproper($content)
     {
         $file = new File('file');
 
@@ -253,7 +253,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \Exorg\DataCoder\FileException
      */
-    public function testSetContentFunctionWhenFileIsNotWritable()
+    public function testSetContentWhenFileIsNotWritable()
     {
         $filePath = self::buildFileFixturePath('unwritable-file');
 
@@ -268,7 +268,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \Exorg\DataCoder\FileException
      */
-    public function testSetContentFunctionWhenDirectoryIsNotWritable()
+    public function testSetContentWhenDirectoryIsNotWritable()
     {
         $filePath = self::buildFileFixturePath('unwritable-directory/file-for-write');
 
@@ -285,7 +285,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * @param string $filePath
      * @param string $fileContent
      */
-    public function testSetContentFunction($filePath, $fileContent)
+    public function testSetContent($filePath, $fileContent)
     {
         $file = new File($filePath);
 

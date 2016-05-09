@@ -32,17 +32,25 @@ class YamlDataEncoder implements DataEncodingStrategyInterface
      */
     public function encodeData($data)
     {
-        $dataTypeIsCorrect = is_array($data);
-
-        if (!$dataTypeIsCorrect) {
-            throw new \InvalidArgumentException(
-                'Invalid type of data.
-                 It must be an array.'
-            );
-        }
+        $this->validateData($data);
 
         $encodedData = yaml_emit($data);
 
         return $encodedData;
+    }
+
+    /**
+     * Validate data.
+     *
+     * @param string $data
+     * @throws \InvalidArgumentException
+     */
+    private function validateData($data)
+    {
+        if (!is_array($data)) {
+            throw new \InvalidArgumentException(
+                'Data must be an array.'
+            );
+        }
     }
 }

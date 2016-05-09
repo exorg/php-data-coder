@@ -41,6 +41,7 @@ class DatafileDecoder
      *
      * @param string $filePath
      * @return array
+     * @throws \InvalidArgumentException
      */
     public function decodeFile($filePath)
     {

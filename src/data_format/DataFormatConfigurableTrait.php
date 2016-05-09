@@ -46,18 +46,17 @@ trait DataFormatConfigurableTrait
      * Validate data format.
      *
      * @param string $dataFormat
-     * @throws DataFormatInvalidException
+     * @throws \InvalidArgumentException
      */
     public function validateDataFormat($dataFormat)
     {
-        $dataFormatIsValid = (!is_null($dataFormat))
-            && (!empty($dataFormat));
-
-        if (!$dataFormatIsValid) {
+        if (!is_string($dataFormat)) {
             throw new \InvalidArgumentException(
-                'Data format '
-                . $dataFormat
-                . ' is invalid'
+                'Data format cannot be empty.'
+            );
+        } elseif (empty($dataFormat)) {
+            throw new \InvalidArgumentException(
+                'Data format cannot be empty.'
             );
         }
     }

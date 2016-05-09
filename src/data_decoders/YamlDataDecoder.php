@@ -34,6 +34,8 @@ class YamlDataDecoder implements DataDecodingStrategyInterface
     {
         $this->turnOffErrors();
 
+        $this->validateData($data);
+
         $parsedData = yaml_parse($data);
 
         $parsingSuccessful = ($parsedData !== false);
@@ -43,6 +45,21 @@ class YamlDataDecoder implements DataDecodingStrategyInterface
         } else {
             throw new DataFormatInvalidException(
                 'Invalid YAML data format.'
+            );
+        }
+    }
+
+    /**
+     * Validate data.
+     *
+     * @param string $data
+     * @throws \InvalidArgumentException
+     */
+    private function validateData($data)
+    {
+        if (!is_string($data)) {
+            throw new \InvalidArgumentException(
+                'Data must be a string.'
             );
         }
     }

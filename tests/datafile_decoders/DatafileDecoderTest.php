@@ -66,11 +66,24 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test setDataFormat function
+     * thows exception when dataFormat type is improper.
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetDataFormatWithNotStringDataFormat()
+    {
+        $dataFormat = 1024;
+
+        $this->datafileDecoder->setDataFormat($dataFormat);
+    }
+
+    /**
+     * Test setDataFormat function
      * thows exception when dataFormat is null.
      *
      * @expectedException \InvalidArgumentException
      */
-    public function testSetDataFormatFunctionWithNullDataFormat()
+    public function testSetDataFormatWithNullDataFormat()
     {
         $dataFormat = null;
 
@@ -83,7 +96,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \InvalidArgumentException
      */
-    public function testSetDataFormatFunctionWithEmptyDataFormat()
+    public function testSetDataFormatWithEmptyDataFormat()
     {
         $dataFormat = '';
 
@@ -96,7 +109,7 @@ class DatafileDecoderTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider dataFormatsAndResultsProvider
      */
-    public function testSetDataFormatFunction($dataFormat, $expectedResult)
+    public function testSetDataFormat($dataFormat, $expectedResult)
     {
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.format');
 

@@ -41,6 +41,7 @@ class DatafileEncoder
      *
      * @param array $data
      * @param string $filePath
+     * @throws \InvalidArgumentException
      */
     public function encodeFile($data, $filePath)
     {

@@ -32,6 +32,8 @@ class JsonDataDecoder implements DataDecodingStrategyInterface
      */
     public function decodeData($data)
     {
+        $this->validateData($data);
+
         $decodedData = json_decode($data, true);
 
         $parsingSuccessful = !(is_null($decodedData));
@@ -41,6 +43,21 @@ class JsonDataDecoder implements DataDecodingStrategyInterface
         } else {
             throw new DataFormatInvalidException(
                 'Invalid JSON data format.'
+            );
+        }
+    }
+
+    /**
+     * Validate data.
+     *
+     * @param string $data
+     * @throws \InvalidArgumentException
+     */
+    private function validateData($data)
+    {
+        if (!is_string($data)) {
+            throw new \InvalidArgumentException(
+                'Data must be a string.'
             );
         }
     }

@@ -40,12 +40,7 @@ class File
      */
     public function __construct($filePath)
     {
-        if (empty($filePath)) {
-            throw new \InvalidArgumentException(
-               'File path not defined.'
-            );
-        }
-
+        self::validatePath($filePath);
         $this->path = $filePath;
     }
 
@@ -89,6 +84,27 @@ class File
         $this->validatePathToWrite($this->path);
 
         $fileContent = file_put_contents($this->path, $content);
+    }
+
+    /**
+     * Validate file path
+     * and check if it can be used
+     * to define file.
+     *
+     * @param string $path
+     * @throws \InvalidArgumentException
+     */
+    private static function validatePath($path)
+    {
+        if(!is_string($path)) {
+            throw new \InvalidArgumentException(
+               'File path must be string.'
+            );
+        } elseif (empty($path)) {
+            throw new \InvalidArgumentException(
+               'File path cannot be empty.'
+            );
+        }
     }
 
     /**

@@ -73,9 +73,9 @@ class YamlDataEncoderTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException InvalidArgumentException
      */
-    public function testEncodeDataWithIncorrectData()
+    public function testEncodeDataWithNotArrayData()
     {
-        $data = '';
+        $data = 1024;
 
         $this->yamlDataEncoder->encodeData($data);
     }

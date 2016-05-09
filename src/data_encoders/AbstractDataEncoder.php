@@ -12,8 +12,9 @@
 namespace Exorg\DataCoder;
 
 /**
- * YamlDataEncoder.
- * Data encoder for YAML format.
+ * AbstractDataEncoder.
+ * Abstract class for Data Encoder
+ * for concrete data format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,21 +22,20 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDataEncoder extends AbstractDataEncoder implements DataEncodingStrategyInterface
+abstract class AbstractDataEncoder
 {
     /**
-     * Encode given PHP array to YAML data.
+     * Validate data.
      *
-     * @param array $data
-     * @return string
+     * @param string $data
      * @throws \InvalidArgumentException
      */
-    public function encodeData($data)
+    protected function validateData($data)
     {
-        $this->validateData($data);
-
-        $encodedData = yaml_emit($data);
-
-        return $encodedData;
+        if (!is_array($data)) {
+            throw new \InvalidArgumentException(
+                'Data must be an array.'
+            );
+        }
     }
 }

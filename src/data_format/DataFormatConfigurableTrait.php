@@ -28,7 +28,7 @@ trait DataFormatConfigurableTrait
      *
      * @var string
      */
-    private $dataFormat;
+    protected $dataFormat;
 
     /**
      * Set format of the processed data.
@@ -48,7 +48,7 @@ trait DataFormatConfigurableTrait
      * @param string $dataFormat
      * @throws \InvalidArgumentException
      */
-    public function validateDataFormat($dataFormat)
+    protected function validateDataFormat($dataFormat)
     {
         if (!is_string($dataFormat)) {
             throw new \InvalidArgumentException(

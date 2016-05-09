@@ -23,18 +23,9 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DatafileDecoder
+class DatafileDecoder extends AbstractDatafileCoder
 {
-    use DataFormatConfigurableTrait;
-    use DataFormatEstablishableTrait;
     use CoderBuildingTrait;
-
-    /**
-     * Datafile.
-     *
-     * @var File
-     */
-    protected $file;
 
     /**
      * Decode file content.
@@ -47,10 +38,10 @@ class DatafileDecoder
     {
         $this->file = new File($filePath);
 
-        $this->establishDataFormat();
-        $fileData = $this->file->getContent();
-
+        $this->completeDataFormat();
         $dataDecoder = $this->buildCoder();
+
+        $fileData = $this->file->getContent();
         $result = $dataDecoder->decodeData($fileData);
 
         return $result;

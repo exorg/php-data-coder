@@ -75,7 +75,7 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testEncodeDataWithNotArrayData()
     {
-        $data = '';
+        $data = 1024;
 
         $this->jsonDataEncoder->encodeData($data);
     }

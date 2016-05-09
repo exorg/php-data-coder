@@ -75,7 +75,7 @@ class YamlDataEncoderTest extends \PHPUnit_Framework_TestCase
      */
     public function testEncodeDataWithNotArrayData()
     {
-        $data = '';
+        $data = 1024;
 
         $this->yamlDataEncoder->encodeData($data);
     }

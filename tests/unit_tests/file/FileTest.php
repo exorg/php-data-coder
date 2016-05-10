@@ -27,7 +27,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * Relative path of directory with file fixtures
      * used in tests.
      */
-    const FILE_FIXTURES_RELATIVE_PATH = '../testing_environment/files';
+    const FILE_FIXTURES_RELATIVE_PATH = '../../testing_environment/files';
 
     /**
      * Self-test for function buildFileFixturePath.

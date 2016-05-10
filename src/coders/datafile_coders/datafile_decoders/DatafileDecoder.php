@@ -12,8 +12,8 @@
 namespace Exorg\DataCoder;
 
 /**
- * DatafileEncoder.
- * Allows to encode data file
+ * DatafileDecoder.
+ * Allows to decode data file
  * accordingly the data format set directly
  * or defined by file extension.
  *
@@ -23,35 +23,27 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DatafileEncoder
+class DatafileDecoder extends AbstractDatafileCoder
 {
-    use DataFormatConfigurableTrait;
-    use DataFormatEstablishableTrait;
     use CoderBuildingTrait;
 
     /**
-     * Datafile.
+     * Decode file content.
      *
-     * @var File
-     */
-    protected $file;
-
-    /**
-     * Encode data and write to the file.
-     *
-     * @param array $data
      * @param string $filePath
+     * @return array
      * @throws \InvalidArgumentException
      */
-    public function encodeFile($data, $filePath)
+    public function decodeFile($filePath)
     {
         $this->file = new File($filePath);
 
-        $this->establishDataFormat();
+        $this->completeDataFormat();
+        $dataDecoder = $this->buildCoder();
 
-        $dataEncoder = $this->buildCoder();
-        $fileData = $dataEncoder->encodeData($data);
+        $fileData = $this->file->getContent();
+        $result = $dataDecoder->decodeData($fileData);
 
-        $this->file->setContent($fileData);
+        return $result;
     }
 }

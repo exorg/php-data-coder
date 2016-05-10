@@ -21,7 +21,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDataDecoder implements DataDecodingStrategyInterface
+class JsonDataDecoder extends AbstractDataDecoder implements DataDecodingStrategyInterface
 {
     /**
      * Decode given JSON data to PHP array.
@@ -43,21 +43,6 @@ class JsonDataDecoder implements DataDecodingStrategyInterface
         } else {
             throw new DataFormatInvalidException(
                 'Invalid JSON data format.'
-            );
-        }
-    }
-
-    /**
-     * Validate data.
-     *
-     * @param string $data
-     * @throws \InvalidArgumentException
-     */
-    private function validateData($data)
-    {
-        if (!is_string($data)) {
-            throw new \InvalidArgumentException(
-                'Data must be a string.'
             );
         }
     }

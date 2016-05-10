@@ -12,8 +12,9 @@
 namespace Exorg\DataCoder;
 
 /**
- * DataFormatEstablishableTrait.
- * Allows to establish value of data format property.
+ * AbstractDatafileCoder.
+ * Abstract class for DatafileCoders
+ * with configurable data format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,15 +22,24 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-trait DataFormatEstablishableTrait
+abstract class AbstractDatafileCoder
 {
+    use DataFormatConfigurableTrait;
+
     /**
-     * Establish the dataFormat
+     * Datafile.
+     *
+     * @var File
+     */
+    protected $file;
+
+    /**
+     * Establish and set the dataFormat
      * if not set directly.
      *
      * @throws \LogicException
      */
-    private function establishDataFormat()
+    protected function completeDataFormat()
     {
         $dataFormatIsSetDirectly = isset($this->dataFormat);
         $fileHasExtension = !empty($this->file->getExtension());

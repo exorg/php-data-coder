@@ -117,6 +117,7 @@ class DataFileFixturesHelper
      * Build path to the encoded data file.
      *
      * @param string $fileName
+     * @return string
      */
     public function buildEncodedFilePath($fileName)
     {
@@ -133,6 +134,7 @@ class DataFileFixturesHelper
      * Build path to the decoded data file.
      *
      * @param string $fileName
+     * @return string
      */
     public function buildDecodedFilePath($fileName)
     {
@@ -149,6 +151,7 @@ class DataFileFixturesHelper
      * Build path to the created data file.
      *
      * @param string $fileName
+     * @return string
      */
     public function buildCreatedFilePath($fileName)
     {

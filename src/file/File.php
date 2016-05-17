@@ -96,13 +96,13 @@ class File
      */
     private static function validatePath($path)
     {
-        if(!is_string($path)) {
+        if (!is_string($path)) {
             throw new \InvalidArgumentException(
-               'File path must be string.'
+                'File path must be string.'
             );
         } elseif (empty($path)) {
             throw new \InvalidArgumentException(
-               'File path cannot be empty.'
+                'File path cannot be empty.'
             );
         }
     }

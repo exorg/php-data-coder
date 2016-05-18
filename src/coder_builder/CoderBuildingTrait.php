@@ -110,7 +110,7 @@ trait CoderBuildingTrait
      */
     private function extractCurrentClassName()
     {
-        $classNamespacedPathParts = split('\\\\', __CLASS__);
+        $classNamespacedPathParts = explode('\\', __CLASS__);
         $className = array_pop($classNamespacedPathParts);
 
         return $className;

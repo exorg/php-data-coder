@@ -34,7 +34,7 @@ class YamlDataEncoder extends AbstractDataEncoder implements DataEncodingStrateg
     {
         $this->validateData($data);
 
-        $encodedData = yaml_emit($data);
+        $encodedData = \yaml_emit($data);
 
         return $encodedData;
     }

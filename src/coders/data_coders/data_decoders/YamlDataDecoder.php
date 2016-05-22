@@ -36,7 +36,7 @@ class YamlDataDecoder extends AbstractDataDecoder implements DataDecodingStrateg
 
         $this->validateData($data);
 
-        $parsedData = yaml_parse($data);
+        $parsedData = \yaml_parse($data);
 
         $parsingSuccessful = ($parsedData !== false);
 

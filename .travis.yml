@@ -6,4 +6,6 @@ install:
   - printf "\n" | pecl install yaml
   - echo "extension=yaml.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer install
-script: phpunit tests/
+script: 
+  - phpunit tests/
+  - ./vendor/bin/phpcs src/ tests/

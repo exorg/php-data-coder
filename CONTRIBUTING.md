@@ -1,4 +1,4 @@
-# Contributing
+# Contributing to DataCoder
 
 To contribute to the project you need to have an account on [GitHub](https://github.com/).
 

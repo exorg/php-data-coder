@@ -1,6 +1,7 @@
 {
     "name": "exorg/data-coder",
     "description": "Expansible Universal Data and Data Files Decoder/Encoder.",
+    "version": "1.0.0",
     "type": "library",
     "keywords": [
         "exorg",

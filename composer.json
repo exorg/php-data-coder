@@ -23,7 +23,7 @@
         "garoevans/php-enum": "*"
     },
     "require-dev": {
-        "phpunit/PHPUnit": "4.4.*",
+        "phpunit/phpunit": "4.4.*",
         "squizlabs/php_codesniffer": "*"
     },
     "autoload": {

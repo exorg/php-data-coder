@@ -12,6 +12,7 @@
 namespace Exorg\DataCoder;
 
 use Exorg\Decapsulator\ObjectDecapsulator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * DataEncoderTest.
@@ -23,7 +24,7 @@ use Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataEncoderTest extends \PHPUnit_Framework_TestCase
+class DataEncoderTest extends TestCase
 {
     /**
      * Instance of tested class.
@@ -178,7 +179,7 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->dataEncoder = new DataEncoder();
     }

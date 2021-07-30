@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * FileTest.
  * PHPUnit test class for File class.
@@ -21,7 +23,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class FileTest extends \PHPUnit_Framework_TestCase
+class FileTest extends TestCase
 {
     /**
      * Relative path of directory with file fixtures
@@ -366,7 +368,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * This method is called before the first test of this test class is run.
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::setSpecialPermissionsForFiles();
     }
@@ -374,7 +376,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * This method is called after the last test of this test class is run.
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::resetPermissionsForFiles();
         self::removeFilesShouldNotExist();

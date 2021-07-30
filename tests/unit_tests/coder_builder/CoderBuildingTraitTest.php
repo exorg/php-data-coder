@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * CoderBuildingTraitTest.
  * PHPUnit test class for CoderBuildingTrait trait.
@@ -21,7 +23,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
+class CoderBuildingTraitTest extends TestCase
 {
     /**
      * Namespace of the dummy coders classes

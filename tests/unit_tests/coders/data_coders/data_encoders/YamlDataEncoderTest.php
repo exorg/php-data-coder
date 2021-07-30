@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * YamlDataEncoderTest.
  * PHPUnit test class for YamlDataEncoder class.
@@ -21,7 +23,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDataEncoderTest extends \PHPUnit_Framework_TestCase
+class YamlDataEncoderTest extends TestCase
 {
     /**
      * Encoded data format.
@@ -97,7 +99,7 @@ class YamlDataEncoderTest extends \PHPUnit_Framework_TestCase
     /**
      * This method is called before the first test of this test class is run.
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$dataFileFixturesHelper = new DataFileFixturesHelper();
         self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_YAML);
@@ -107,7 +109,7 @@ class YamlDataEncoderTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->yamlDataEncoder = new YamlDataEncoder();
     }

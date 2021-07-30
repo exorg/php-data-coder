@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * FileExceptionTest.
  * PHPUnit test class for FileException class.
@@ -21,7 +23,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class FileExceptionTest extends \PHPUnit_Framework_TestCase
+class FileExceptionTest extends TestCase
 {
     /**
      * Test if Exorg\DataCoder\NonexistentFileException class

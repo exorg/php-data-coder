@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * CoderClassNotFoundExceptionTest.
  * PHPUnit test class for CoderClassNotFoundException class.
@@ -21,7 +23,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class CoderClassNotFoundExceptionTest extends \PHPUnit_Framework_TestCase
+class CoderClassNotFoundExceptionTest extends TestCase
 {
     /**
      * Test if Exorg\DataCoder\CoderClassNotFoundException class

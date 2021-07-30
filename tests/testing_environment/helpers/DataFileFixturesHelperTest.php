@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * DataFileFixturesHelperTest.
  * PHPUnit base test class for
@@ -22,7 +24,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
+class DataFileFixturesHelperTest extends TestCase
 {
     /**
      * Instance of tested class.
@@ -220,7 +222,7 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
      * Set up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->dataFileFixturesHelper = new DataFileFixturesHelper();
     }

@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * DataFormatInvalidExceptionTest.
  * PHPUnit test class for DataFormatInvalidException class.
@@ -21,7 +23,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataFormatInvalidExceptionTest extends \PHPUnit_Framework_TestCase
+class DataFormatInvalidExceptionTest extends TestCase
 {
     /**
      * Test if Exorg\DataCoder\DataFormatInvalidException class

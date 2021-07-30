@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * DataFormatTest.
  * PHPUnit test class for DataFormat class.
@@ -21,7 +23,7 @@ namespace Exorg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataFormatTest extends \PHPUnit_Framework_TestCase
+class DataFormatTest extends TestCase
 {
     /**
      * Test Exorg\DatafilesParser\DataFormat enum

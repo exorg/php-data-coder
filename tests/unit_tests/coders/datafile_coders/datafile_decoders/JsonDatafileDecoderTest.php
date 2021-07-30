@@ -11,6 +11,7 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
 use Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
@@ -23,7 +24,7 @@ use Exorg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
+class JsonDatafileDecoderTest extends TestCase
 {
     /**
      * Decoded data format.
@@ -112,7 +113,7 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
     /**
      * This method is called before the first test of this test class is run.
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$dataFileFixturesHelper = new DataFileFixturesHelper();
         self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_JSON);
@@ -122,7 +123,7 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->jsonDatafileDecoder = new JsonDatafileDecoder();
     }

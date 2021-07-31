@@ -55,7 +55,6 @@ class YamlDataDecoder extends AbstractDataDecoder implements DataDecodingStrateg
     private function turnOffErrors()
     {
         $emptyFunction = function () {
-
         };
 
         set_error_handler($emptyFunction);

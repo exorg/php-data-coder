@@ -30,15 +30,23 @@ YAML Coders uses [YAML PHP extension](http://php.net/manual/en/book.yaml.php) so
 ##### PHP 5
 
 ```bash
-sudo apt-get install php-pear libyaml-dev
+sudo aptitude install php-pear libyaml-dev
 pecl install yaml
 ```
 
 ##### PHP 7
 
 ```bash
-sudo apt-get install php-pear libyaml-dev
+sudo aptitude install php-pear libyaml-dev
 pecl install yaml-beta
+```
+
+##### PHP 8
+
+```bash
+sudo aptitude install php-pear libyaml-dev
+sudo aptitude install php8.0-dev
+pecl install yaml
 ```
 
 Don't forget to add `"extension=yaml.so"` line to your *php.ini* file.

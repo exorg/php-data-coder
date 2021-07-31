@@ -3,13 +3,18 @@ php:
   - 5.5
   - 5.6
   - 7.0
+  - 7.4
+  - 8.0
 before_install:
   - if [[ ${TRAVIS_PHP_VERSION:0:3} == "5.5" ]]; then export PHP55=false; else export PHP55=true; fi
   - if [[ ${TRAVIS_PHP_VERSION:0:3} == "5.6" ]]; then export PHP56=false; else export PHP56=true; fi
   - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" ]]; then export PHP70=false; else export PHP70=true; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.4" ]]; then export PHP74=false; else export PHP74=true; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "8.0" ]]; then export PHP70=false; else export PHP80=true; fi
 install:
   - ( $PHP55 && $PHP56 ) || ( printf "\n" | pecl install yaml )
   - ( $PHP70 ) || ( printf "\n" | pecl install yaml-beta )
+  - ( $PHP74 && $PHP80 ) || ( printf "\n" | pecl install yaml )
   - echo "extension=yaml.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer install
 script: 

@@ -68,11 +68,11 @@ class DatafileDecoderTest extends TestCase
     /**
      * Test setDataFormat function
      * thows exception when dataFormat type is improper.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testSetDataFormatWithNotStringDataFormat()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $dataFormat = 1024;
 
         $this->datafileDecoder->setDataFormat($dataFormat);
@@ -81,11 +81,11 @@ class DatafileDecoderTest extends TestCase
     /**
      * Test setDataFormat function
      * thows exception when dataFormat is null.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testSetDataFormatWithNullDataFormat()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $dataFormat = null;
 
         $this->datafileDecoder->setDataFormat($dataFormat);
@@ -94,11 +94,11 @@ class DatafileDecoderTest extends TestCase
     /**
      * Test setDataFormat function
      * thows exception when dataFormat is empty string.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testSetDataFormatWithEmptyDataFormat()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $dataFormat = '';
 
         $this->datafileDecoder->setDataFormat($dataFormat);
@@ -137,11 +137,11 @@ class DatafileDecoderTest extends TestCase
     /**
      * Test decodeFile function throws exception
      * when file doesn't exist.
-     *
-     * @expectedException Exorg\DataCoder\FileException
      */
     public function testDecodeFileWhenFileDoesNotExist()
     {
+        $this->expectException('\Exorg\DataCoder\FileException');
+
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('noexistent.format');
 
         $this->datafileDecoder->decodeFile($dataFilePath);
@@ -150,11 +150,11 @@ class DatafileDecoderTest extends TestCase
     /**
      * Test decodeFile function throws exception
      * when improper format has been set directly.
-     *
-     * @expectedException Exorg\DataCoder\CoderClassNotFoundException
      */
     public function testDecodeFileWhenImproperDataFormatIsSet()
     {
+        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.format');
 
         $this->datafileDecoder->setDataFormat('nonexistent');
@@ -182,11 +182,11 @@ class DatafileDecoderTest extends TestCase
      * when data format hasn't been set
      * and decoder must recognize format by file extension
      * but file has improper extension.
-     *
-     * @expectedException Exorg\DataCoder\CoderClassNotFoundException
      */
     public function testDecodeFileWhenDataFormatIsNotSetAndFileHasImproperExtension()
     {
+        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.nonexistentformat');
 
         $this->datafileDecoder->decodeFile($dataFilePath);
@@ -197,11 +197,11 @@ class DatafileDecoderTest extends TestCase
      * when data format hasn't been set
      * and decoder must recognize format by file extension
      * but file has no extension.
-     *
-     * @expectedException \LogicException
      */
     public function testDecodeFileWhenDataFormatIsNotSetAnFileHasNotExtension()
     {
+        $this->expectException('\LogicException');
+
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data');
 
         $this->datafileDecoder->decodeFile($dataFilePath);

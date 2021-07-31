@@ -72,11 +72,11 @@ class JsonDataEncoderTest extends TestCase
     /**
      * Test encodeData function
      * throws exception when data is not an array.
-     *
-     * @expectedException InvalidArgumentException
      */
     public function testEncodeDataWithNotArrayData()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $data = 1024;
 
         $this->jsonDataEncoder->encodeData($data);

@@ -72,11 +72,11 @@ class JsonDataDecoderTest extends TestCase
     /**
      * Test decodeData function
      * throws exception when data is not string.
-     *
-     * @expectedException InvalidArgumentException
      */
     public function testDecodeDataWithNotStringData()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $data = 1024;
 
         $this->jsonDataDecoder->decodeData($data);
@@ -86,11 +86,11 @@ class JsonDataDecoderTest extends TestCase
      * Test decodeData function
      * throws exception when data is incorrect
      * and doesn't fit to the JSON format.
-     *
-     * @expectedException \Exorg\DataCoder\DataFormatInvalidException
      */
     public function testDecodeDataWithDataInIncorrectFormat()
     {
+        $this->expectException('\Exorg\DataCoder\DataFormatInvalidException');
+
         $data = '';
 
         $this->jsonDataDecoder->decodeData($data);

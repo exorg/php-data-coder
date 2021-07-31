@@ -61,11 +61,11 @@ class DataDecoderTest extends TestCase
     /**
      * Test setDataFormat function
      * thows exception when dataFormat type is improper.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testSetDataFormatWithNotStringDataFormat()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $dataFormat = 1024;
 
         $this->dataDecoder->setDataFormat($dataFormat);
@@ -74,11 +74,11 @@ class DataDecoderTest extends TestCase
     /**
      * Test setDataFormat function
      * thows exception when dataFormat is null.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testSetDataFormatWithNullDataFormat()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $dataFormat = null;
 
         $this->dataDecoder->setDataFormat($dataFormat);
@@ -87,11 +87,11 @@ class DataDecoderTest extends TestCase
     /**
      * Test setDataFormat function
      * thows exception when dataFormat is empty string.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testSetDataFormatWithEmptyDataFormat()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $dataFormat = '';
 
         $this->dataDecoder->setDataFormat($dataFormat);

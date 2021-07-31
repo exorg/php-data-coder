@@ -75,11 +75,11 @@ class DataFileFixturesHelperTest extends TestCase
     /**
      * Test for function loadEncodedData
      * when improper format data has been set.
-     *
-     * @expectedException UnexpectedValueException
      */
     public function testLoadEncodedDataWithImproperDataFormat()
     {
+        $this->expectException('UnexpectedValueException');
+
         $this->dataFileFixturesHelper->setDataFormat('another');
         $actualData = $this->dataFileFixturesHelper->loadEncodedData();
     }
@@ -115,11 +115,11 @@ class DataFileFixturesHelperTest extends TestCase
     /**
      * Test for function loadDecodedData
      * when improper format data has been set.
-     *
-     * @expectedException UnexpectedValueException
      */
     public function testLoadDecodedDataWithImproperDataFormat()
     {
+        $this->expectException('UnexpectedValueException');
+
         $this->dataFileFixturesHelper->setDataFormat('another');
         $actualResult = $this->dataFileFixturesHelper->loadDecodedData();
     }

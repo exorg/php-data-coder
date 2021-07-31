@@ -63,11 +63,12 @@ class CoderBuildingTraitTest extends TestCase
      * It checks classes either with or without dataFormat.
      *
      * @dataProvider traitUsingClassObjectsWithImproperPostfixProvider
-     * @expectedException \Exorg\DataCoder\CoderClassNotFoundException
      * @param mixed $traitUsingClassObject
      */
     public function testBuildCoderWhenTraitUsingClassHasImproperPostfix($traitUsingClassObject)
     {
+        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+
         $traitUsingClassObject->runBuildCoder();
     }
 
@@ -77,11 +78,12 @@ class CoderBuildingTraitTest extends TestCase
      * with no assumed data format.
      *
      * @dataProvider traitUsingClassObjectsWithImproperPrefixProvider
-     * @expectedException \Exorg\DataCoder\CoderClassNotFoundException
      * @param mixed $traitUsingClassObject
      */
     public function testBuildCoderWhenTraitUsingClassHasImproperPrefix($traitUsingClassObject)
     {
+        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+
         $traitUsingClassObject->runBuildCoder();
     }
 
@@ -90,11 +92,12 @@ class CoderBuildingTraitTest extends TestCase
      * when tested trait using class has improper dataFormat value.
      *
      * @dataProvider traitUsingClassObjectsWithImproperDataFormatProvider
-     * @expectedException \Exorg\DataCoder\CoderClassNotFoundException
      * @param mixed $traitUsingClassObject
      */
     public function testBuildCoderWhenTraitUsingClassHasImproperDataFormat($traitUsingClassObject)
     {
+        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+
         $traitUsingClassObject->runBuildCoder();
     }
 

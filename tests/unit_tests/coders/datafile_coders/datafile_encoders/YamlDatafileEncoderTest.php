@@ -73,11 +73,11 @@ class YamlDatafileEncoderTest extends TestCase
     /**
      * Test encodeFile function throws exception
      * when type of data is incorrect.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testEncodeFileWithIncorrectData()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data');
         $data = 1024;
 

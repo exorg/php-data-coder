@@ -73,11 +73,11 @@ class YamlDatafileDecoderTest extends TestCase
     /**
      * Test decodeFile function throws exception
      * when file doesn't exist.
-     *
-     * @expectedException Exorg\DataCoder\FileException
      */
     public function testDecodeFileWhenFileDoesNotExist()
     {
+        $this->expectException('\Exorg\DataCoder\FileException');
+
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('noexistent.format');
 
         $this->yamlDatafileDecoder->decodeFile($dataFilePath);
@@ -86,11 +86,11 @@ class YamlDatafileDecoderTest extends TestCase
     /**
      * Test decodeFile function throws exception
      * when data in the file have incorrect format.
-     *
-     * @expectedException \Exorg\DataCoder\DataFormatInvalidException
      */
     public function testDecodeFileWithIncorrectData()
     {
+        $this->expectException('\Exorg\DataCoder\DataFormatInvalidException');
+
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.nonexistentformat');
 
         $this->yamlDatafileDecoder->decodeFile($dataFilePath);

@@ -15,9 +15,9 @@ There are various groups of decoders and encoders
 
 ### Prerequisities
 
-* PHP 5.5.9+
-* [YAML PHP extension](http://php.net/manual/en/book.yaml.php) 1.2.0
-* [Composer](https://getcomposer.org/) 1.0
+* PHP 7.4+
+* [YAML PHP extension](http://php.net/manual/en/book.yaml.php) 2.2.0+
+* [Composer](https://getcomposer.org/) 2.1.0+
 
 ### Installation
 
@@ -26,13 +26,6 @@ The recommended way to install DataCoder into the source code of the project is 
 #### YAML PHP extension
 
 YAML Coders uses [YAML PHP extension](http://php.net/manual/en/book.yaml.php) so it needs to be installed before any YAML Coder will be run.
-
-##### PHP 5
-
-```bash
-sudo aptitude install php-pear libyaml-dev
-pecl install yaml
-```
 
 ##### PHP 7
 
@@ -51,9 +44,9 @@ pecl install yaml
 
 Don't forget to add `"extension=yaml.so"` line to your *php.ini* file.
 
-#### cURL, php5-cli and Git
+#### cURL, php8.0-cli and Git
 
-The command line tool cURL will be used to to download *Composer* installer and *php5-cli* for and running it to install Composer. Git is needed by to downloading dependencies by the Composer.
+The command line tool cURL will be used to to download *Composer* installer and *php8.0-cli* for and running it to install Composer. Git is needed by to downloading dependencies by the Composer.
 
 #### Composer
 

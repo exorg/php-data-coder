@@ -342,14 +342,32 @@ To run tests, write the following command in your command line inside the main D
 vendor/bin/phpunit tests/
 ```
 
+or use a Composer script
+
+```bash
+composer test
+```
+
 ### Code style tests
 
 This code follows [PSR-1](http://www.php-fig.org/psr/psr-1/) and [PSR-2](http://www.php-fig.org/psr/psr-2/) standards.
 
-To run tests for code style  write the following command in your command line inside the main DataCoder project directory
+To run tests for code style write the following command in your command line inside the main DataCoder project directory
 
 ```bash
 vendor/bin/phpcs tests/ src/
+```
+
+or use a Composer script
+
+```bash
+composer sniff
+```
+
+You can also use a Composer script for running both tests and check code style
+
+```bash
+composer check
 ```
 
 ## Built with
@@ -358,10 +376,10 @@ vendor/bin/phpcs tests/ src/
 * [Eclipse](https://eclipse.org/)
 * [Remarkable](https://remarkableapp.github.io/)
 * [PHPUnit](https://phpunit.de/)
-* [PHPCodeSniffer](https://www.squizlabs.com/php-codesniffer)
+* [PHPCodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 * [Git](https://git-scm.com/)
 * [GitHub](https://github.com/)
-* [Travis](https://travis-ci.org/)
+* [Travis](https://travis-ci.com/)
 
 ## Versioning
 

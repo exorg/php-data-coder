@@ -151,7 +151,7 @@ class DataDecoderTest extends TestCase
      *
      * @return array
      */
-    public function dataFormatsAndResultsProvider()
+    public static function dataFormatsAndResultsProvider()
     {
         return array(
             array('format1', array('<FORMAT 1 DECODED DATA/>')),
@@ -165,7 +165,7 @@ class DataDecoderTest extends TestCase
      *
      * @return array
      */
-    public function dataProvider()
+    public static function dataProvider()
     {
         return array(
             array('apple'),

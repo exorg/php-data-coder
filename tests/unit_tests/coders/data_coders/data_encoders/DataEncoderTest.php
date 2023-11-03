@@ -152,7 +152,7 @@ class DataEncoderTest extends TestCase
      *
      * @return array
      */
-    public function dataFormatsAndResultsProvider()
+    public static function dataFormatsAndResultsProvider()
     {
         return array(
             array('format1', '<FORMAT 1 ENCODED DATA/>'),
@@ -166,7 +166,7 @@ class DataEncoderTest extends TestCase
      *
      * @return array
      */
-    public function dataProvider()
+    public static function dataProvider()
     {
         return array(
             array(array('apple')),

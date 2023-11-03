@@ -222,7 +222,7 @@ class DatafileEncoderTest extends TestCase
      *
      * @return array
      */
-    public function dataFormatsAndResultsProvider()
+    public static function dataFormatsAndResultsProvider()
     {
         return array(
             array('format1', '<FORMAT 1 ENCODED DATA/>'),

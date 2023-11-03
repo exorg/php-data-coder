@@ -303,7 +303,7 @@ class FileTest extends TestCase
      *
      * @return array
      */
-    public function filePathExtensionProvider()
+    public static function filePathExtensionProvider()
     {
         return array(
             array('file', ''),
@@ -319,7 +319,7 @@ class FileTest extends TestCase
      *
      * @return array
      */
-    public function fileForReadPathAndContentProvider()
+    public static function fileForReadPathAndContentProvider()
     {
         return array(
             array(self::buildFileFixturePath('file-for-read'), 'File for read'),
@@ -335,7 +335,7 @@ class FileTest extends TestCase
      *
      * @return array
      */
-    public function fileForWritePathAndContentProvider()
+    public static function fileForWritePathAndContentProvider()
     {
         return array(
             array(self::buildFileFixturePath('file-for-write'), 'File for write'),
@@ -355,7 +355,7 @@ class FileTest extends TestCase
      *
      * @return array
      */
-    public function improperFileContentProvider()
+    public static function improperFileContentProvider()
     {
         return array(
             array(null),

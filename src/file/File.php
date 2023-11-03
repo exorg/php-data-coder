@@ -142,8 +142,10 @@ class File
     {
         $directoryPath = dirname($path);
 
-        if ((file_exists($path) && !is_writable($path))
-        || (!file_exists($path) && !is_writable($directoryPath))) {
+        if (
+            (file_exists($path) && !is_writable($path))
+            || (!file_exists($path) && !is_writable($directoryPath))
+        ) {
             throw new FileException(
                 'File '
                 . $path

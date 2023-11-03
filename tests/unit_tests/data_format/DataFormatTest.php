@@ -58,7 +58,7 @@ class DataFormatTest extends TestCase
      *
      * @return array
      */
-    public function formatAbbreviationAndFullNameProvider()
+    public static function formatAbbreviationAndFullNameProvider()
     {
         return array(
             array('JSON', 'JSON'),

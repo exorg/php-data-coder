@@ -125,7 +125,7 @@ class CoderBuildingTraitTest extends TestCase
      *
      * @return array
      */
-    public function traitUsingClassObjectsWithImproperPostfixProvider()
+    public static function traitUsingClassObjectsWithImproperPostfixProvider()
     {
         return array(
             array(new DummyClassFormat1Nocoder()),
@@ -141,7 +141,7 @@ class CoderBuildingTraitTest extends TestCase
      *
      * @return array
      */
-    public function traitUsingClassObjectsWithImproperPrefixProvider()
+    public static function traitUsingClassObjectsWithImproperPrefixProvider()
     {
         return array(
             array(new FormatnotrecognizedDummyClassEncoder()),
@@ -155,7 +155,7 @@ class CoderBuildingTraitTest extends TestCase
      *
      * @return array
      */
-    public function traitUsingClassObjectsWithImproperDataFormatProvider()
+    public static function traitUsingClassObjectsWithImproperDataFormatProvider()
     {
         return array(
             array(new DummyClassFormatNullEncoder()),
@@ -173,7 +173,7 @@ class CoderBuildingTraitTest extends TestCase
      *
      * @return array
      */
-    public function traitUsingClassObjectsAndBuiltCoderClassesProvider()
+    public static function traitUsingClassObjectsAndBuiltCoderClassesProvider()
     {
         return array(
             array(new DummyClassFormat1Encoder(), self::DUMMY_CODERS_NAMESPACE . '\Format1DataEncoder'),

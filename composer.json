@@ -20,7 +20,8 @@
     ],
     "require": {
         "php": ">=7.4.0",
-        "garoevans/php-enum": "*"
+        "garoevans/php-enum": "*",
+        "symfony/yaml": "^6.3"
     },
     "require-dev": {
         "phpunit/phpunit": "*",

@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use Symfony\Component\Yaml\Yaml;
+
 /**
  * YamlDataDecoder.
  * Data decoder for YAML format.
@@ -36,7 +38,7 @@ class YamlDataDecoder extends AbstractDataDecoder implements DataDecodingStrateg
 
         $this->validateData($data);
 
-        $parsedData = \yaml_parse($data);
+        $parsedData = Yaml::parse($data);
 
         $parsingSuccessful = ($parsedData !== null);
 

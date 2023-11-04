@@ -1,14 +1,9 @@
 language: php
 php:
-  - 7.4
   - 8.0
-before_install:
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.4" ]]; then export PHP74=false; else export PHP74=true; fi
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "8.0" ]]; then export PHP80=false; else export PHP80=true; fi
-install:
-  - ( $PHP74 && $PHP80 ) || ( printf "\n" | pecl install yaml )
-  - echo "extension=yaml.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - composer install
+  - 8.1
+  - 8.2
+  - 8.3
 script: 
   - ./vendor/bin/phpunit tests/
   - ./vendor/bin/phpcs src/ tests/

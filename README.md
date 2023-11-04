@@ -15,34 +15,12 @@ There are various groups of decoders and encoders
 
 ### Prerequisities
 
-* PHP 7.4+
-* [YAML PHP extension](http://php.net/manual/en/book.yaml.php) 2.2.0+
-* [Composer](https://getcomposer.org/) 2.1.0+
+* PHP 8.0+
+* [Composer](https://getcomposer.org/) 2.5.0+
 
 ### Installation
 
 The recommended way to install DataCoder into the source code of the project is to handle it as code dependency by [Composer](http://getcomposer.org).
-
-#### YAML PHP extension
-
-YAML Coders uses [YAML PHP extension](http://php.net/manual/en/book.yaml.php) so it needs to be installed before any YAML Coder will be run.
-
-##### PHP 7
-
-```bash
-sudo aptitude install php-pear libyaml-dev
-pecl install yaml-beta
-```
-
-##### PHP 8
-
-```bash
-sudo aptitude install php-pear libyaml-dev
-sudo aptitude install php8.0-dev
-pecl install yaml
-```
-
-Don't forget to add `"extension=yaml.so"` line to your *php.ini* file.
 
 #### cURL, php8.0-cli and Git
 
@@ -96,16 +74,16 @@ require_once (__DIR__ . '/vendor/autoload.php');
 
 use Exorg\DataCoder\JsonDataEncoder;
 
-$data = array (
+$data = [
     "firstName" => "John",
     "lastName" => "Smith",
-    "address" => array (
+    "address" => [
         "streetAddress" => "21 2nd Street",
         "city" => "New York",
         "state" => "NY",
         "postalCode" => "10021-3100",
-    ),
-);
+    ],
+];
 
 $encoder = new JsonDataEncoder();
 $result = $encoder->encodeData($data);
@@ -171,16 +149,16 @@ Array
 ```php
 use Exorg\DataCoder\DataEncoder;
 
-$data = array (
+$data = [
     "firstName" => "John",
     "lastName" => "Smith",
-    "address" => array (
+    "address" => [
         "streetAddress" => "21 2nd Street",
         "city" => "New York",
         "state" => "NY",
         "postalCode" => "10021-3100",
-    ),
-);
+    ],
+];
 
 $encoder = new DataEncoder();
 $encoder->setDataFormat('yaml');
@@ -258,16 +236,16 @@ Datafile coders with configurable data format - **DatafileEncoder** and **Datafi
 ```php
 use Exorg\DataCoder\DatafileEncoder;
 
-$data = array (
+$data = [
     "firstName" => "John",
     "lastName" => "Smith",
-    "address" => array (
+    "address" => [
         "streetAddress" => "21 2nd Street",
         "city" => "New York",
         "state" => "NY",
         "postalCode" => "10021-3100",
-    ),
-);
+    ],
+];
 
 $datafilePath = 'data.json';
 
@@ -373,7 +351,7 @@ composer check
 ## Built with
 
 * [Linux Mint](https://www.linuxmint.com/)
-* [Eclipse](https://eclipse.org/)
+* [Visual Studio Code](https://code.visualstudio.com/)
 * [Remarkable](https://remarkableapp.github.io/)
 * [PHPUnit](https://phpunit.de/)
 * [PHPCodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)

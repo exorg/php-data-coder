@@ -16,7 +16,7 @@ To contribute to the project you need to have an account on [GitHub](https://git
 
 ## Standards and conventions
 
-Please follow [PSR-1](http://www.php-fig.org/psr/psr-1/) and [PSR-2](http://www.php-fig.org/psr/psr-2/) coding standards and [PSR-4](http://www.php-fig.org/psr/psr-4/) autoloading standard.
+Please follow [PSR-1](http://www.php-fig.org/psr/psr-1/) and [PSR-12](http://www.php-fig.org/psr/psr-12/) coding standards and [PSR-4](http://www.php-fig.org/psr/psr-4/) autoloading standard.
 
 This project uses [PHPCodeSniffer](https://www.squizlabs.com/php-codesniffer) for detecting coding style issues.
 

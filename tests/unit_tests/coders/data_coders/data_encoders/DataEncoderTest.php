@@ -12,6 +12,7 @@
 namespace Exorg\DataCoder;
 
 use Exorg\Decapsulator\ObjectDecapsulator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * DataEncoderTest.
@@ -19,11 +20,11 @@ use Exorg\Decapsulator\ObjectDecapsulator;
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
+ * @copyright Copyright (c) 2015-2023 Katarzyna Krasińska
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataEncoderTest extends \PHPUnit_Framework_TestCase
+class DataEncoderTest extends TestCase
 {
     /**
      * Instance of tested class.
@@ -60,11 +61,11 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
     /**
      * Test setDataFormat function
      * thows exception when dataFormat type is improper.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testSetDataFormatWithNotStringDataFormat()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $dataFormat = 1024;
 
         $this->dataEncoder->setDataFormat($dataFormat);
@@ -73,11 +74,11 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
     /**
      * Test setDataFormat function
      * thows exception when dataFormat is null.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testSetDataFormatWithNullDataFormat()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $dataFormat = null;
 
         $this->dataEncoder->setDataFormat($dataFormat);
@@ -86,11 +87,11 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
     /**
      * Test setDataFormat function
      * thows exception when dataFormat is empty string.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testSetDataFormatWithEmptyDataFormat()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $dataFormat = '';
 
         $this->dataEncoder->setDataFormat($dataFormat);
@@ -151,7 +152,7 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function dataFormatsAndResultsProvider()
+    public static function dataFormatsAndResultsProvider()
     {
         return array(
             array('format1', '<FORMAT 1 ENCODED DATA/>'),
@@ -165,7 +166,7 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function dataProvider()
+    public static function dataProvider()
     {
         return array(
             array(array('apple')),
@@ -178,7 +179,7 @@ class DataEncoderTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->dataEncoder = new DataEncoder();
     }

@@ -15,37 +15,16 @@ There are various groups of decoders and encoders
 
 ### Prerequisities
 
-* PHP 5.5.9+
-* [YAML PHP extension](http://php.net/manual/en/book.yaml.php) 1.2.0
-* [Composer](https://getcomposer.org/) 1.0
+* PHP 8.0+
+* [Composer](https://getcomposer.org/) 2.5.0+
 
 ### Installation
 
 The recommended way to install DataCoder into the source code of the project is to handle it as code dependency by [Composer](http://getcomposer.org).
 
-#### YAML PHP extension
+#### cURL, php8.0-cli and Git
 
-YAML Coders uses [YAML PHP extension](http://php.net/manual/en/book.yaml.php) so it needs to be installed before any YAML Coder will be run.
-
-##### PHP 5
-
-```bash
-sudo apt-get install php-pear libyaml-dev
-pecl install yaml
-```
-
-##### PHP 7
-
-```bash
-sudo apt-get install php-pear libyaml-dev
-pecl install yaml-beta
-```
-
-Don't forget to add `"extension=yaml.so"` line to your *php.ini* file.
-
-#### cURL, php5-cli and Git
-
-The command line tool cURL will be used to to download *Composer* installer and *php5-cli* for and running it to install Composer. Git is needed by to downloading dependencies by the Composer.
+The command line tool cURL will be used to to download *Composer* installer and *php8.0-cli* for and running it to install Composer. Git is needed by to downloading dependencies by the Composer.
 
 #### Composer
 
@@ -95,16 +74,16 @@ require_once (__DIR__ . '/vendor/autoload.php');
 
 use Exorg\DataCoder\JsonDataEncoder;
 
-$data = array (
+$data = [
     "firstName" => "John",
     "lastName" => "Smith",
-    "address" => array (
+    "address" => [
         "streetAddress" => "21 2nd Street",
         "city" => "New York",
         "state" => "NY",
         "postalCode" => "10021-3100",
-    ),
-);
+    ],
+];
 
 $encoder = new JsonDataEncoder();
 $result = $encoder->encodeData($data);
@@ -170,16 +149,16 @@ Array
 ```php
 use Exorg\DataCoder\DataEncoder;
 
-$data = array (
+$data = [
     "firstName" => "John",
     "lastName" => "Smith",
-    "address" => array (
+    "address" => [
         "streetAddress" => "21 2nd Street",
         "city" => "New York",
         "state" => "NY",
         "postalCode" => "10021-3100",
-    ),
-);
+    ],
+];
 
 $encoder = new DataEncoder();
 $encoder->setDataFormat('yaml');
@@ -257,16 +236,16 @@ Datafile coders with configurable data format - **DatafileEncoder** and **Datafi
 ```php
 use Exorg\DataCoder\DatafileEncoder;
 
-$data = array (
+$data = [
     "firstName" => "John",
     "lastName" => "Smith",
-    "address" => array (
+    "address" => [
         "streetAddress" => "21 2nd Street",
         "city" => "New York",
         "state" => "NY",
         "postalCode" => "10021-3100",
-    ),
-);
+    ],
+];
 
 $datafilePath = 'data.json';
 
@@ -341,26 +320,44 @@ To run tests, write the following command in your command line inside the main D
 vendor/bin/phpunit tests/
 ```
 
+or use a Composer script
+
+```bash
+composer test
+```
+
 ### Code style tests
 
 This code follows [PSR-1](http://www.php-fig.org/psr/psr-1/) and [PSR-2](http://www.php-fig.org/psr/psr-2/) standards.
 
-To run tests for code style  write the following command in your command line inside the main DataCoder project directory
+To run tests for code style write the following command in your command line inside the main DataCoder project directory
 
 ```bash
 vendor/bin/phpcs tests/ src/
 ```
 
+or use a Composer script
+
+```bash
+composer sniff
+```
+
+You can also use a Composer script for running both tests and check code style
+
+```bash
+composer check
+```
+
 ## Built with
 
 * [Linux Mint](https://www.linuxmint.com/)
-* [Eclipse](https://eclipse.org/)
+* [Visual Studio Code](https://code.visualstudio.com/)
 * [Remarkable](https://remarkableapp.github.io/)
 * [PHPUnit](https://phpunit.de/)
-* [PHPCodeSniffer](https://www.squizlabs.com/php-codesniffer)
+* [PHPCodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 * [Git](https://git-scm.com/)
 * [GitHub](https://github.com/)
-* [Travis](https://travis-ci.org/)
+* [Travis](https://travis-ci.com/)
 
 ## Versioning
 

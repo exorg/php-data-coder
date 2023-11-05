@@ -1,26 +1,25 @@
-$result = array (
+$result = [
     "firstName" => "John",
     "lastName" => "Smith",
     "isAlive" => true,
     "age" => 25,
     "height_cm" => 167.6,
-    "address" => array (
+    "address" => [
         "streetAddress" => "21 2nd Street",
         "city" => "New York",
         "state" => "NY",
         "postalCode" => "10021-3100",
-    ),
-    "phoneNumbers" => array (
-        array (
+    ],
+    "phoneNumbers" => [
+        [
             "type" => "home",
             "number" => "212 555-1234",
-        ),
-        array (
+        ],
+        [
             "type" => "office",
             "number" => "646 555-4567",
-        ),
-    ),
-    "children" => array (
-    ),
+        ],
+    ],
+    "children" => [],
     "spouse" => null,
-);
+];

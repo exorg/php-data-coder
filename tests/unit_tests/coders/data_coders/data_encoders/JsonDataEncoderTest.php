@@ -11,17 +11,19 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * JsonDataEncoderTest.
  * PHPUnit test class for JsonDataEncoder class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
+ * @copyright Copyright (c) 2015-2023 Katarzyna Krasińska
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
+class JsonDataEncoderTest extends TestCase
 {
     /**
      * Encoded data format.
@@ -70,11 +72,11 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
     /**
      * Test encodeData function
      * throws exception when data is not an array.
-     *
-     * @expectedException InvalidArgumentException
      */
     public function testEncodeDataWithNotArrayData()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $data = 1024;
 
         $this->jsonDataEncoder->encodeData($data);
@@ -97,7 +99,7 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
     /**
      * This method is called before the first test of this test class is run.
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$dataFileFixturesHelper = new DataFileFixturesHelper();
         self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_JSON);
@@ -107,7 +109,7 @@ class JsonDataEncoderTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->jsonDataEncoder = new JsonDataEncoder();
     }

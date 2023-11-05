@@ -11,17 +11,19 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * YamlDataDecoderTest.
  * PHPUnit test class for YamlDataDecoder class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
+ * @copyright Copyright (c) 2015-2023 Katarzyna Krasińska
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDataDecoderTest extends \PHPUnit_Framework_TestCase
+class YamlDataDecoderTest extends TestCase
 {
     /**
      * Decoded data format.
@@ -70,11 +72,11 @@ class YamlDataDecoderTest extends \PHPUnit_Framework_TestCase
     /**
      * Test decodeData function
      * throws exception when data is not string.
-     *
-     * @expectedException InvalidArgumentException
      */
     public function testDecodeDataWithNotStringData()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $data = 1024;
 
         $this->yamlDataDecoder->decodeData($data);
@@ -84,11 +86,11 @@ class YamlDataDecoderTest extends \PHPUnit_Framework_TestCase
      * Test decodeData function
      * throws exception when data is incorrect
      * and doesn't fit to the YAML format.
-     *
-     * @expectedException \Exorg\DataCoder\DataFormatInvalidException
      */
     public function testDecodeDataWithDataInIncorrectFormat()
     {
+        $this->expectException('\Exorg\DataCoder\DataFormatInvalidException');
+
         $data = '';
 
         $this->yamlDataDecoder->decodeData($data);
@@ -111,7 +113,7 @@ class YamlDataDecoderTest extends \PHPUnit_Framework_TestCase
     /**
      * This method is called before the first test of this test class is run.
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$dataFileFixturesHelper = new DataFileFixturesHelper();
         self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_YAML);
@@ -121,7 +123,7 @@ class YamlDataDecoderTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->yamlDataDecoder = new YamlDataDecoder();
     }

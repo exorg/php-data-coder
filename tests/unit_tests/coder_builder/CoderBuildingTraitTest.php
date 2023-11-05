@@ -11,17 +11,19 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * CoderBuildingTraitTest.
  * PHPUnit test class for CoderBuildingTrait trait.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
+ * @copyright Copyright (c) 2015-2023 Katarzyna Krasińska
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
+class CoderBuildingTraitTest extends TestCase
 {
     /**
      * Namespace of the dummy coders classes
@@ -61,11 +63,12 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
      * It checks classes either with or without dataFormat.
      *
      * @dataProvider traitUsingClassObjectsWithImproperPostfixProvider
-     * @expectedException \Exorg\DataCoder\CoderClassNotFoundException
      * @param mixed $traitUsingClassObject
      */
     public function testBuildCoderWhenTraitUsingClassHasImproperPostfix($traitUsingClassObject)
     {
+        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+
         $traitUsingClassObject->runBuildCoder();
     }
 
@@ -75,11 +78,12 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
      * with no assumed data format.
      *
      * @dataProvider traitUsingClassObjectsWithImproperPrefixProvider
-     * @expectedException \Exorg\DataCoder\CoderClassNotFoundException
      * @param mixed $traitUsingClassObject
      */
     public function testBuildCoderWhenTraitUsingClassHasImproperPrefix($traitUsingClassObject)
     {
+        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+
         $traitUsingClassObject->runBuildCoder();
     }
 
@@ -88,11 +92,12 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
      * when tested trait using class has improper dataFormat value.
      *
      * @dataProvider traitUsingClassObjectsWithImproperDataFormatProvider
-     * @expectedException \Exorg\DataCoder\CoderClassNotFoundException
      * @param mixed $traitUsingClassObject
      */
     public function testBuildCoderWhenTraitUsingClassHasImproperDataFormat($traitUsingClassObject)
     {
+        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+
         $traitUsingClassObject->runBuildCoder();
     }
 
@@ -120,7 +125,7 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function traitUsingClassObjectsWithImproperPostfixProvider()
+    public static function traitUsingClassObjectsWithImproperPostfixProvider()
     {
         return array(
             array(new DummyClassFormat1Nocoder()),
@@ -136,7 +141,7 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function traitUsingClassObjectsWithImproperPrefixProvider()
+    public static function traitUsingClassObjectsWithImproperPrefixProvider()
     {
         return array(
             array(new FormatnotrecognizedDummyClassEncoder()),
@@ -150,7 +155,7 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function traitUsingClassObjectsWithImproperDataFormatProvider()
+    public static function traitUsingClassObjectsWithImproperDataFormatProvider()
     {
         return array(
             array(new DummyClassFormatNullEncoder()),
@@ -168,7 +173,7 @@ class CoderBuildingTraitTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function traitUsingClassObjectsAndBuiltCoderClassesProvider()
+    public static function traitUsingClassObjectsAndBuiltCoderClassesProvider()
     {
         return array(
             array(new DummyClassFormat1Encoder(), self::DUMMY_CODERS_NAMESPACE . '\Format1DataEncoder'),

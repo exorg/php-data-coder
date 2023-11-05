@@ -11,17 +11,19 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * FileTest.
  * PHPUnit test class for File class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
+ * @copyright Copyright (c) 2015-2023 Katarzyna Krasińska
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class FileTest extends \PHPUnit_Framework_TestCase
+class FileTest extends TestCase
 {
     /**
      * Relative path of directory with file fixtures
@@ -57,11 +59,11 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if constructor throws exception
      * when file path argument type is improper.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testConstructorWhenFilePathIsNotString()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $filePath = 1024;
 
         new File($filePath);
@@ -70,11 +72,11 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if constructor throws exception
      * when file path argument is null.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testConstructorWhenFilePathIsNull()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $filePath = null;
 
         new File($filePath);
@@ -83,11 +85,11 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if constructor throws exception
      * when file path argument is empty string.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testConstructorWhenFilePathIsEmptyString()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $filePath = '';
 
         new File($filePath);
@@ -164,11 +166,11 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * Test getContent function throws exception
      * when file doesn't exist.
-     *
-     * @expectedException \Exorg\DataCoder\FileException
      */
     public function testGetContentWhenFileDoesNotExist()
     {
+        $this->expectException('\Exorg\DataCoder\FileException');
+
         $filePath = self::buildFileFixturePath('nonexistent');
 
         $file = new File($filePath);
@@ -179,11 +181,11 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * Test getContent function throws exception
      * when file is not readable.
-     *
-     * @expectedException \Exorg\DataCoder\FileException
      */
     public function testGetContentWhenFileIsNotReadable()
     {
+        $this->expectException('\Exorg\DataCoder\FileException');
+
         $filePath = self::buildFileFixturePath('unreadable-file');
 
         $file = new File($filePath);
@@ -194,11 +196,11 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * Test getContent function throws exception
      * when file is placed in unreadable directory.
-     *
-     * @expectedException \Exorg\DataCoder\FileException
      */
     public function testGetContentWhenDirectoryIsNotReadable()
     {
+        $this->expectException('\Exorg\DataCoder\FileException');
+
         $filePath = self::buildFileFixturePath('unreadable-directory/file-for-read');
 
         $file = new File($filePath);
@@ -238,10 +240,11 @@ class FileTest extends \PHPUnit_Framework_TestCase
      * when content is improper.
      *
      * @dataProvider improperFileContentProvider
-     * @expectedException InvalidArgumentException
      */
     public function testSetContentWhenContentIsImproper($content)
     {
+        $this->expectException('\InvalidArgumentException');
+
         $file = new File('file');
 
         $file->setContent($content);
@@ -250,11 +253,11 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * Test setContent function throws exception
      * when file is not writable.
-     *
-     * @expectedException \Exorg\DataCoder\FileException
      */
     public function testSetContentWhenFileIsNotWritable()
     {
+        $this->expectException('\Exorg\DataCoder\FileException');
+
         $filePath = self::buildFileFixturePath('unwritable-file');
 
         $file = new File($filePath);
@@ -265,11 +268,11 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * Test setContent function throws exception
      * when file is writting in unwritable directory.
-     *
-     * @expectedException \Exorg\DataCoder\FileException
      */
     public function testSetContentWhenDirectoryIsNotWritable()
     {
+        $this->expectException('\Exorg\DataCoder\FileException');
+
         $filePath = self::buildFileFixturePath('unwritable-directory/file-for-write');
 
         $file = new File($filePath);
@@ -300,7 +303,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function filePathExtensionProvider()
+    public static function filePathExtensionProvider()
     {
         return array(
             array('file', ''),
@@ -316,7 +319,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function fileForReadPathAndContentProvider()
+    public static function fileForReadPathAndContentProvider()
     {
         return array(
             array(self::buildFileFixturePath('file-for-read'), 'File for read'),
@@ -332,7 +335,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function fileForWritePathAndContentProvider()
+    public static function fileForWritePathAndContentProvider()
     {
         return array(
             array(self::buildFileFixturePath('file-for-write'), 'File for write'),
@@ -352,7 +355,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
      *
      * @return array
      */
-    public function improperFileContentProvider()
+    public static function improperFileContentProvider()
     {
         return array(
             array(null),
@@ -366,7 +369,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * This method is called before the first test of this test class is run.
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::setSpecialPermissionsForFiles();
     }
@@ -374,7 +377,7 @@ class FileTest extends \PHPUnit_Framework_TestCase
     /**
      * This method is called after the last test of this test class is run.
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::resetPermissionsForFiles();
         self::removeFilesShouldNotExist();

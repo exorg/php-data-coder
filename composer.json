@@ -19,11 +19,12 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "garoevans/php-enum": "*"
+        "php": ">=8.0.0",
+        "garoevans/php-enum": "*",
+        "symfony/yaml": "^6.3"
     },
     "require-dev": {
-        "phpunit/PHPUnit": "4.4.*",
+        "phpunit/phpunit": "*",
         "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
@@ -62,5 +63,10 @@
             	"tests/unit_tests/file/"
             ]
         }
-    }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit ./tests",
+        "sniff": "vendor/bin/phpcs ./src ./tests",
+        "check": "composer test; composer sniff"
+	}
 }

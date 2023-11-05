@@ -11,13 +11,15 @@
 
 namespace Exorg\DataCoder;
 
+use Symfony\Component\Yaml\Yaml;
+
 /**
  * YamlDataEncoder.
  * Data encoder for YAML format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
+ * @copyright Copyright (c) 2015-2023 Katarzyna Krasińska
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
@@ -34,7 +36,7 @@ class YamlDataEncoder extends AbstractDataEncoder implements DataEncodingStrateg
     {
         $this->validateData($data);
 
-        $encodedData = \yaml_emit($data);
+        $encodedData = Yaml::dump($data);
 
         return $encodedData;
     }

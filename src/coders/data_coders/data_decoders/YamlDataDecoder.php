@@ -11,13 +11,15 @@
 
 namespace Exorg\DataCoder;
 
+use Symfony\Component\Yaml\Yaml;
+
 /**
  * YamlDataDecoder.
  * Data decoder for YAML format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
+ * @copyright Copyright (c) 2015-2023 Katarzyna Krasińska
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
@@ -36,9 +38,9 @@ class YamlDataDecoder extends AbstractDataDecoder implements DataDecodingStrateg
 
         $this->validateData($data);
 
-        $parsedData = \yaml_parse($data);
+        $parsedData = Yaml::parse($data);
 
-        $parsingSuccessful = ($parsedData !== false);
+        $parsingSuccessful = ($parsedData !== null);
 
         if ($parsingSuccessful) {
             return $parsedData;
@@ -55,7 +57,6 @@ class YamlDataDecoder extends AbstractDataDecoder implements DataDecodingStrateg
     private function turnOffErrors()
     {
         $emptyFunction = function () {
-
         };
 
         set_error_handler($emptyFunction);

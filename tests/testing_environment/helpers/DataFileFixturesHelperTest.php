@@ -11,6 +11,8 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * DataFileFixturesHelperTest.
  * PHPUnit base test class for
@@ -18,11 +20,11 @@ namespace Exorg\DataCoder;
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
+ * @copyright Copyright (c) 2015-2023 Katarzyna Krasińska
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
+class DataFileFixturesHelperTest extends TestCase
 {
     /**
      * Instance of tested class.
@@ -73,11 +75,11 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     /**
      * Test for function loadEncodedData
      * when improper format data has been set.
-     *
-     * @expectedException UnexpectedValueException
      */
     public function testLoadEncodedDataWithImproperDataFormat()
     {
+        $this->expectException('UnexpectedValueException');
+
         $this->dataFileFixturesHelper->setDataFormat('another');
         $actualData = $this->dataFileFixturesHelper->loadEncodedData();
     }
@@ -113,11 +115,11 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
     /**
      * Test for function loadDecodedData
      * when improper format data has been set.
-     *
-     * @expectedException UnexpectedValueException
      */
     public function testLoadDecodedDataWithImproperDataFormat()
     {
+        $this->expectException('UnexpectedValueException');
+
         $this->dataFileFixturesHelper->setDataFormat('another');
         $actualResult = $this->dataFileFixturesHelper->loadDecodedData();
     }
@@ -220,7 +222,7 @@ class DataFileFixturesHelperTest extends \PHPUnit_Framework_TestCase
      * Set up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->dataFileFixturesHelper = new DataFileFixturesHelper();
     }

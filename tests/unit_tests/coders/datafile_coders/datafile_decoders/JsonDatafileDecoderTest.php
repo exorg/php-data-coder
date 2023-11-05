@@ -11,6 +11,7 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
 use Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
@@ -19,11 +20,11 @@ use Exorg\Decapsulator\ObjectDecapsulator;
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
+ * @copyright Copyright (c) 2015-2023 Katarzyna Krasińska
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
+class JsonDatafileDecoderTest extends TestCase
 {
     /**
      * Decoded data format.
@@ -72,11 +73,11 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
     /**
      * Test decodeFile function throws exception
      * when file doesn't exist.
-     *
-     * @expectedException Exorg\DataCoder\FileException
      */
     public function testDecodeFileWhenFileDoesNotExist()
     {
+        $this->expectException('\Exorg\DataCoder\FileException');
+
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('noexistent.format');
 
         $this->jsonDatafileDecoder->decodeFile($dataFilePath);
@@ -85,11 +86,11 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
     /**
      * Test decodeFile function throws exception
      * when data in the file have incorrect format.
-     *
-     * @expectedException \Exorg\DataCoder\DataFormatInvalidException
      */
     public function testDecodeFileWithIncorrectData()
     {
+        $this->expectException('\Exorg\DataCoder\DataFormatInvalidException');
+
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.nonexistentformat');
 
         $this->jsonDatafileDecoder->decodeFile($dataFilePath);
@@ -112,7 +113,7 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
     /**
      * This method is called before the first test of this test class is run.
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$dataFileFixturesHelper = new DataFileFixturesHelper();
         self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_JSON);
@@ -122,7 +123,7 @@ class JsonDatafileDecoderTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->jsonDatafileDecoder = new JsonDatafileDecoder();
     }

@@ -11,6 +11,7 @@
 
 namespace Exorg\DataCoder;
 
+use PHPUnit\Framework\TestCase;
 use Exorg\Decapsulator\ObjectDecapsulator;
 
 /**
@@ -19,11 +20,11 @@ use Exorg\Decapsulator\ObjectDecapsulator;
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
- * @copyright Copyright (c) 2015 Katarzyna Krasińska
+ * @copyright Copyright (c) 2015-2023 Katarzyna Krasińska
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDatafileEncoderTest extends \PHPUnit_Framework_TestCase
+class JsonDatafileEncoderTest extends TestCase
 {
     /**
      * Encoded data format.
@@ -72,11 +73,11 @@ class JsonDatafileEncoderTest extends \PHPUnit_Framework_TestCase
     /**
      * Test encodeFile function throws exception
      * when type of data is incorrect.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testEncodeFileWithIncorrectData()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data');
         $data = 1024;
 
@@ -103,7 +104,7 @@ class JsonDatafileEncoderTest extends \PHPUnit_Framework_TestCase
     /**
      * This method is called before the first test of this test class is run.
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$dataFileFixturesHelper = new DataFileFixturesHelper();
         self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_JSON);
@@ -113,7 +114,7 @@ class JsonDatafileEncoderTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->jsonDatafileEncoder = new JsonDatafileEncoder();
     }

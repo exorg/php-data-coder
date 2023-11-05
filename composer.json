@@ -1,7 +1,6 @@
 {
     "name": "exorg/data-coder",
     "description": "Expansible Universal Data and Data Files Decoder/Encoder.",
-    "version": "1.0.0",
     "type": "library",
     "keywords": [
         "exorg",
@@ -19,13 +18,13 @@
         }
     ],
     "require": {
-        "php": ">=8.0.0",
-        "garoevans/php-enum": "*",
-        "symfony/yaml": "^6.3"
+        "php": "8.1 - 8.3",
+        "symfony/yaml": "^6.3",
+        "garoevans/php-enum": "^1.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
-        "squizlabs/php_codesniffer": "*"
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpunit/phpunit": "^10.4"
     },
     "autoload": {
         "psr-4": {

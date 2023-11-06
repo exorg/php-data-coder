@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
 
@@ -32,13 +32,13 @@ class CoderBuildingTraitTest extends TestCase
     const DUMMY_CODERS_NAMESPACE = __NAMESPACE__;
 
     /**
-     * Test Exorg\DatafilesParser\CoderBuildingTrait trait
+     * Test ExOrg\DatafilesParser\CoderBuildingTrait trait
      * has been implemented.
      */
     public function testCoderBuildingTraitExists()
     {
         $this->assertTrue(
-            trait_exists('Exorg\DataCoder\CoderBuildingTrait')
+            trait_exists('ExOrg\DataCoder\CoderBuildingTrait')
         );
     }
 
@@ -50,7 +50,7 @@ class CoderBuildingTraitTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\CoderBuildingTrait',
+                'ExOrg\DataCoder\CoderBuildingTrait',
                 'buildCoder'
             )
         );
@@ -67,7 +67,7 @@ class CoderBuildingTraitTest extends TestCase
      */
     public function testBuildCoderWhenTraitUsingClassHasImproperPostfix($traitUsingClassObject)
     {
-        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+        $this->expectException('\ExOrg\DataCoder\CoderClassNotFoundException');
 
         $traitUsingClassObject->runBuildCoder();
     }
@@ -82,7 +82,7 @@ class CoderBuildingTraitTest extends TestCase
      */
     public function testBuildCoderWhenTraitUsingClassHasImproperPrefix($traitUsingClassObject)
     {
-        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+        $this->expectException('\ExOrg\DataCoder\CoderClassNotFoundException');
 
         $traitUsingClassObject->runBuildCoder();
     }
@@ -96,7 +96,7 @@ class CoderBuildingTraitTest extends TestCase
      */
     public function testBuildCoderWhenTraitUsingClassHasImproperDataFormat($traitUsingClassObject)
     {
-        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+        $this->expectException('\ExOrg\DataCoder\CoderClassNotFoundException');
 
         $traitUsingClassObject->runBuildCoder();
     }

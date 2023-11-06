@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
-use Exorg\Decapsulator\ObjectDecapsulator;
+use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
  * DatafileEncoderTest.
@@ -41,13 +41,13 @@ class DatafileEncoderTest extends TestCase
     private $datafileEncoder;
 
     /**
-     * Test Exorg\DataCoder\DatafileEncoder class
+     * Test ExOrg\DataCoder\DatafileEncoder class
      * has been created.
      */
     public function testDatafileEncoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\DatafileEncoder')
+            class_exists('ExOrg\DataCoder\DatafileEncoder')
         );
     }
 
@@ -59,7 +59,7 @@ class DatafileEncoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\DatafileEncoder',
+                'ExOrg\DataCoder\DatafileEncoder',
                 'setDataFormat'
             )
         );
@@ -130,7 +130,7 @@ class DatafileEncoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\DatafileEncoder',
+                'ExOrg\DataCoder\DatafileEncoder',
                 'encodeFile'
             )
         );
@@ -142,7 +142,7 @@ class DatafileEncoderTest extends TestCase
      */
     public function testEncodeFileWhenImproperDataFormatIsSet()
     {
-        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+        $this->expectException('\ExOrg\DataCoder\CoderClassNotFoundException');
 
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.format');
 
@@ -176,7 +176,7 @@ class DatafileEncoderTest extends TestCase
      */
     public function testEncodeFileWhenDataFormatIsNotSetAndFileHasImproperExtension()
     {
-        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+        $this->expectException('\ExOrg\DataCoder\CoderClassNotFoundException');
 
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.nonexistentformat');
 

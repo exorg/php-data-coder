@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
 
@@ -26,13 +26,13 @@ use PHPUnit\Framework\TestCase;
 class DataFormatTest extends TestCase
 {
     /**
-     * Test Exorg\DatafilesParser\DataFormat enum
+     * Test ExOrg\DatafilesParser\DataFormat enum
      * has been implemented.
      */
     public function testDataFormatExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\DataFormat')
+            class_exists('ExOrg\DataCoder\DataFormat')
         );
     }
 
@@ -47,7 +47,7 @@ class DataFormatTest extends TestCase
      */
     public function testDataFormatsItems($formatAbbreviation, $expectedFormatFullName)
     {
-        $actualFormatFullName = constant("Exorg\DataCoder\DataFormat::$formatAbbreviation");
+        $actualFormatFullName = constant("ExOrg\DataCoder\DataFormat::$formatAbbreviation");
 
         $this->assertEquals($expectedFormatFullName, $actualFormatFullName);
     }

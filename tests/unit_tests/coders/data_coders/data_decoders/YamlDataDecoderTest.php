@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
 
@@ -51,7 +51,7 @@ class YamlDataDecoderTest extends TestCase
     public function testYamlDataDecoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\YamlDataDecoder')
+            class_exists('ExOrg\DataCoder\YamlDataDecoder')
         );
     }
 
@@ -63,7 +63,7 @@ class YamlDataDecoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\YamlDataDecoder',
+                'ExOrg\DataCoder\YamlDataDecoder',
                 'decodeData'
             )
         );
@@ -89,7 +89,7 @@ class YamlDataDecoderTest extends TestCase
      */
     public function testDecodeDataWithDataInIncorrectFormat()
     {
-        $this->expectException('\Exorg\DataCoder\DataFormatInvalidException');
+        $this->expectException('\ExOrg\DataCoder\DataFormatInvalidException');
 
         $data = '';
 

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
 
@@ -34,13 +34,13 @@ class DataFileFixturesHelperTest extends TestCase
     private $dataFileFixturesHelper = null;
 
     /**
-     * Test if Exorg\DataCoder\DataFileFixturesHelper class
+     * Test if ExOrg\DataCoder\DataFileFixturesHelper class
      * has been created.
      */
     public function testDataCodersTestHelperClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\DataFileFixturesHelper')
+            class_exists('ExOrg\DataCoder\DataFileFixturesHelper')
         );
     }
 
@@ -52,7 +52,7 @@ class DataFileFixturesHelperTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\DataFileFixturesHelper',
+                'ExOrg\DataCoder\DataFileFixturesHelper',
                 'setDataFormat'
             )
         );
@@ -66,7 +66,7 @@ class DataFileFixturesHelperTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\DataFileFixturesHelper',
+                'ExOrg\DataCoder\DataFileFixturesHelper',
                 'loadEncodedData'
             )
         );
@@ -106,7 +106,7 @@ class DataFileFixturesHelperTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\DataFileFixturesHelper',
+                'ExOrg\DataCoder\DataFileFixturesHelper',
                 'loadDecodedData'
             )
         );
@@ -148,7 +148,7 @@ class DataFileFixturesHelperTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\DataFileFixturesHelper',
+                'ExOrg\DataCoder\DataFileFixturesHelper',
                 'buildEncodedFilePath'
             )
         );
@@ -174,7 +174,7 @@ class DataFileFixturesHelperTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\DataFileFixturesHelper',
+                'ExOrg\DataCoder\DataFileFixturesHelper',
                 'buildDecodedFilePath'
             )
         );
@@ -200,7 +200,7 @@ class DataFileFixturesHelperTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\DataFileFixturesHelper',
+                'ExOrg\DataCoder\DataFileFixturesHelper',
                 'buildCreatedFilePath'
             )
         );

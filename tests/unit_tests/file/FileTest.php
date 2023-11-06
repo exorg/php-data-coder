@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
 
@@ -46,13 +46,13 @@ class FileTest extends TestCase
     }
 
     /**
-     * Test if Exorg\DataCoder\File class
+     * Test if ExOrg\DataCoder\File class
      * has been created.
      */
     public function testFileClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\File')
+            class_exists('ExOrg\DataCoder\File')
         );
     }
 
@@ -106,7 +106,7 @@ class FileTest extends TestCase
 
         $file = new File($filePath);
 
-        $this->assertInstanceOf('Exorg\DataCoder\File', $file);
+        $this->assertInstanceOf('ExOrg\DataCoder\File', $file);
     }
 
     /**
@@ -119,7 +119,7 @@ class FileTest extends TestCase
 
         $file = new File($filePath);
 
-        $this->assertInstanceOf('Exorg\DataCoder\File', $file);
+        $this->assertInstanceOf('ExOrg\DataCoder\File', $file);
     }
 
     /**
@@ -130,7 +130,7 @@ class FileTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\File',
+                'ExOrg\DataCoder\File',
                 'getExtension'
             )
         );
@@ -157,7 +157,7 @@ class FileTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\File',
+                'ExOrg\DataCoder\File',
                 'getContent'
             )
         );
@@ -169,7 +169,7 @@ class FileTest extends TestCase
      */
     public function testGetContentWhenFileDoesNotExist()
     {
-        $this->expectException('\Exorg\DataCoder\FileException');
+        $this->expectException('\ExOrg\DataCoder\FileException');
 
         $filePath = self::buildFileFixturePath('nonexistent');
 
@@ -184,7 +184,7 @@ class FileTest extends TestCase
      */
     public function testGetContentWhenFileIsNotReadable()
     {
-        $this->expectException('\Exorg\DataCoder\FileException');
+        $this->expectException('\ExOrg\DataCoder\FileException');
 
         $filePath = self::buildFileFixturePath('unreadable-file');
 
@@ -199,7 +199,7 @@ class FileTest extends TestCase
      */
     public function testGetContentWhenDirectoryIsNotReadable()
     {
-        $this->expectException('\Exorg\DataCoder\FileException');
+        $this->expectException('\ExOrg\DataCoder\FileException');
 
         $filePath = self::buildFileFixturePath('unreadable-directory/file-for-read');
 
@@ -229,7 +229,7 @@ class FileTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\File',
+                'ExOrg\DataCoder\File',
                 'setContent'
             )
         );
@@ -256,7 +256,7 @@ class FileTest extends TestCase
      */
     public function testSetContentWhenFileIsNotWritable()
     {
-        $this->expectException('\Exorg\DataCoder\FileException');
+        $this->expectException('\ExOrg\DataCoder\FileException');
 
         $filePath = self::buildFileFixturePath('unwritable-file');
 
@@ -271,7 +271,7 @@ class FileTest extends TestCase
      */
     public function testSetContentWhenDirectoryIsNotWritable()
     {
-        $this->expectException('\Exorg\DataCoder\FileException');
+        $this->expectException('\ExOrg\DataCoder\FileException');
 
         $filePath = self::buildFileFixturePath('unwritable-directory/file-for-write');
 

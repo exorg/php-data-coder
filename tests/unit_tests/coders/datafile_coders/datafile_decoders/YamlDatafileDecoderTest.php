@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
-use Exorg\Decapsulator\ObjectDecapsulator;
+use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
  * YamlDatafileDecoderTest.
@@ -46,13 +46,13 @@ class YamlDatafileDecoderTest extends TestCase
     private $yamlDatafileDecoder;
 
     /**
-     * Test Exorg\DataCoder\YamlDatafileDecoder class
+     * Test ExOrg\DataCoder\YamlDatafileDecoder class
      * has been created.
      */
     public function testYamlDatafileDecoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\YamlDatafileDecoder')
+            class_exists('ExOrg\DataCoder\YamlDatafileDecoder')
         );
     }
 
@@ -64,7 +64,7 @@ class YamlDatafileDecoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\YamlDatafileDecoder',
+                'ExOrg\DataCoder\YamlDatafileDecoder',
                 'decodeFile'
             )
         );
@@ -76,7 +76,7 @@ class YamlDatafileDecoderTest extends TestCase
      */
     public function testDecodeFileWhenFileDoesNotExist()
     {
-        $this->expectException('\Exorg\DataCoder\FileException');
+        $this->expectException('\ExOrg\DataCoder\FileException');
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('noexistent.format');
 
@@ -89,7 +89,7 @@ class YamlDatafileDecoderTest extends TestCase
      */
     public function testDecodeFileWithIncorrectData()
     {
-        $this->expectException('\Exorg\DataCoder\DataFormatInvalidException');
+        $this->expectException('\ExOrg\DataCoder\DataFormatInvalidException');
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.nonexistentformat');
 

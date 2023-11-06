@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
 
@@ -26,13 +26,13 @@ use PHPUnit\Framework\TestCase;
 class DataFormatInvalidExceptionTest extends TestCase
 {
     /**
-     * Test if Exorg\DataCoder\DataFormatInvalidException class
+     * Test if ExOrg\DataCoder\DataFormatInvalidException class
      * has been created.
      */
     public function testDataFormatInvalidExceptionClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\DataFormatInvalidException')
+            class_exists('ExOrg\DataCoder\DataFormatInvalidException')
         );
     }
 }

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
 
@@ -51,7 +51,7 @@ class JsonDataDecoderTest extends TestCase
     public function testJsonDataDecoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\JsonDataDecoder')
+            class_exists('ExOrg\DataCoder\JsonDataDecoder')
         );
     }
 
@@ -63,7 +63,7 @@ class JsonDataDecoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\JsonDataDecoder',
+                'ExOrg\DataCoder\JsonDataDecoder',
                 'decodeData'
             )
         );
@@ -89,7 +89,7 @@ class JsonDataDecoderTest extends TestCase
      */
     public function testDecodeDataWithDataInIncorrectFormat()
     {
-        $this->expectException('\Exorg\DataCoder\DataFormatInvalidException');
+        $this->expectException('\ExOrg\DataCoder\DataFormatInvalidException');
 
         $data = '';
 

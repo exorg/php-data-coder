@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
-use Exorg\Decapsulator\ObjectDecapsulator;
+use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
  * YamlDatafileEncoderTest.
@@ -46,13 +46,13 @@ class YamlDatafileEncoderTest extends TestCase
     private $yamlDatafileEncoder;
 
     /**
-     * Test Exorg\DataCoder\YamlDatafileEncoder class
+     * Test ExOrg\DataCoder\YamlDatafileEncoder class
      * has been created.
      */
     public function testYamlDatafileEncoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\YamlDatafileEncoder')
+            class_exists('ExOrg\DataCoder\YamlDatafileEncoder')
         );
     }
 
@@ -64,7 +64,7 @@ class YamlDatafileEncoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\YamlDatafileEncoder',
+                'ExOrg\DataCoder\YamlDatafileEncoder',
                 'encodeFile'
             )
         );

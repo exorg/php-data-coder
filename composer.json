@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Exorg\\DataCoder\\": [
+            "ExOrg\\DataCoder\\": [
             	"src/",
             	"src/coders",
             	"src/coders/data_coders/",
@@ -45,7 +45,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Exorg\\DataCoder\\": [
+            "ExOrg\\DataCoder\\": [
             	"tests/",
             	"tests/testing_environment/",
             	"tests/testing_environment/helpers/",

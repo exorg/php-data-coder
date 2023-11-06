@@ -72,7 +72,7 @@ require_once (__DIR__ . '/vendor/autoload.php');
 
 ```php
 
-use Exorg\DataCoder\JsonDataEncoder;
+use ExOrg\DataCoder\JsonDataEncoder;
 
 $data = [
     "firstName" => "John",
@@ -108,7 +108,7 @@ print($result);
 
 ```php
 
-use Exorg\DataCoder\YamlDataDecoder;
+use ExOrg\DataCoder\YamlDataDecoder;
 
 $data = '
 ---
@@ -147,7 +147,7 @@ Array
 ### Data Encoder with configurable format
 
 ```php
-use Exorg\DataCoder\DataEncoder;
+use ExOrg\DataCoder\DataEncoder;
 
 $data = [
     "firstName" => "John",
@@ -183,7 +183,7 @@ address:
 ### Data Decoder with configurable format
 
 ```php
-use Exorg\DataCoder\DataDecoder;
+use ExOrg\DataCoder\DataDecoder;
 
 $data = '
 {
@@ -234,7 +234,7 @@ Datafile coders with configurable data format - **DatafileEncoder** and **Datafi
 ##### DatafileEncoder
 
 ```php
-use Exorg\DataCoder\DatafileEncoder;
+use ExOrg\DataCoder\DatafileEncoder;
 
 $data = [
     "firstName" => "John",
@@ -271,7 +271,7 @@ print file_get_contents($datafilePath);
 ##### DatafileDecoder
 
 ```php
-use Exorg\DataCoder\DatafileDecoder;
+use ExOrg\DataCoder\DatafileDecoder;
 
 $datafilePath = 'data.yaml';
 

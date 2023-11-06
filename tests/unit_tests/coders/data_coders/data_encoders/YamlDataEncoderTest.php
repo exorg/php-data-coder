@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
 
@@ -51,7 +51,7 @@ class YamlDataEncoderTest extends TestCase
     public function testYamlDataEncoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\YamlDataEncoder')
+            class_exists('ExOrg\DataCoder\YamlDataEncoder')
         );
     }
 
@@ -63,7 +63,7 @@ class YamlDataEncoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\YamlDataEncoder',
+                'ExOrg\DataCoder\YamlDataEncoder',
                 'encodeData'
             )
         );

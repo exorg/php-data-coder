@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
 
@@ -26,13 +26,13 @@ use PHPUnit\Framework\TestCase;
 class CoderClassNotFoundExceptionTest extends TestCase
 {
     /**
-     * Test if Exorg\DataCoder\CoderClassNotFoundException class
+     * Test if ExOrg\DataCoder\CoderClassNotFoundException class
      * has been created.
      */
     public function testCoderClassNotFoundExceptionClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\CoderClassNotFoundException')
+            class_exists('ExOrg\DataCoder\CoderClassNotFoundException')
         );
     }
 }

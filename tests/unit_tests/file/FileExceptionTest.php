@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
 
@@ -26,13 +26,13 @@ use PHPUnit\Framework\TestCase;
 class FileExceptionTest extends TestCase
 {
     /**
-     * Test if Exorg\DataCoder\NonexistentFileException class
+     * Test if ExOrg\DataCoder\NonexistentFileException class
      * has been created.
      */
     public function testFileExceptionTestClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\FileException')
+            class_exists('ExOrg\DataCoder\FileException')
         );
     }
 }

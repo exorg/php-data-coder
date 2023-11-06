@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
-use Exorg\Decapsulator\ObjectDecapsulator;
+use ExOrg\Decapsulator\ObjectDecapsulator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -34,13 +34,13 @@ class DataEncoderTest extends TestCase
     private $dataEncoder;
 
     /**
-     * Test Exorg\DataCoder\DataEncoder class
+     * Test ExOrg\DataCoder\DataEncoder class
      * has been created.
      */
     public function testDataEncoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\DataEncoder')
+            class_exists('ExOrg\DataCoder\DataEncoder')
         );
     }
 
@@ -52,7 +52,7 @@ class DataEncoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\DataEncoder',
+                'ExOrg\DataCoder\DataEncoder',
                 'setDataFormat'
             )
         );
@@ -120,7 +120,7 @@ class DataEncoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\DataEncoder',
+                'ExOrg\DataCoder\DataEncoder',
                 'encodeData'
             )
         );

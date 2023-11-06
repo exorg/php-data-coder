@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
 
@@ -51,7 +51,7 @@ class JsonDataEncoderTest extends TestCase
     public function testJsonDataEncoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\JsonDataEncoder')
+            class_exists('ExOrg\DataCoder\JsonDataEncoder')
         );
     }
 
@@ -63,7 +63,7 @@ class JsonDataEncoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\JsonDataEncoder',
+                'ExOrg\DataCoder\JsonDataEncoder',
                 'encodeData'
             )
         );

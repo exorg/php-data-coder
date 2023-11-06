@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
-use Exorg\Decapsulator\ObjectDecapsulator;
+use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
  * DatafileDecoderTest.
@@ -41,13 +41,13 @@ class DatafileDecoderTest extends TestCase
     private $datafileDecoder;
 
     /**
-     * Test Exorg\DataCoder\DatafileDecoder class
+     * Test ExOrg\DataCoder\DatafileDecoder class
      * has been created.
      */
     public function testDatafileDecoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\DatafileDecoder')
+            class_exists('ExOrg\DataCoder\DatafileDecoder')
         );
     }
 
@@ -59,7 +59,7 @@ class DatafileDecoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\DatafileDecoder',
+                'ExOrg\DataCoder\DatafileDecoder',
                 'setDataFormat'
             )
         );
@@ -128,7 +128,7 @@ class DatafileDecoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\DatafileDecoder',
+                'ExOrg\DataCoder\DatafileDecoder',
                 'decodeFile'
             )
         );
@@ -140,7 +140,7 @@ class DatafileDecoderTest extends TestCase
      */
     public function testDecodeFileWhenFileDoesNotExist()
     {
-        $this->expectException('\Exorg\DataCoder\FileException');
+        $this->expectException('\ExOrg\DataCoder\FileException');
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('noexistent.format');
 
@@ -153,7 +153,7 @@ class DatafileDecoderTest extends TestCase
      */
     public function testDecodeFileWhenImproperDataFormatIsSet()
     {
-        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+        $this->expectException('\ExOrg\DataCoder\CoderClassNotFoundException');
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.format');
 
@@ -185,7 +185,7 @@ class DatafileDecoderTest extends TestCase
      */
     public function testDecodeFileWhenDataFormatIsNotSetAndFileHasImproperExtension()
     {
-        $this->expectException('\Exorg\DataCoder\CoderClassNotFoundException');
+        $this->expectException('\ExOrg\DataCoder\CoderClassNotFoundException');
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.nonexistentformat');
 

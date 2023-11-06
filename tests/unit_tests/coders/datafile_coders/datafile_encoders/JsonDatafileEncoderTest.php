@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Exorg\DataCoder;
+namespace ExOrg\DataCoder;
 
 use PHPUnit\Framework\TestCase;
-use Exorg\Decapsulator\ObjectDecapsulator;
+use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
  * JsonDatafileEncoderTest.
@@ -46,13 +46,13 @@ class JsonDatafileEncoderTest extends TestCase
     private $jsonDatafileEncoder;
 
     /**
-     * Test Exorg\DataCoder\JsonDatafileEncoder class
+     * Test ExOrg\DataCoder\JsonDatafileEncoder class
      * has been created.
      */
     public function testJsonDatafileEncoderClassExists()
     {
         $this->assertTrue(
-            class_exists('Exorg\DataCoder\JsonDatafileEncoder')
+            class_exists('ExOrg\DataCoder\JsonDatafileEncoder')
         );
     }
 
@@ -64,7 +64,7 @@ class JsonDatafileEncoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'Exorg\DataCoder\JsonDatafileEncoder',
+                'ExOrg\DataCoder\JsonDatafileEncoder',
                 'encodeFile'
             )
         );

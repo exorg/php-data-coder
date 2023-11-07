@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\File;
 
 use PHPUnit\Framework\TestCase;
 
@@ -31,6 +31,9 @@ class FileTest extends TestCase
      */
     const FILE_FIXTURES_RELATIVE_PATH = '../../testing_environment/files';
 
+    const FILE_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\File\File';
+    const FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\File\FileException';
+
     /**
      * Self-test for function buildFileFixturePath.
      */
@@ -46,13 +49,13 @@ class FileTest extends TestCase
     }
 
     /**
-     * Test if ExOrg\DataCoder\File class
+     * Test if File class
      * has been created.
      */
     public function testFileClassExists()
     {
         $this->assertTrue(
-            class_exists('ExOrg\DataCoder\File')
+            class_exists(self::FILE_FULLY_QUALIFIED_CLASS_NAME)
         );
     }
 
@@ -106,7 +109,7 @@ class FileTest extends TestCase
 
         $file = new File($filePath);
 
-        $this->assertInstanceOf('ExOrg\DataCoder\File', $file);
+        $this->assertInstanceOf(self::FILE_FULLY_QUALIFIED_CLASS_NAME, $file);
     }
 
     /**
@@ -119,7 +122,7 @@ class FileTest extends TestCase
 
         $file = new File($filePath);
 
-        $this->assertInstanceOf('ExOrg\DataCoder\File', $file);
+        $this->assertInstanceOf(self::FILE_FULLY_QUALIFIED_CLASS_NAME, $file);
     }
 
     /**
@@ -130,7 +133,7 @@ class FileTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\File',
+                self::FILE_FULLY_QUALIFIED_CLASS_NAME,
                 'getExtension'
             )
         );
@@ -157,7 +160,7 @@ class FileTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\File',
+                self::FILE_FULLY_QUALIFIED_CLASS_NAME,
                 'getContent'
             )
         );
@@ -169,7 +172,7 @@ class FileTest extends TestCase
      */
     public function testGetContentWhenFileDoesNotExist()
     {
-        $this->expectException('\ExOrg\DataCoder\FileException');
+        $this->expectException(self::FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME);
 
         $filePath = self::buildFileFixturePath('nonexistent');
 
@@ -184,7 +187,7 @@ class FileTest extends TestCase
      */
     public function testGetContentWhenFileIsNotReadable()
     {
-        $this->expectException('\ExOrg\DataCoder\FileException');
+        $this->expectException(self::FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME);
 
         $filePath = self::buildFileFixturePath('unreadable-file');
 
@@ -199,7 +202,7 @@ class FileTest extends TestCase
      */
     public function testGetContentWhenDirectoryIsNotReadable()
     {
-        $this->expectException('\ExOrg\DataCoder\FileException');
+        $this->expectException(self::FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME);
 
         $filePath = self::buildFileFixturePath('unreadable-directory/file-for-read');
 
@@ -229,7 +232,7 @@ class FileTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\File',
+                self::FILE_FULLY_QUALIFIED_CLASS_NAME,
                 'setContent'
             )
         );
@@ -256,7 +259,7 @@ class FileTest extends TestCase
      */
     public function testSetContentWhenFileIsNotWritable()
     {
-        $this->expectException('\ExOrg\DataCoder\FileException');
+        $this->expectException(self::FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME);
 
         $filePath = self::buildFileFixturePath('unwritable-file');
 
@@ -271,7 +274,7 @@ class FileTest extends TestCase
      */
     public function testSetContentWhenDirectoryIsNotWritable()
     {
-        $this->expectException('\ExOrg\DataCoder\FileException');
+        $this->expectException(self::FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME);
 
         $filePath = self::buildFileFixturePath('unwritable-directory/file-for-write');
 

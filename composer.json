@@ -38,18 +38,14 @@
             	"src/coders/datafile_coders/datafile_encoders/",
             	"src/coders/datafile_coders/datafile_decoders/",
             	"src/data_format/",
-            	"src/coder_builder/",
-            	"src/file/"
+                "src/coder_builder/"
             ]
         }
     },
     "autoload-dev": {
         "psr-4": {
             "ExOrg\\DataCoder\\": [
-            	"tests/",
-            	"tests/testing_environment/",
-            	"tests/testing_environment/helpers/",
-            	"tests/testing_environment/classes/",
+                "tests/unit_tests/",
             	"tests/unit_tests/coders/",
             	"tests/unit_tests/coders/data_coders/",
             	"tests/unit_tests/coders/data_coders/data_encoders/",
@@ -58,8 +54,7 @@
             	"tests/unit_tests/coders/datafile_coders/datafile_encoders/",
             	"tests/unit_tests/coders/datafile_coders/datafile_decoders/",
             	"tests/unit_tests/data_format/",
-            	"tests/unit_tests/coder_builder/",
-            	"tests/unit_tests/file/"
+                "tests/unit_tests/coder_builder/"
             ]
         }
     },

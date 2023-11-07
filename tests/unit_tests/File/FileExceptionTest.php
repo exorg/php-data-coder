@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\File;
 
 use PHPUnit\Framework\TestCase;
 
@@ -25,6 +25,8 @@ use PHPUnit\Framework\TestCase;
  */
 class FileExceptionTest extends TestCase
 {
+    const FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\File\FileException';
+
     /**
      * Test if ExOrg\DataCoder\NonexistentFileException class
      * has been created.
@@ -32,7 +34,7 @@ class FileExceptionTest extends TestCase
     public function testFileExceptionTestClassExists()
     {
         $this->assertTrue(
-            class_exists('ExOrg\DataCoder\FileException')
+            class_exists(self::FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME)
         );
     }
 }

@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\File;
 
 /**
- * NonexistentFileException.
+ * FileException.
  * Exception indicating that file
  * either doesn't exist
  * or cannot be read from the given place

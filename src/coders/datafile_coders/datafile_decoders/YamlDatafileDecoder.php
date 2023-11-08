@@ -11,6 +11,8 @@
 
 namespace ExOrg\DataCoder;
 
+use ExOrg\DataCoder\File\File;
+
 /**
  * YamlDatafileDecoder.
  * Datafile decoder for YAML format.

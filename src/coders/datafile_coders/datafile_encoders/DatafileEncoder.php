@@ -11,6 +11,9 @@
 
 namespace ExOrg\DataCoder;
 
+use ExOrg\DataCoder\CoderBuilder\CoderBuildingTrait;
+use ExOrg\DataCoder\File\File;
+
 /**
  * DatafileEncoder.
  * Allows to encode data file

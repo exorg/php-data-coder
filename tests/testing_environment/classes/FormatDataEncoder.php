@@ -32,8 +32,11 @@ class FormatDataEncoder
      */
     public function encodeData($data)
     {
+        $dataValues = array_values($data);
+        $dataCore = array_shift($dataValues);
+
         return "<FORMAT ENCODED DATA>"
-            . array_shift(array_values($data))
+            . $dataCore
             . "</FORMAT ENCODED DATA>";
     }
 }

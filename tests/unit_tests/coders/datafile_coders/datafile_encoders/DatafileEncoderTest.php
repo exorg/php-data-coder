@@ -26,6 +26,8 @@ use ExOrg\Decapsulator\ObjectDecapsulator;
  */
 class DatafileEncoderTest extends TestCase
 {
+    const CODER_CLASS_NOT_FOUND_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\CoderBuilder\CoderClassNotFoundException';
+
     /**
      * Helper for handling data file fixtures.
      *
@@ -142,7 +144,7 @@ class DatafileEncoderTest extends TestCase
      */
     public function testEncodeFileWhenImproperDataFormatIsSet()
     {
-        $this->expectException('\ExOrg\DataCoder\CoderClassNotFoundException');
+        $this->expectException(self::CODER_CLASS_NOT_FOUND_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME);
 
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.format');
 
@@ -166,6 +168,7 @@ class DatafileEncoderTest extends TestCase
         $actualResult = file_get_contents($dataFilePath);
 
         $this->assertEquals($expectedResult, $actualResult);
+        $this->assertTrue(true);
     }
 
     /**
@@ -176,7 +179,7 @@ class DatafileEncoderTest extends TestCase
      */
     public function testEncodeFileWhenDataFormatIsNotSetAndFileHasImproperExtension()
     {
-        $this->expectException('\ExOrg\DataCoder\CoderClassNotFoundException');
+        $this->expectException(self::CODER_CLASS_NOT_FOUND_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME);
 
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.nonexistentformat');
 

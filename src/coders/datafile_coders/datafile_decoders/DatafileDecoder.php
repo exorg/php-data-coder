@@ -12,9 +12,7 @@
 namespace ExOrg\DataCoder;
 
 use ExOrg\DataCoder\CoderBuilder\CoderBuildingTrait;
-use ExOrg\DataCoder\CoderBuilder\CoderClassNotFoundException;
 use ExOrg\DataCoder\File\File;
-use ExOrg\DataCoder\File\FileException;
 
 /**
  * DatafileDecoder.

@@ -25,6 +25,8 @@ use PHPUnit\Framework\TestCase;
  */
 class CoderClassNotFoundExceptionTest extends TestCase
 {
+    const CODER_CLASS_NOT_FOUND_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\CoderBuilder\CoderClassNotFoundException';
+
     /**
      * Test if ExOrg\DataCoder\CoderClassNotFoundException class
      * has been created.
@@ -32,7 +34,7 @@ class CoderClassNotFoundExceptionTest extends TestCase
     public function testCoderClassNotFoundExceptionClassExists()
     {
         $this->assertTrue(
-            class_exists('ExOrg\DataCoder\CoderClassNotFoundException')
+            class_exists(self::CODER_CLASS_NOT_FOUND_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME)
         );
     }
 }

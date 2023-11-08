@@ -52,7 +52,8 @@
             	"tests/unit_tests/coders/datafile_coders/",
             	"tests/unit_tests/coders/datafile_coders/datafile_encoders/",
             	"tests/unit_tests/coders/datafile_coders/datafile_decoders/",
-                "tests/unit_tests/data_format/"
+                "tests/unit_tests/data_format/",
+                "tests/testing_environment/helpers/"
             ],
             "ExOrg\\DataCoder\\CoderBuilder\\": [
                 "tests/testing_environment/classes"

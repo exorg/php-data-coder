@@ -37,8 +37,7 @@
             	"src/coders/datafile_coders/",
             	"src/coders/datafile_coders/datafile_encoders/",
             	"src/coders/datafile_coders/datafile_decoders/",
-            	"src/data_format/",
-                "src/coder_builder/"
+                "src/data_format/"
             ]
         }
     },
@@ -53,8 +52,10 @@
             	"tests/unit_tests/coders/datafile_coders/",
             	"tests/unit_tests/coders/datafile_coders/datafile_encoders/",
             	"tests/unit_tests/coders/datafile_coders/datafile_decoders/",
-            	"tests/unit_tests/data_format/",
-                "tests/unit_tests/coder_builder/"
+                "tests/unit_tests/data_format/"
+            ],
+            "ExOrg\\DataCoder\\CoderBuilder\\": [
+                "tests/testing_environment/classes"
             ]
         }
     },

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\CoderBuilder;
 
 use PHPUnit\Framework\TestCase;
 
@@ -31,6 +31,9 @@ class CoderBuildingTraitTest extends TestCase
      */
     const DUMMY_CODERS_NAMESPACE = __NAMESPACE__;
 
+    const CODE_BUILDING_TRAIT_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\CoderBuilder\CoderBuildingTrait';
+    const CODER_CLASS_NOT_FOUND_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\CoderBuilder\CoderClassNotFoundException';
+
     /**
      * Test ExOrg\DatafilesParser\CoderBuildingTrait trait
      * has been implemented.
@@ -38,7 +41,7 @@ class CoderBuildingTraitTest extends TestCase
     public function testCoderBuildingTraitExists()
     {
         $this->assertTrue(
-            trait_exists('ExOrg\DataCoder\CoderBuildingTrait')
+            trait_exists(self::CODE_BUILDING_TRAIT_FULLY_QUALIFIED_CLASS_NAME)
         );
     }
 
@@ -50,7 +53,7 @@ class CoderBuildingTraitTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\CoderBuildingTrait',
+                self::CODE_BUILDING_TRAIT_FULLY_QUALIFIED_CLASS_NAME,
                 'buildCoder'
             )
         );
@@ -67,7 +70,7 @@ class CoderBuildingTraitTest extends TestCase
      */
     public function testBuildCoderWhenTraitUsingClassHasImproperPostfix($traitUsingClassObject)
     {
-        $this->expectException('\ExOrg\DataCoder\CoderClassNotFoundException');
+        $this->expectException(self::CODER_CLASS_NOT_FOUND_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME);
 
         $traitUsingClassObject->runBuildCoder();
     }
@@ -82,7 +85,7 @@ class CoderBuildingTraitTest extends TestCase
      */
     public function testBuildCoderWhenTraitUsingClassHasImproperPrefix($traitUsingClassObject)
     {
-        $this->expectException('\ExOrg\DataCoder\CoderClassNotFoundException');
+        $this->expectException(self::CODER_CLASS_NOT_FOUND_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME);
 
         $traitUsingClassObject->runBuildCoder();
     }
@@ -96,7 +99,7 @@ class CoderBuildingTraitTest extends TestCase
      */
     public function testBuildCoderWhenTraitUsingClassHasImproperDataFormat($traitUsingClassObject)
     {
-        $this->expectException('\ExOrg\DataCoder\CoderClassNotFoundException');
+        $this->expectException(self::CODER_CLASS_NOT_FOUND_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME);
 
         $traitUsingClassObject->runBuildCoder();
     }

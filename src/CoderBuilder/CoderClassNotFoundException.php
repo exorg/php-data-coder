@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\CoderBuilder;
 
 /**
  * CoderClassNotFoundException.

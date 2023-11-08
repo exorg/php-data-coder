@@ -26,6 +26,8 @@ use ExOrg\Decapsulator\ObjectDecapsulator;
  */
 class JsonDatafileDecoderTest extends TestCase
 {
+    const FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\File\FileException';
+
     /**
      * Decoded data format.
      */
@@ -76,7 +78,7 @@ class JsonDatafileDecoderTest extends TestCase
      */
     public function testDecodeFileWhenFileDoesNotExist()
     {
-        $this->expectException('\ExOrg\DataCoder\FileException');
+        $this->expectException(self::FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME);
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('noexistent.format');
 

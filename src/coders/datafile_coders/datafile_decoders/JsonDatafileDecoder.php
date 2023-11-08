@@ -11,6 +11,8 @@
 
 namespace ExOrg\DataCoder;
 
+use ExOrg\DataCoder\File\File;
+
 /**
  * JsonDatafileDecoder.
  * Datafile decoder for JSON format.

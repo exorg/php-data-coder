@@ -11,6 +11,8 @@
 
 namespace ExOrg\DataCoder;
 
+use ExOrg\DataCoder\CoderBuilder\CoderBuildingTrait;
+
 /**
  * DataDecoder.
  * Allows to decode data

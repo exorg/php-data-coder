@@ -76,10 +76,18 @@ trait CoderBuildingTrait
         $dataFormatPrefix = $this->establishDataFormatPrefix();
         $coderTypePostfix = $this->extractCurrentClassNamePostfix();
 
-        $coderClassName = __NAMESPACE__
+        // $coderClassName = __NAMESPACE__
+        //     . '\\'
+        //     . $dataFormatPrefix
+        //     . 'Data'
+        //     . $coderTypePostfix;
+
+        $coderClassName = 'ExOrg\\DataCoder\Coder'
             . '\\'
             . $dataFormatPrefix
+            . '\\'
             . 'Data'
+            . '\\'
             . $coderTypePostfix;
 
         return $coderClassName;

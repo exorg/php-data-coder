@@ -9,12 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Coder\Yaml\Data;
 
+use ExOrg\DataCoder\Coder\Data\AbstractDecoder;
+use ExOrg\DataCoder\Coder\Data\DecodingStrategyInterface;
+use ExOrg\DataCoder\DataFormat\DataFormatInvalidException;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * YamlDataDecoder.
+ * Yaml Data Decoder.
  * Data decoder for YAML format.
  *
  * @package DataCoder
@@ -23,7 +26,7 @@ use Symfony\Component\Yaml\Yaml;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDataDecoder extends AbstractDataDecoder implements DataDecodingStrategyInterface
+class Decoder extends AbstractDecoder implements DecodingStrategyInterface
 {
     /**
      * Decode given YAML data to PHP array.

@@ -9,9 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Coder\Data;
 
+use ExOrg\DataCoder\Coder\Data\DecodingStrategyInterface;
 use ExOrg\DataCoder\CoderBuilder\CoderBuildingTrait;
+use ExOrg\DataCoder\DataFormat\DataFormatConfigurableTrait;
 
 /**
  * DataDecoder.
@@ -24,7 +26,7 @@ use ExOrg\DataCoder\CoderBuilder\CoderBuildingTrait;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DataDecoder
+class Decoder implements DecodingStrategyInterface
 {
     use DataFormatConfigurableTrait;
     use CoderBuildingTrait;

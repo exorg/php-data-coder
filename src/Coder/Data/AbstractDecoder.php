@@ -9,11 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Coder\Data;
 
 /**
- * DataDecodingStrategyInterface.
- * Defines interface of particular data decoding strategy.
+ * Abstract Data Decoder.
+ * Abstract class for Data Decoder
+ * for concrete data format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -21,13 +22,20 @@ namespace ExOrg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-interface DataDecodingStrategyInterface
+abstract class AbstractDecoder
 {
     /**
-     * Decode data.
+     * Validate data.
      *
-     * @param array $data
-     * @return array
+     * @param string $data
+     * @throws \InvalidArgumentException
      */
-    public function decodeData($data);
+    protected function validateData($data)
+    {
+        if (!is_string($data)) {
+            throw new \InvalidArgumentException(
+                'Data must be a string.'
+            );
+        }
+    }
 }

@@ -9,12 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Coder\Yaml\Datafile;
 
 use ExOrg\DataCoder\File\File;
+use ExOrg\DataCoder\Coder\Yaml\Data\Decoder as DataDecoder;
 
 /**
- * YamlDatafileDecoder.
+ * Yaml Datafile Decoder.
  * Datafile decoder for YAML format.
  *
  * @package DataCoder
@@ -23,7 +24,7 @@ use ExOrg\DataCoder\File\File;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDatafileDecoder
+class Decoder
 {
     /**
      * Decode file content.
@@ -38,7 +39,7 @@ class YamlDatafileDecoder
 
         $fileData = $file->getContent();
 
-        $dataDecoder = new YamlDataDecoder();
+        $dataDecoder = new DataDecoder();
         $result = $dataDecoder->decodeData($fileData);
 
         return $result;

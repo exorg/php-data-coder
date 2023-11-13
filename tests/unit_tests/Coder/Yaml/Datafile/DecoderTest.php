@@ -9,14 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Coder\Yaml\Datafile;
 
 use PHPUnit\Framework\TestCase;
 use ExOrg\Decapsulator\ObjectDecapsulator;
+use ExOrg\DataCoder\DataFileFixturesHelper;
 
 /**
- * JsonDatafileDecoderTest.
- * PHPUnit test class for JsonDatafileDecoder class.
+ * Yaml Datafile Decoder Test.
+ * PHPUnit test class for YamlDatafileDecoder class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -24,14 +25,16 @@ use ExOrg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDatafileDecoderTest extends TestCase
+class DecoderTest extends TestCase
 {
+    const DECODER_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\Coder\Yaml\Datafile\Decoder';
     const FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\File\FileException';
+    const DATA_FORMAT_INVALID_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\DataFormat\DataFormatInvalidException';
 
     /**
      * Decoded data format.
      */
-    const DATA_FORMAT_JSON = 'json';
+    const DATA_FORMAT_YAML = 'yaml';
 
     /**
      * Helper for handling data file fixtures.
@@ -43,18 +46,18 @@ class JsonDatafileDecoderTest extends TestCase
     /**
      * Instance of tested class.
      *
-     * @var JsonDatafileDecoder
+     * @var YamlDatafileDecoder
      */
-    private $jsonDatafileDecoder;
+    private $yamlDatafileDecoder;
 
     /**
-     * Test ExOrg\DataCoder\JsonDatafileDecoder class
+     * Test ExOrg\DataCoder\YamlDatafileDecoder class
      * has been created.
      */
-    public function testJsonDatafileDecoderClassExists()
+    public function testYamlDatafileDecoderClassExists()
     {
         $this->assertTrue(
-            class_exists('ExOrg\DataCoder\JsonDatafileDecoder')
+            class_exists(self::DECODER_FULLY_QUALIFIED_CLASS_NAME)
         );
     }
 
@@ -66,7 +69,7 @@ class JsonDatafileDecoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\JsonDatafileDecoder',
+                self::DECODER_FULLY_QUALIFIED_CLASS_NAME,
                 'decodeFile'
             )
         );
@@ -82,7 +85,7 @@ class JsonDatafileDecoderTest extends TestCase
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('noexistent.format');
 
-        $this->jsonDatafileDecoder->decodeFile($dataFilePath);
+        $this->yamlDatafileDecoder->decodeFile($dataFilePath);
     }
 
     /**
@@ -91,23 +94,23 @@ class JsonDatafileDecoderTest extends TestCase
      */
     public function testDecodeFileWithIncorrectData()
     {
-        $this->expectException('\ExOrg\DataCoder\DataFormatInvalidException');
+        $this->expectException(self::DATA_FORMAT_INVALID_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME);
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.nonexistentformat');
 
-        $this->jsonDatafileDecoder->decodeFile($dataFilePath);
+        $this->yamlDatafileDecoder->decodeFile($dataFilePath);
     }
 
     /**
      * Test decodeFile function properly decodes file data
-     * with JSON format.
+     * with YAML format.
      */
     public function testDecodeFile()
     {
-        $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.json');
+        $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.yaml');
         $expectedResult = self::$dataFileFixturesHelper->loadDecodedData();
 
-        $actualResult = $this->jsonDatafileDecoder->decodeFile($dataFilePath);
+        $actualResult = $this->yamlDatafileDecoder->decodeFile($dataFilePath);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -118,7 +121,7 @@ class JsonDatafileDecoderTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         self::$dataFileFixturesHelper = new DataFileFixturesHelper();
-        self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_JSON);
+        self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_YAML);
     }
 
     /**
@@ -127,6 +130,6 @@ class JsonDatafileDecoderTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->jsonDatafileDecoder = new JsonDatafileDecoder();
+        $this->yamlDatafileDecoder = new Decoder();
     }
 }

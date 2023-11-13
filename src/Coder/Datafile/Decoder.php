@@ -9,13 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Coder\Datafile;
 
+use ExOrg\DataCoder\CoderBuilder\CoderBuildingTrait;
 use ExOrg\DataCoder\File\File;
 
 /**
- * JsonDatafileDecoder.
- * Datafile decoder for JSON format.
+ * Datafile Decoder.
+ * Allows to decode data file
+ * accordingly the data format set directly
+ * or defined by file extension.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -23,8 +26,10 @@ use ExOrg\DataCoder\File\File;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDatafileDecoder
+class Decoder extends AbstractCoder
 {
+    use CoderBuildingTrait;
+
     /**
      * Decode file content.
      *
@@ -34,11 +39,12 @@ class JsonDatafileDecoder
      */
     public function decodeFile($filePath)
     {
-        $file = new File($filePath);
+        $this->file = new File($filePath);
 
-        $fileData = $file->getContent();
+        $this->completeDataFormat();
+        $dataDecoder = $this->buildCoder();
 
-        $dataDecoder = new JsonDataDecoder();
+        $fileData = $this->file->getContent();
         $result = $dataDecoder->decodeData($fileData);
 
         return $result;

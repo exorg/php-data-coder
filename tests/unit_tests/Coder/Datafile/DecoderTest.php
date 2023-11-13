@@ -9,9 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Coder\Datafile;
 
 use PHPUnit\Framework\TestCase;
+use ExOrg\DataCoder\DataFileFixturesHelper;
 use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
@@ -24,8 +25,9 @@ use ExOrg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DatafileDecoderTest extends TestCase
+class DecoderTest extends TestCase
 {
+    const DECODER_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\Coder\Datafile\Decoder';
     const FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\File\FileException';
     const CODER_CLASS_NOT_FOUND_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\CoderBuilder\CoderClassNotFoundException';
 
@@ -50,7 +52,7 @@ class DatafileDecoderTest extends TestCase
     public function testDatafileDecoderClassExists()
     {
         $this->assertTrue(
-            class_exists('ExOrg\DataCoder\DatafileDecoder')
+            class_exists(self::DECODER_FULLY_QUALIFIED_CLASS_NAME)
         );
     }
 
@@ -62,7 +64,7 @@ class DatafileDecoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\DatafileDecoder',
+                self::DECODER_FULLY_QUALIFIED_CLASS_NAME,
                 'setDataFormat'
             )
         );
@@ -131,7 +133,7 @@ class DatafileDecoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\DatafileDecoder',
+                self::DECODER_FULLY_QUALIFIED_CLASS_NAME,
                 'decodeFile'
             )
         );
@@ -255,6 +257,6 @@ class DatafileDecoderTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->datafileDecoder = new DatafileDecoder();
+        $this->datafileDecoder = new Decoder();
     }
 }

@@ -9,13 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Coder\Yaml\Datafile;
 
 use ExOrg\DataCoder\File\File;
+use ExOrg\DataCoder\Coder\Yaml\Data\Encoder as DataEncoder;
 
 /**
- * JsonDatafileEncoder.
- * Datafile encoder for JSON format.
+ * YamlDatafileEncoder.
+ * Datafile encoder for YAML format.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -23,10 +24,10 @@ use ExOrg\DataCoder\File\File;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class JsonDatafileEncoder
+class Encoder
 {
     /**
-     * Encode JSON data and write to the file.
+     * Encode YAML data and write to the file.
      *
      * @param array $data
      * @param string $filePath
@@ -36,7 +37,7 @@ class JsonDatafileEncoder
     {
         $file = new File($filePath);
 
-        $dataEncoder = new JsonDataEncoder();
+        $dataEncoder = new DataEncoder();
         $fileData = $dataEncoder->encodeData($data);
 
         $file->setContent($fileData);

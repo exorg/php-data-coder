@@ -9,13 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Coder\Datafile;
 
+use ExOrg\DataCoder\CoderBuilder\CoderBuildingTrait;
 use ExOrg\DataCoder\File\File;
 
 /**
- * YamlDatafileEncoder.
- * Datafile encoder for YAML format.
+ * Datafile Encoder.
+ * Allows to encode data file
+ * accordingly the data format set directly
+ * or defined by file extension.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -23,10 +26,12 @@ use ExOrg\DataCoder\File\File;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDatafileEncoder
+class Encoder extends AbstractCoder
 {
+    use CoderBuildingTrait;
+
     /**
-     * Encode YAML data and write to the file.
+     * Encode data and write to the file.
      *
      * @param array $data
      * @param string $filePath
@@ -34,11 +39,12 @@ class YamlDatafileEncoder
      */
     public function encodeFile($data, $filePath)
     {
-        $file = new File($filePath);
+        $this->file = new File($filePath);
 
-        $dataEncoder = new YamlDataEncoder();
+        $this->completeDataFormat();
+        $dataEncoder = $this->buildCoder();
+
         $fileData = $dataEncoder->encodeData($data);
-
-        $file->setContent($fileData);
+        $this->file->setContent($fileData);
     }
 }

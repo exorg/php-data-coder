@@ -9,14 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Coder\Json\Datafile;
 
 use PHPUnit\Framework\TestCase;
 use ExOrg\Decapsulator\ObjectDecapsulator;
+use ExOrg\DataCoder\DataFileFixturesHelper;
 
 /**
- * YamlDatafileEncoderTest.
- * PHPUnit test class for YamlDatafileEncoder class.
+ * Json Datafile Encoder Test.
+ * PHPUnit test class for JsonDatafileEncoder class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -24,12 +25,14 @@ use ExOrg\Decapsulator\ObjectDecapsulator;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class YamlDatafileEncoderTest extends TestCase
+class EncoderTest extends TestCase
 {
+    const ENCODER_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\Coder\Json\Datafile\Encoder';
+
     /**
      * Encoded data format.
      */
-    const DATA_FORMAT_YAML = 'yaml';
+    const DATA_FORMAT_JSON = 'json';
 
     /**
      * Helper for handling data file fixtures.
@@ -41,18 +44,18 @@ class YamlDatafileEncoderTest extends TestCase
     /**
      * Instance of tested class.
      *
-     * @var YamlDatafileEncoder
+     * @var JsonDatafileEncoder
      */
-    private $yamlDatafileEncoder;
+    private $jsonDatafileEncoder;
 
     /**
-     * Test ExOrg\DataCoder\YamlDatafileEncoder class
+     * Test ExOrg\DataCoder\JsonDatafileEncoder class
      * has been created.
      */
-    public function testYamlDatafileEncoderClassExists()
+    public function testJsonDatafileEncoderClassExists()
     {
         $this->assertTrue(
-            class_exists('ExOrg\DataCoder\YamlDatafileEncoder')
+            class_exists(self::ENCODER_FULLY_QUALIFIED_CLASS_NAME)
         );
     }
 
@@ -64,7 +67,7 @@ class YamlDatafileEncoderTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\YamlDatafileEncoder',
+                self::ENCODER_FULLY_QUALIFIED_CLASS_NAME,
                 'encodeFile'
             )
         );
@@ -81,7 +84,7 @@ class YamlDatafileEncoderTest extends TestCase
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data');
         $data = 1024;
 
-        $this->yamlDatafileEncoder->encodeFile($data, $dataFilePath);
+        $this->jsonDatafileEncoder->encodeFile($data, $dataFilePath);
     }
 
     /**
@@ -90,10 +93,10 @@ class YamlDatafileEncoderTest extends TestCase
      */
     public function testEncodeFile()
     {
-        $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.yaml');
+        $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.json');
         $data = self::$dataFileFixturesHelper->loadDecodedData();
 
-        $this->yamlDatafileEncoder->encodeFile($data, $dataFilePath);
+        $this->jsonDatafileEncoder->encodeFile($data, $dataFilePath);
 
         $expectedResult = self::$dataFileFixturesHelper->loadEncodedData();
         $actualResult = file_get_contents($dataFilePath);
@@ -107,7 +110,7 @@ class YamlDatafileEncoderTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         self::$dataFileFixturesHelper = new DataFileFixturesHelper();
-        self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_YAML);
+        self::$dataFileFixturesHelper->setDataFormat(self::DATA_FORMAT_JSON);
     }
 
     /**
@@ -116,6 +119,6 @@ class YamlDatafileEncoderTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->yamlDatafileEncoder = new YamlDatafileEncoder();
+        $this->jsonDatafileEncoder = new Encoder();
     }
 }

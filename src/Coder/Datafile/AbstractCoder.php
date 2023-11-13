@@ -9,10 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Coder\Datafile;
+
+use ExOrg\DataCoder\DataFormat\DataFormatConfigurableTrait;
+use ExOrg\DataCoder\File\File;
 
 /**
- * AbstractDatafileCoder.
+ * Abstract Datafile Coder.
  * Abstract class for DatafileCoders
  * with configurable data format.
  *
@@ -22,7 +25,7 @@ namespace ExOrg\DataCoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-abstract class AbstractDatafileCoder
+abstract class AbstractCoder
 {
     use DataFormatConfigurableTrait;
 

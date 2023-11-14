@@ -29,7 +29,8 @@ class CoderBuildingTraitTest extends TestCase
      * Namespace of the dummy coders classes
      * used to test trait.
      */
-    const DUMMY_CODERS_NAMESPACE = __NAMESPACE__;
+    const CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE = 'ExOrg\DataCoder\CoderBuildingTraitUsing';
+    const CODERS_NAMESPACE = 'ExOrg\DataCoder\Coder';
 
     const CODE_BUILDING_TRAIT_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\CoderBuilder\CoderBuildingTrait';
     const CODER_CLASS_NOT_FOUND_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\CoderBuilder\CoderClassNotFoundException';
@@ -131,10 +132,12 @@ class CoderBuildingTraitTest extends TestCase
     public static function traitUsingClassObjectsWithImproperPostfixProvider()
     {
         return array(
-            array(new DummyClassFormat1Nocoder()),
-            array(new DummyClassFormat2Nocoder()),
-            array(new Format1DummyClassNocoder()),
-            array(new Format2DummyClassNocoder()),
+            // Classes with explicitly defined dataFormat
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\DummyClassFormat1Nocoder')()),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\DummyClassFormat2Nocoder')()),
+            // Classes with no explicitly defined dataFormat (it's established from the class name first part)
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\Format1DummyClassNocoder')()),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\Format2DummyClassNocoder')()),
         );
     }
 
@@ -147,8 +150,8 @@ class CoderBuildingTraitTest extends TestCase
     public static function traitUsingClassObjectsWithImproperPrefixProvider()
     {
         return array(
-            array(new FormatnotrecognizedDummyClassEncoder()),
-            array(new FormatnotrecognizedDummyClassDecoder()),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\FormatnotrecognizedDummyClassEncoder')()),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\FormatnotrecognizedDummyClassDecoder')()),
         );
     }
 
@@ -161,10 +164,10 @@ class CoderBuildingTraitTest extends TestCase
     public static function traitUsingClassObjectsWithImproperDataFormatProvider()
     {
         return array(
-            array(new DummyClassFormatNullEncoder()),
-            array(new DummyClassFormatNullDecoder()),
-            array(new DummyClassFormatNotRecognizedEncoder()),
-            array(new DummyClassFormatNotRecognizedDecoder()),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\DummyClassFormatNullEncoder')()),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\DummyClassFormatNullDecoder')()),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\DummyClassFormatNotRecognizedEncoder')()),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\DummyClassFormatNotRecognizedDecoder')()),
         );
     }
 
@@ -179,14 +182,16 @@ class CoderBuildingTraitTest extends TestCase
     public static function traitUsingClassObjectsAndBuiltCoderClassesProvider()
     {
         return array(
-            array(new DummyClassFormat1Encoder(), self::DUMMY_CODERS_NAMESPACE . '\Format1DataEncoder'),
-            array(new DummyClassFormat1Decoder(), self::DUMMY_CODERS_NAMESPACE . '\Format1DataDecoder'),
-            array(new DummyClassFormat2Encoder(), self::DUMMY_CODERS_NAMESPACE . '\Format2DataEncoder'),
-            array(new DummyClassFormat2Decoder(), self::DUMMY_CODERS_NAMESPACE . '\Format2DataDecoder'),
-            array(new Format1DummyClassEncoder(), self::DUMMY_CODERS_NAMESPACE . '\Format1DataEncoder'),
-            array(new Format1DummyClassDecoder(), self::DUMMY_CODERS_NAMESPACE . '\Format1DataDecoder'),
-            array(new Format2DummyClassEncoder(), self::DUMMY_CODERS_NAMESPACE . '\Format2DataEncoder'),
-            array(new Format2DummyClassDecoder(), self::DUMMY_CODERS_NAMESPACE . '\Format2DataDecoder'),
+            // Classes with explicitly defined dataFormat
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\DummyClassFormat1Encoder')(), self::CODERS_NAMESPACE . '\Format1\Data\Encoder'),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\DummyClassFormat1Decoder')(), self::CODERS_NAMESPACE . '\Format1\Data\Decoder'),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\DummyClassFormat2Encoder')(), self::CODERS_NAMESPACE . '\Format2\Data\Encoder'),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\DummyClassFormat2Decoder')(), self::CODERS_NAMESPACE . '\Format2\Data\Decoder'),
+            // Classes with no explicitly defined dataFormat (it's established from the class name first part)
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\Format1DummyClassEncoder')(), self::CODERS_NAMESPACE . '\Format1\Data\Encoder'),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\Format1DummyClassDecoder')(), self::CODERS_NAMESPACE . '\Format1\Data\Decoder'),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\Format2DummyClassEncoder')(), self::CODERS_NAMESPACE . '\Format2\Data\Encoder'),
+            array(new (self::CODER_BUILDING_TRAIT_USING_CODERS_NAMESPACE . '\Format2DummyClassDecoder')(), self::CODERS_NAMESPACE . '\Format2\Data\Decoder'),
         );
     }
 }

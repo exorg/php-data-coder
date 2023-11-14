@@ -9,7 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder\CoderBuilder;
+namespace ExOrg\DataCoder\CoderBuildingTraitUsing;
+
+use ExOrg\DataCoder\CoderBuilder\CoderBuildingTrait;
 
 /**
  * Dummy class for testing
@@ -21,11 +23,9 @@ namespace ExOrg\DataCoder\CoderBuilder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class DummyClassFormat1Encoder
+class Format1DummyClassDecoder
 {
     use CoderBuildingTrait;
-
-    private $dataFormat = 'format1';
 
     public function runBuildCoder()
     {

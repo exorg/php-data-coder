@@ -76,13 +76,7 @@ trait CoderBuildingTrait
         $dataFormatPrefix = $this->establishDataFormatPrefix();
         $coderTypePostfix = $this->extractCurrentClassNamePostfix();
 
-        // $coderClassName = __NAMESPACE__
-        //     . '\\'
-        //     . $dataFormatPrefix
-        //     . 'Data'
-        //     . $coderTypePostfix;
-
-        $coderClassName = 'ExOrg\\DataCoder\Coder'
+        $coderClassName = 'ExOrg\\DataCoder\\Coder'
             . '\\'
             . $dataFormatPrefix
             . '\\'
@@ -129,7 +123,7 @@ trait CoderBuildingTrait
      * into segmants
      * begun with upper case letter.
      *
-     * @return array:
+     * @return array
      */
     private function splitCurrentClassName()
     {

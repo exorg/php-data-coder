@@ -13,7 +13,7 @@ namespace ExOrg\DataCoder\Coder\Yaml\Datafile;
 
 use PHPUnit\Framework\TestCase;
 use ExOrg\Decapsulator\ObjectDecapsulator;
-use ExOrg\DataCoder\DataFileFixturesHelper;
+use ExOrg\DataCoder\Fixture\DataFileFixturesHelper;
 
 /**
  * Yaml Datafile Encoder Test.

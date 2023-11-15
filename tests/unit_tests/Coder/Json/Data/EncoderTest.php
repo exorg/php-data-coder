@@ -13,7 +13,7 @@ namespace ExOrg\DataCoder\Coder\Json\Data;
 
 use PHPUnit\Framework\TestCase;
 // use ExOrg\DataCoder\ObjectDecapsulator;
-use ExOrg\DataCoder\DataFileFixturesHelper;
+use ExOrg\DataCoder\Fixture\DataFileFixturesHelper;
 
 /**
  * Json Data Encoder Test.

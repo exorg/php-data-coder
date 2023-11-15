@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Fixture;
 
 /**
- * DataFileFixturesHelper.
+ * Data File Fixtures Helper.
  * Helps to handle data file fixtures.
  *
  * @package DataCoder
@@ -29,7 +29,7 @@ class DataFileFixturesHelper
      * They are inputs and the expected results
      * of the encoding/decoding operations.
      */
-    const FILES_DIRECTORY = '../data';
+    const FILES_DIRECTORY = '../../testing_environment/data';
 
     /**
      * Directory with the files containing encoded data

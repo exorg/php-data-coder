@@ -12,7 +12,7 @@
 namespace ExOrg\DataCoder\Coder\Datafile;
 
 use PHPUnit\Framework\TestCase;
-use ExOrg\DataCoder\DataFileFixturesHelper;
+use ExOrg\DataCoder\Fixture\DataFileFixturesHelper;
 use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**

@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder;
+namespace ExOrg\DataCoder\Fixture;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * DataFileFixturesHelperTest.
+ * Data File Fixtures Helper Test.
  * PHPUnit base test class for
  * DataFileFixturesHelper.
  *
@@ -26,6 +26,16 @@ use PHPUnit\Framework\TestCase;
  */
 class DataFileFixturesHelperTest extends TestCase
 {
+    const DATAFILE_FIXTURES_HELPER_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\Fixture\DataFileFixturesHelper';
+
+    /**
+     * Directory with the files containing data
+     * in various formats.
+     * They are inputs and the expected results
+     * of the encoding/decoding operations.
+     */
+    const FILES_DIRECTORY = '../../testing_environment/data';
+
     /**
      * Instance of tested class.
      *
@@ -34,13 +44,13 @@ class DataFileFixturesHelperTest extends TestCase
     private $dataFileFixturesHelper = null;
 
     /**
-     * Test if ExOrg\DataCoder\DataFileFixturesHelper class
+     * Test if ExOrg\DataCoder\Fixture\DataFileFixturesHelper class
      * has been created.
      */
     public function testDataCodersTestHelperClassExists()
     {
         $this->assertTrue(
-            class_exists('ExOrg\DataCoder\DataFileFixturesHelper')
+            class_exists(self::DATAFILE_FIXTURES_HELPER_FULLY_QUALIFIED_CLASS_NAME)
         );
     }
 
@@ -52,7 +62,7 @@ class DataFileFixturesHelperTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\DataFileFixturesHelper',
+                self::DATAFILE_FIXTURES_HELPER_FULLY_QUALIFIED_CLASS_NAME,
                 'setDataFormat'
             )
         );
@@ -66,7 +76,7 @@ class DataFileFixturesHelperTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\DataFileFixturesHelper',
+                self::DATAFILE_FIXTURES_HELPER_FULLY_QUALIFIED_CLASS_NAME,
                 'loadEncodedData'
             )
         );
@@ -106,7 +116,7 @@ class DataFileFixturesHelperTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\DataFileFixturesHelper',
+                self::DATAFILE_FIXTURES_HELPER_FULLY_QUALIFIED_CLASS_NAME,
                 'loadDecodedData'
             )
         );
@@ -148,7 +158,7 @@ class DataFileFixturesHelperTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\DataFileFixturesHelper',
+                self::DATAFILE_FIXTURES_HELPER_FULLY_QUALIFIED_CLASS_NAME,
                 'buildEncodedFilePath'
             )
         );
@@ -160,7 +170,7 @@ class DataFileFixturesHelperTest extends TestCase
      */
     public function testBuildEncodedFilePath()
     {
-        $expectedPath = realpath(__DIR__ . '/../data/encoded/data.self-test');
+        $expectedPath = realpath(__DIR__ . DIRECTORY_SEPARATOR . self::FILES_DIRECTORY . '/encoded/data.self-test');
         $actualPath = $this->dataFileFixturesHelper->buildEncodedFilePath('data.self-test');
 
         $this->assertEquals($expectedPath, $actualPath);
@@ -174,7 +184,7 @@ class DataFileFixturesHelperTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\DataFileFixturesHelper',
+                self::DATAFILE_FIXTURES_HELPER_FULLY_QUALIFIED_CLASS_NAME,
                 'buildDecodedFilePath'
             )
         );
@@ -186,7 +196,7 @@ class DataFileFixturesHelperTest extends TestCase
      */
     public function testBuildDecodedFilePath()
     {
-        $expectedPath = realpath(__DIR__ . '/../data/decoded/self-test.php');
+        $expectedPath = realpath(__DIR__ . DIRECTORY_SEPARATOR . self::FILES_DIRECTORY . '/decoded/self-test.php');
         $actualPath = $this->dataFileFixturesHelper->buildDecodedFilePath('self-test.php');
 
         $this->assertEquals($expectedPath, $actualPath);
@@ -200,7 +210,7 @@ class DataFileFixturesHelperTest extends TestCase
     {
         $this->assertTrue(
             method_exists(
-                'ExOrg\DataCoder\DataFileFixturesHelper',
+                self::DATAFILE_FIXTURES_HELPER_FULLY_QUALIFIED_CLASS_NAME,
                 'buildCreatedFilePath'
             )
         );
@@ -212,7 +222,7 @@ class DataFileFixturesHelperTest extends TestCase
      */
     public function testBuildCreatedFilePath()
     {
-        $expectedPath = realpath(__DIR__ . '/../data/created/') . DIRECTORY_SEPARATOR . 'self-test';
+        $expectedPath = realpath(__DIR__ . DIRECTORY_SEPARATOR . self::FILES_DIRECTORY . '/created/') . DIRECTORY_SEPARATOR . 'self-test';
         $actualPath = $this->dataFileFixturesHelper->buildCreatedFilePath('self-test');
 
         $this->assertEquals($expectedPath, $actualPath);
@@ -235,7 +245,7 @@ class DataFileFixturesHelperTest extends TestCase
      */
     private function writeContentToSelfTestEncodedFile($content)
     {
-        $filePath = __DIR__ . "/../data/encoded/data.self-test";
+        $filePath = __DIR__ . DIRECTORY_SEPARATOR . self::FILES_DIRECTORY . '/encoded/data.self-test';
         file_put_contents($filePath, $content);
     }
 
@@ -253,7 +263,7 @@ class DataFileFixturesHelperTest extends TestCase
         }
         $content .= ');';
 
-        $filePath = __DIR__ . "/../data/decoded/self-test.php";
+        $filePath = __DIR__ . DIRECTORY_SEPARATOR . self::FILES_DIRECTORY . '/decoded/self-test.php';
         file_put_contents($filePath, $content);
     }
 }

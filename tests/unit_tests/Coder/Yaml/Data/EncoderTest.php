@@ -12,7 +12,7 @@
 namespace ExOrg\DataCoder\Coder\Yaml\Data;
 
 use PHPUnit\Framework\TestCase;
-use ExOrg\DataCoder\DataFileFixturesHelper;
+use ExOrg\DataCoder\Fixture\DataFileFixturesHelper;
 
 /**
  * Yaml Data Encoder Test.

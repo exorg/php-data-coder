@@ -34,7 +34,7 @@ class DataFileFixturesHelperTest extends TestCase
      * They are inputs and the expected results
      * of the encoding/decoding operations.
      */
-    const FILES_DIRECTORY = '../../testing_environment/data';
+    const FILES_DIRECTORY = '../../fixtures/data';
 
     /**
      * Instance of tested class.

@@ -29,7 +29,7 @@ class FileTest extends TestCase
      * Relative path of directory with file fixtures
      * used in tests.
      */
-    const FILE_FIXTURES_RELATIVE_PATH = '../../testing_environment/files';
+    const FILE_FIXTURES_RELATIVE_PATH = '../../fixtures/files';
 
     const FILE_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\File\File';
     const FILE_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\File\FileException';

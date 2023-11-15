@@ -37,7 +37,7 @@
         "psr-4": {
             "ExOrg\\DataCoder\\": [
                 "tests/unit_tests/",
-                "tests/testing_environment/classes/"
+                "tests/fixtures/classes/"
             ]
         }
     },

@@ -25,7 +25,9 @@ use Garoevans\PhpEnum\Enum;
  */
 class DataFormat extends Enum
 {
+    // phpcs:disable
     const __default = self::JSON;
+    // phpcs:disable
 
     const JSON = "JSON";
     const YAML = "YAML";

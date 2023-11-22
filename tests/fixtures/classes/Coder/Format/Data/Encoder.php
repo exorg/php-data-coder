@@ -12,7 +12,7 @@
 namespace ExOrg\DataCoder\Coder\Format\Data;
 
 /**
- * FormatDataEncoder.
+ * Format Data Encoder.
  * Dummy data encoder for testing purposes only.
  *
  * @package DataCoder

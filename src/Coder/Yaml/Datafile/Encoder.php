@@ -15,7 +15,7 @@ use ExOrg\DataCoder\File\File;
 use ExOrg\DataCoder\Coder\Yaml\Data\Encoder as DataEncoder;
 
 /**
- * YamlDatafileEncoder.
+ * Yaml Datafile Encoder.
  * Datafile encoder for YAML format.
  *
  * @package DataCoder

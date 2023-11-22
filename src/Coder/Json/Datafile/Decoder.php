@@ -15,7 +15,7 @@ use ExOrg\DataCoder\File\File;
 use ExOrg\DataCoder\Coder\Json\Data\Decoder as DataDecoder;
 
 /**
- * JsonDatafileDecoder.
+ * Json Datafile Decoder.
  * Datafile decoder for JSON format.
  *
  * @package DataCoder

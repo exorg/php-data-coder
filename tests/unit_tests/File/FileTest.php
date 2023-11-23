@@ -14,7 +14,7 @@ namespace ExOrg\DataCoder\File;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FileTest.
+ * File Test.
  * PHPUnit test class for File class.
  *
  * @package DataCoder

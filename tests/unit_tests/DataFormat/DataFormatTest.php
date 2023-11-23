@@ -14,7 +14,7 @@ namespace ExOrg\DataCoder\DataFormat;
 use PHPUnit\Framework\TestCase;
 
 /**
- * DataFormatTest.
+ * DataFormat Test.
  * PHPUnit test class for DataFormat class.
  *
  * @package DataCoder

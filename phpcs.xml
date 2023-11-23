@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="Exorg_PHP_DataCoder">
+<ruleset name="ExOrg_PHP_DataCoder">
  <description>The coding standard for PHPDataCoder.</description>
 
  <file>./src</file>

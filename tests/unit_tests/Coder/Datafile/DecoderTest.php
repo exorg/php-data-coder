@@ -172,7 +172,7 @@ class DecoderTest extends TestCase
      */
     public function testDecodeFileWhenDataFormatIsSet()
     {
-        $expectedResult = array("<FORMAT DECODED DATA>Another dummy data</FORMAT DECODED DATA>");
+        $expectedResult = ["<FORMAT DECODED DATA>Another dummy data</FORMAT DECODED DATA>"];
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.anotherformat');
 
@@ -219,7 +219,7 @@ class DecoderTest extends TestCase
      */
     public function testDecodeFileWhenDataFormatIsNotSet()
     {
-        $expectedResult = array("<FORMAT DECODED DATA>Dummy data</FORMAT DECODED DATA>");
+        $expectedResult = ["<FORMAT DECODED DATA>Dummy data</FORMAT DECODED DATA>"];
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.format');
 
@@ -236,11 +236,11 @@ class DecoderTest extends TestCase
      */
     public static function dataFormatsAndResultsProvider()
     {
-        return array(
-            array('format1', array('<FORMAT 1 DECODED DATA/>')),
-            array('Format2', array('<FORMAT 2 DECODED DATA/>')),
-            array('format3', array('<FORMAT 3 DECODED DATA/>')),
-        );
+        return [
+            ['format1', ['<FORMAT 1 DECODED DATA/>']],
+            ['Format2', ['<FORMAT 2 DECODED DATA/>']],
+            ['format3', ['<FORMAT 3 DECODED DATA/>']],
+        ];
     }
 
     /**

@@ -62,10 +62,10 @@ class DataFormatTest extends TestCase
      */
     public static function formatAbbreviationAndFullNameProvider()
     {
-        return array(
-            array('JSON', 'JSON'),
-            array('YAML', 'YAML'),
-            array('YML', 'YAML'),
-        );
+        return [
+            ['JSON', 'JSON'],
+            ['YAML', 'YAML'],
+            ['YML', 'YAML'],
+        ];
     }
 }

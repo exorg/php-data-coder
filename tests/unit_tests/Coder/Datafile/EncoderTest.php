@@ -119,7 +119,7 @@ class EncoderTest extends TestCase
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.format');
 
         $this->datafileEncoder->setDataFormat($dataFormat);
-        $this->datafileEncoder->encodeFile(array('Dummy data'), $dataFilePath);
+        $this->datafileEncoder->encodeFile(['Dummy data'], $dataFilePath);
 
         $actualResult = file_get_contents($dataFilePath);
 
@@ -151,7 +151,7 @@ class EncoderTest extends TestCase
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.format');
 
         $this->datafileEncoder->setDataFormat('nonexistent');
-        $this->datafileEncoder->encodeFile(array(), $dataFilePath);
+        $this->datafileEncoder->encodeFile([], $dataFilePath);
     }
 
     /**
@@ -165,7 +165,7 @@ class EncoderTest extends TestCase
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.anotherformat');
 
         $this->datafileEncoder->setDataFormat('format');
-        $this->datafileEncoder->encodeFile(array('Another dummy data'), $dataFilePath);
+        $this->datafileEncoder->encodeFile(['Another dummy data'], $dataFilePath);
 
         $actualResult = file_get_contents($dataFilePath);
 
@@ -185,7 +185,7 @@ class EncoderTest extends TestCase
 
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.nonexistentformat');
 
-        $this->datafileEncoder->encodeFile(array(), $dataFilePath);
+        $this->datafileEncoder->encodeFile([], $dataFilePath);
     }
 
     /**
@@ -200,7 +200,7 @@ class EncoderTest extends TestCase
 
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data');
 
-        $this->datafileEncoder->encodeFile(array(), $dataFilePath);
+        $this->datafileEncoder->encodeFile([], $dataFilePath);
     }
 
     /**
@@ -214,7 +214,7 @@ class EncoderTest extends TestCase
 
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data.format');
 
-        $this->datafileEncoder->encodeFile(array('Dummy data'), $dataFilePath);
+        $this->datafileEncoder->encodeFile(['Dummy data'], $dataFilePath);
 
         $actualResult = file_get_contents($dataFilePath);
 
@@ -229,11 +229,11 @@ class EncoderTest extends TestCase
      */
     public static function dataFormatsAndResultsProvider()
     {
-        return array(
-            array('format1', '<FORMAT 1 ENCODED DATA/>'),
-            array('Format2', '<FORMAT 2 ENCODED DATA/>'),
-            array('FORMAT3', '<FORMAT 3 ENCODED DATA/>'),
-        );
+        return [
+            ['format1', '<FORMAT 1 ENCODED DATA/>'],
+            ['Format2', '<FORMAT 2 ENCODED DATA/>'],
+            ['FORMAT3', '<FORMAT 3 ENCODED DATA/>'],
+        ];
     }
 
     /**

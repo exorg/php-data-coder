@@ -159,11 +159,11 @@ class EncoderTest extends TestCase
      */
     public static function dataFormatsAndResultsProvider()
     {
-        return array(
-            array('format1', '<FORMAT 1 ENCODED DATA/>'),
-            array('Format2', '<FORMAT 2 ENCODED DATA/>'),
-            array('FORMAT3', '<FORMAT 3 ENCODED DATA/>'),
-        );
+        return [
+            ['format1', '<FORMAT 1 ENCODED DATA/>'],
+            ['Format2', '<FORMAT 2 ENCODED DATA/>'],
+            ['FORMAT3', '<FORMAT 3 ENCODED DATA/>'],
+        ];
     }
 
     /**
@@ -173,11 +173,11 @@ class EncoderTest extends TestCase
      */
     public static function dataProvider()
     {
-        return array(
-            array(array('apple')),
-            array(array('pear')),
-            array(array('plum')),
-        );
+        return [
+            [['apple']],
+            [['pear']],
+            [['plum']],
+        ];
     }
 
     /**

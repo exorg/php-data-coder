@@ -139,9 +139,9 @@ class DataFileFixturesHelperTest extends TestCase
      */
     public function testLoadDecodedData()
     {
-        $expectedResult = array(
+        $expectedResult = [
             'value' => (string) microtime(),
-        );
+        ];
         $this->writeResultToSelfTestDecodedFile($expectedResult);
 
         $this->dataFileFixturesHelper->setDataFormat('self-test');
@@ -257,11 +257,11 @@ class DataFileFixturesHelperTest extends TestCase
      */
     private function writeResultToSelfTestDecodedFile($result)
     {
-        $content = "\$result = array(\n";
+        $content = "\$result = [\n";
         foreach ($result as $key => $value) {
             $content .= "    '$key' => '$value',\n";
         }
-        $content .= ');';
+        $content .= '];';
 
         $filePath = __DIR__ . DIRECTORY_SEPARATOR . self::FILES_DIRECTORY . '/decoded/self-test.php';
         file_put_contents($filePath, $content);

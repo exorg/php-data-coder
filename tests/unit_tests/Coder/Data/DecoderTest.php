@@ -138,9 +138,7 @@ class DecoderTest extends TestCase
     {
         $this->dataDecoder->setDataFormat('format');
 
-        $expectedResult = array("<FORMAT DECODED DATA>"
-            . $data
-            . "</FORMAT DECODED DATA>");
+        $expectedResult = ["<FORMAT DECODED DATA>{$data}</FORMAT DECODED DATA>"];
 
         $actualResult = $this->dataDecoder->decodeData($data);
 
@@ -155,11 +153,11 @@ class DecoderTest extends TestCase
      */
     public static function dataFormatsAndResultsProvider()
     {
-        return array(
-            array('format1', array('<FORMAT 1 DECODED DATA/>')),
-            array('Format2', array('<FORMAT 2 DECODED DATA/>')),
-            array('FORMAT3', array('<FORMAT 3 DECODED DATA/>')),
-        );
+        return [
+            ['format1', ['<FORMAT 1 DECODED DATA/>']],
+            ['Format2', ['<FORMAT 2 DECODED DATA/>']],
+            ['FORMAT3', ['<FORMAT 3 DECODED DATA/>']],
+        ];
     }
 
     /**
@@ -169,11 +167,11 @@ class DecoderTest extends TestCase
      */
     public static function dataProvider()
     {
-        return array(
-            array('apple'),
-            array('pear'),
-            array('plum'),
-        );
+        return [
+            ['apple'],
+            ['pear'],
+            ['plum'],
+        ];
     }
 
     /**

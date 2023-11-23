@@ -308,12 +308,12 @@ class FileTest extends TestCase
      */
     public static function filePathExtensionProvider()
     {
-        return array(
-            array('file', ''),
-            array('file.ext', 'ext'),
-            array('file.dat', 'dat'),
-            array('files/file.ext', 'ext'),
-        );
+        return [
+            ['file', ''],
+            ['file.ext', 'ext'],
+            ['file.dat', 'dat'],
+            ['files/file.ext', 'ext'],
+        ];
     }
 
     /**
@@ -324,12 +324,12 @@ class FileTest extends TestCase
      */
     public static function fileForReadPathAndContentProvider()
     {
-        return array(
-            array(self::buildFileFixturePath('file-for-read'), 'File for read'),
-            array(self::buildFileFixturePath('file-for-read.ext'), 'File for read with extension'),
-            array(self::buildFileFixturePath('file-for-read.dat'), 'File for read with another extension'),
-            array(self::buildFileFixturePath('directory/file-for-read'), 'File for read in directory'),
-        );
+        return [
+            [self::buildFileFixturePath('file-for-read'), 'File for read'],
+            [self::buildFileFixturePath('file-for-read.ext'), 'File for read with extension'],
+            [self::buildFileFixturePath('file-for-read.dat'), 'File for read with another extension'],
+            [self::buildFileFixturePath('directory/file-for-read'), 'File for read in directory'],
+        ];
     }
 
     /**
@@ -340,16 +340,16 @@ class FileTest extends TestCase
      */
     public static function fileForWritePathAndContentProvider()
     {
-        return array(
-            array(self::buildFileFixturePath('file-for-write'), 'File for write'),
-            array(self::buildFileFixturePath('file-for-write.ext'), 'File for write with extension'),
-            array(self::buildFileFixturePath('file-for-write.dat'), 'File for write with another extension'),
-            array(self::buildFileFixturePath('directory/file-for-write'), 'File for write in directory'),
-            array(self::buildFileFixturePath('nonexistant-file-for-write'), 'Nonoexistent file for write'),
-            array(self::buildFileFixturePath('nonexistent-file-for-write.ext'), 'Nonexistent file for write with extension'),
-            array(self::buildFileFixturePath('nonexistent-file-for-write.dat'), 'Nonexistent file for write with another extension'),
-            array(self::buildFileFixturePath('directory/nonexistent-file-for-write'), 'Nonexistent file for write in directory'),
-        );
+        return [
+            [self::buildFileFixturePath('file-for-write'), 'File for write'],
+            [self::buildFileFixturePath('file-for-write.ext'), 'File for write with extension'],
+            [self::buildFileFixturePath('file-for-write.dat'), 'File for write with another extension'],
+            [self::buildFileFixturePath('directory/file-for-write'), 'File for write in directory'],
+            [self::buildFileFixturePath('nonexistant-file-for-write'), 'Nonoexistent file for write'],
+            [self::buildFileFixturePath('nonexistent-file-for-write.ext'), 'Nonexistent file for write with extension'],
+            [self::buildFileFixturePath('nonexistent-file-for-write.dat'), 'Nonexistent file for write with another extension'],
+            [self::buildFileFixturePath('directory/nonexistent-file-for-write'), 'Nonexistent file for write in directory'],
+        ];
     }
 
     /**
@@ -360,13 +360,13 @@ class FileTest extends TestCase
      */
     public static function improperFileContentProvider()
     {
-        return array(
-            array(null),
-            array(1024),
-            array(true),
-            array(array()),
-            array(new \stdClass()),
-        );
+        return [
+            [null],
+            [1024],
+            [true],
+            [[]],
+            [new \stdClass()],
+        ];
     }
 
     /**

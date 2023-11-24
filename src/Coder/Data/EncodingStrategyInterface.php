@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -27,7 +29,8 @@ interface EncodingStrategyInterface
      * Encode data.
      *
      * @param array $data
-     * @return array
+     *
+     * @return string
      */
-    public function encodeData($data);
+    public function encodeData(array $data): string;
 }

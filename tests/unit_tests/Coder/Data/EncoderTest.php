@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -11,12 +13,10 @@
 
 namespace ExOrg\DataCoder\Coder\Data;
 
-use ExOrg\Decapsulator\ObjectDecapsulator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * DataEncoderTest.
- * PHPUnit test class for DataEncoder class.
+ * Data Encoder Test.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -31,12 +31,12 @@ class EncoderTest extends TestCase
     /**
      * Instance of tested class.
      *
-     * @var DataEncoder
+     * @var Encoder
      */
-    private $dataEncoder;
+    private Encoder $dataEncoder;
 
     /**
-     * Test ExOrg\DataCoder\DataEncoder class
+     * Test Data Encoder class
      * has been created.
      */
     public function testDataEncoderClassExists()
@@ -66,7 +66,7 @@ class EncoderTest extends TestCase
      */
     public function testSetDataFormatWithNotStringDataFormat()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $dataFormat = 1024;
 
@@ -79,7 +79,7 @@ class EncoderTest extends TestCase
      */
     public function testSetDataFormatWithNullDataFormat()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $dataFormat = null;
 
@@ -109,7 +109,7 @@ class EncoderTest extends TestCase
     {
         $this->dataEncoder->setDataFormat($dataFormat);
 
-        $actualResult = $this->dataEncoder->encodeData('');
+        $actualResult = $this->dataEncoder->encodeData([]);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -142,11 +142,9 @@ class EncoderTest extends TestCase
         $dataValues = array_values($data);
         $dataCore = array_shift($dataValues);
 
-        $expectedResult = "<FORMAT ENCODED DATA>"
-            . $dataCore
-            . "</FORMAT ENCODED DATA>";
+        $expectedResult = "<FORMAT ENCODED DATA>{$dataCore}</FORMAT ENCODED DATA>";
 
-        $actualResult = $this->dataEncoder->encodeData($data, 'file');
+        $actualResult = $this->dataEncoder->encodeData($data);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -157,7 +155,7 @@ class EncoderTest extends TestCase
      *
      * @return array
      */
-    public static function dataFormatsAndResultsProvider()
+    public static function dataFormatsAndResultsProvider(): array
     {
         return [
             ['format1', '<FORMAT 1 ENCODED DATA/>'],
@@ -171,7 +169,7 @@ class EncoderTest extends TestCase
      *
      * @return array
      */
-    public static function dataProvider()
+    public static function dataProvider(): array
     {
         return [
             [['apple']],
@@ -183,6 +181,8 @@ class EncoderTest extends TestCase
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp(): void
     {

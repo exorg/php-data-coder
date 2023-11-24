@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -30,15 +32,16 @@ class File
      *
      * @var string
      */
-    private $path;
+    private string $path;
 
     /**
      * Configure file path.
      *
      * @param string $filePath
+     *
      * @throws \InvalidArgumentException
      */
-    public function __construct($filePath)
+    public function __construct(string $filePath)
     {
         self::validatePath($filePath);
         $this->path = $filePath;
@@ -49,7 +52,7 @@ class File
      *
      * @return string
      */
-    public function getExtension()
+    public function getExtension(): string
     {
         $extension = pathinfo($this->path, PATHINFO_EXTENSION);
 
@@ -59,10 +62,11 @@ class File
     /**
      * Read file content.
      *
-     * @throws FileException
      * @return string
+     *
+     * @throws FileException
      */
-    public function getContent()
+    public function getContent(): string
     {
         $this->validatePathToRead($this->path);
 
@@ -75,15 +79,18 @@ class File
      * Write file content.
      *
      * @param string $content
+     *
+     * @return void
+     *
      * @throws \InvalidArgumentException
      * @throws FileException
      */
-    public function setContent($content)
+    public function setContent(string $content): void
     {
         $this->validateContent($content);
         $this->validatePathToWrite($this->path);
 
-        $fileContent = file_put_contents($this->path, $content);
+        file_put_contents($this->path, $content);
     }
 
     /**
@@ -92,15 +99,19 @@ class File
      * to define file.
      *
      * @param string $path
+     *
+     * @return void
+     *
      * @throws \InvalidArgumentException
      */
-    private static function validatePath($path)
+    private static function validatePath(string $path): void
     {
-        if (!is_string($path)) {
+        /*if (!is_string($path)) {
             throw new \InvalidArgumentException(
                 'File path must be string.'
             );
-        } elseif (empty($path)) {
+        } else*/
+        if (empty($path)) {
             throw new \InvalidArgumentException(
                 'File path cannot be empty.'
             );
@@ -112,9 +123,12 @@ class File
      * and check if file can be read.
      *
      * @param string $path
+     *
+     * @return void
+     *
      * @throws FileException
      */
-    private static function validatePathToRead($path)
+    private static function validatePathToRead(string $path): void
     {
         if (!file_exists($path)) {
             throw new FileException(
@@ -136,9 +150,12 @@ class File
      * and check if file can be written.
      *
      * @param string $path
+     *
+     * @return void
+     *
      * @throws FileException
      */
-    private static function validatePathToWrite($path)
+    private static function validatePathToWrite(string $path): void
     {
         $directoryPath = dirname($path);
 
@@ -158,9 +175,12 @@ class File
      * Validate file content.
      *
      * @param string $content
+     *
+     * @return void
+     *
      * @throws \InvalidArgumentException
      */
-    private function validateContent($content)
+    private function validateContent(string $content): void
     {
         $contentIsValid = is_string($content);
 

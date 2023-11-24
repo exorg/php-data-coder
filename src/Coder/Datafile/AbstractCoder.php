@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -34,7 +36,7 @@ abstract class AbstractCoder
      *
      * @var File
      */
-    protected $file;
+    protected File $file;
 
     /**
      * Establish and set the dataFormat
@@ -42,7 +44,7 @@ abstract class AbstractCoder
      *
      * @throws \LogicException
      */
-    protected function completeDataFormat()
+    protected function completeDataFormat(): void
     {
         $dataFormatIsSetDirectly = isset($this->dataFormat);
         $fileHasExtension = !empty($this->file->getExtension());

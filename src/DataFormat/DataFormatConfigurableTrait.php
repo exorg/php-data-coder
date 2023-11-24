@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -12,7 +14,7 @@
 namespace ExOrg\DataCoder\DataFormat;
 
 /**
- * DataFormatConfigurableTrait.
+ * Data Format Configurable Trait.
  * Allows to use data format property.
  *
  * @package DataCoder
@@ -28,15 +30,18 @@ trait DataFormatConfigurableTrait
      *
      * @var string
      */
-    protected $dataFormat;
+    protected string $dataFormat;
 
     /**
      * Set format of the processed data.
      *
      * @param string $dataFormat
+     *
+     * @return void
+     *
      * @throws \InvalidArgumentException
      */
-    public function setDataFormat($dataFormat)
+    public function setDataFormat(string $dataFormat): void
     {
         $this->validateDataFormat($dataFormat);
         $this->dataFormat = $dataFormat;
@@ -46,15 +51,14 @@ trait DataFormatConfigurableTrait
      * Validate data format.
      *
      * @param string $dataFormat
+     *
+     * @return void
+     *
      * @throws \InvalidArgumentException
      */
-    protected function validateDataFormat($dataFormat)
+    protected function validateDataFormat(string $dataFormat): void
     {
-        if (!is_string($dataFormat)) {
-            throw new \InvalidArgumentException(
-                'Data format cannot be empty.'
-            );
-        } elseif (empty($dataFormat)) {
+        if (empty($dataFormat)) {
             throw new \InvalidArgumentException(
                 'Data format cannot be empty.'
             );

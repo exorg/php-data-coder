@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -28,14 +30,10 @@ abstract class AbstractDecoder
      * Validate data.
      *
      * @param string $data
-     * @throws \InvalidArgumentException
+     *
+     * @return void
      */
-    protected function validateData($data)
+    protected function validateData(string $data): void
     {
-        if (!is_string($data)) {
-            throw new \InvalidArgumentException(
-                'Data must be a string.'
-            );
-        }
     }
 }

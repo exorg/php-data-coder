@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -14,7 +16,7 @@ namespace ExOrg\DataCoder;
 use PHPUnit\Framework\TestCase;
 
 /**
- * CoderClassNotFoundExceptionTest.
+ * Coder Class Not Found Exception Test.
  * PHPUnit test class for CoderClassNotFoundException class.
  *
  * @package DataCoder
@@ -28,7 +30,7 @@ class CoderClassNotFoundExceptionTest extends TestCase
     const CODER_CLASS_NOT_FOUND_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\CoderBuilder\CoderClassNotFoundException';
 
     /**
-     * Test if ExOrg\DataCoder\CoderClassNotFoundException class
+     * Test if Coder Class Not Found Exception class
      * has been created.
      */
     public function testCoderClassNotFoundExceptionClassExists()

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -12,7 +14,7 @@
 namespace ExOrg\DataCoder\CoderBuilder;
 
 /**
- * CoderBuildingTrait.
+ * Coder Building Trait.
  * Allows to create a proper data coder
  * of the proper type (encoder/decoder)
  * and processing proper data format.
@@ -33,7 +35,7 @@ trait CoderBuildingTrait
      *
      * @var string
      */
-    private $currentClassName;
+    private string $currentClassName;
 
     /**
      * Name of the class (without namespace)
@@ -41,16 +43,18 @@ trait CoderBuildingTrait
      * divided into segments
      * begun with upper case letter.
      *
-     * @var string
+     * @var array
      */
-    private $currentClassNameSegments;
+    private array $currentClassNameSegments;
 
     /**
      * Build instance of a proper data coder
      * of the proper type (encoder/decoder)
      * and processing proper data format.
+     *
+     * @return mixed
      */
-    private function buildCoder()
+    private function buildCoder(): mixed
     {
         $coderClassName = $this->buildCoderClassName();
 
@@ -68,7 +72,7 @@ trait CoderBuildingTrait
      *
      * @return string
      */
-    private function buildCoderClassName()
+    private function buildCoderClassName(): string
     {
         $this->currentClassName = $this->extractCurrentClassName();
         $this->currentClassNameSegments = $this->splitCurrentClassName();
@@ -92,8 +96,10 @@ trait CoderBuildingTrait
      * defined by class name.
      *
      * @param string $coderClassName
+     *
+     * @return void
      */
-    private function validateCoderClassExistance($coderClassName)
+    private function validateCoderClassExistance(string $coderClassName): void
     {
         if (!class_exists($coderClassName)) {
             throw new CoderClassNotFoundException(
@@ -110,7 +116,7 @@ trait CoderBuildingTrait
      *
      * @return string
      */
-    private function extractCurrentClassName()
+    private function extractCurrentClassName(): string
     {
         $classNamespacedPathParts = explode('\\', __CLASS__);
         $className = array_pop($classNamespacedPathParts);
@@ -125,7 +131,7 @@ trait CoderBuildingTrait
      *
      * @return array
      */
-    private function splitCurrentClassName()
+    private function splitCurrentClassName(): array
     {
         /**
          * Every uppercase letter
@@ -133,10 +139,10 @@ trait CoderBuildingTrait
          */
         $splittingSeparatorPattern = '/(?=[A-Z])/';
         $classNameParts = preg_split(
-            $splittingSeparatorPattern,
-            $this->currentClassName,
-            null,
-            PREG_SPLIT_NO_EMPTY
+            pattern: $splittingSeparatorPattern,
+            subject: $this->currentClassName,
+            limit: -1,
+            flags: PREG_SPLIT_NO_EMPTY
         );
 
         return $classNameParts;
@@ -146,8 +152,10 @@ trait CoderBuildingTrait
      * Extract name prefix of current class.
      * Prefix means first word
      * of the pascal case class name.
+     *
+     * @return string
      */
-    private function extractCurrentClassNamePrefix()
+    private function extractCurrentClassNamePrefix(): string
     {
         $classNamePrefix = array_shift($this->currentClassNameSegments);
 
@@ -158,8 +166,10 @@ trait CoderBuildingTrait
      * Extract name postfix of current class.
      * Postfix means the last word
      * of the pascal case class name.
+     *
+     * @return string
      */
-    private function extractCurrentClassNamePostfix()
+    private function extractCurrentClassNamePostfix(): string
     {
         $classNamePostfix = array_pop($this->currentClassNameSegments);
 
@@ -172,7 +182,7 @@ trait CoderBuildingTrait
      *
      * @return string
      */
-    private function establishDataFormatPrefix()
+    private function establishDataFormatPrefix(): string
     {
         if ($this->dataFormatIsDefined()) {
             $dataFormatPrefix = ucfirst(strtolower($this->dataFormat));
@@ -189,7 +199,7 @@ trait CoderBuildingTrait
      *
      * @return boolean
      */
-    private function dataFormatIsDefined()
+    private function dataFormatIsDefined(): bool
     {
         $dataFormatIsDefined = property_exists(__CLASS__, 'dataFormat')
             && (!is_null($this->dataFormat));

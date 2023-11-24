@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -12,7 +14,7 @@
 namespace ExOrg\DataCoder\Coder\Data;
 
 /**
- * AbstractDataEncoder.
+ * Abstract Data Encoder.
  * Abstract class for Data Encoder
  * for concrete data format.
  *
@@ -27,15 +29,11 @@ abstract class AbstractEncoder
     /**
      * Validate data.
      *
-     * @param string $data
-     * @throws \InvalidArgumentException
+     * @param array $data
+     *
+     * @return void
      */
-    protected function validateData($data)
+    protected function validateData(array $data): void
     {
-        if (!is_array($data)) {
-            throw new \InvalidArgumentException(
-                'Data must be an array.'
-            );
-        }
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -14,7 +16,7 @@ namespace ExOrg\DataCoder\DataFormat;
 use Garoevans\PhpEnum\Enum;
 
 /**
- * DataFormat.
+ * Data Format.
  * Data Formats enumeration.
  *
  * @package DataCoder

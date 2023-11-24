@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -60,14 +62,16 @@ class DataFileFixturesHelper
      *
      * @var string
      */
-    protected $dataFormat = null;
+    protected string $dataFormat;
 
     /**
      * Set data format.
      *
      * @param string $dataFormat
+     *
+     * @return void
      */
-    public function setDataFormat($dataFormat)
+    public function setDataFormat(string $dataFormat): void
     {
         $this->dataFormat = strtolower($dataFormat);
     }
@@ -78,7 +82,7 @@ class DataFileFixturesHelper
      *
      * @return string
      */
-    public function loadEncodedData()
+    public function loadEncodedData(): string
     {
         $fileName = self::ENCODED_DATA_FILENAME_BASE
             . '.'
@@ -97,7 +101,7 @@ class DataFileFixturesHelper
      *
      * @return array
      */
-    public function loadDecodedData()
+    public function loadDecodedData(): array
     {
         $fileName = $this->dataFormat . '.php';
 
@@ -117,9 +121,10 @@ class DataFileFixturesHelper
      * Build path to the encoded data file.
      *
      * @param string $fileName
+     *
      * @return string
      */
-    public function buildEncodedFilePath($fileName)
+    public function buildEncodedFilePath(string $fileName): string
     {
         $partialDataFilePath = self::ENCODED_DATA_SUBDIRECTORY
             . DIRECTORY_SEPARATOR
@@ -134,9 +139,10 @@ class DataFileFixturesHelper
      * Build path to the decoded data file.
      *
      * @param string $fileName
+     *
      * @return string
      */
-    public function buildDecodedFilePath($fileName)
+    public function buildDecodedFilePath(string $fileName): string
     {
         $partialDataFilePath = self::DECODED_DATA_SUBDIRECTORY
             . DIRECTORY_SEPARATOR
@@ -151,9 +157,10 @@ class DataFileFixturesHelper
      * Build path to the created data file.
      *
      * @param string $fileName
+     *
      * @return string
      */
-    public function buildCreatedFilePath($fileName)
+    public function buildCreatedFilePath(string $fileName): string
     {
         $partialDataFilePath = self::CREATED_DATA_SUBDIRECTORY
             . DIRECTORY_SEPARATOR
@@ -168,10 +175,12 @@ class DataFileFixturesHelper
      * Load content of the data file.
      *
      * @param string $filePath
+     *
      * @return string
-     * @throws UnexpectedValueException
+     *
+     * @throws \UnexpectedValueException
      */
-    private function loadFileContent($filePath)
+    private function loadFileContent(string $filePath): string
     {
         $this->validateFilePath($filePath);
 
@@ -185,18 +194,19 @@ class DataFileFixturesHelper
      * of the file defined by absolute path.
      *
      * @param string $filePath
-     * @throws UnexpectedValueException
+     *
+     * @return void
+     *
+     * @throws \UnexpectedValueException
      */
-    private function validateFilePath($filePath)
+    private function validateFilePath(string $filePath): void
     {
         $fileIsAvailable = file_exists($filePath)
             && is_readable($filePath);
 
         if (!$fileIsAvailable) {
             throw new \UnexpectedValueException(
-                "File "
-                . $filePath
-                . " doesn't exist or is not readable."
+                "File {$filePath} doesn't exist or is not readable."
             );
         }
     }
@@ -206,9 +216,10 @@ class DataFileFixturesHelper
      * from partial relative file path.
      *
      * @param string $partialFilePath
+     *
      * @return string
      */
-    private function buildFullPathFromPartialFilePath($partialFilePath)
+    private function buildFullPathFromPartialFilePath(string $partialFilePath): string
     {
         $fullUncanonizedDirectoryPath = __DIR__
             . DIRECTORY_SEPARATOR

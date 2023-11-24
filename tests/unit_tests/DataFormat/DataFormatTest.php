@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -28,7 +30,7 @@ class DataFormatTest extends TestCase
     const DATA_FORMAT_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\DataFormat\DataFormat';
 
     /**
-     * Test ExOrg\DatafilesParser\DataFormat enum
+     * Test Data Format enum
      * has been implemented.
      */
     public function testDataFormatExists()
@@ -39,13 +41,12 @@ class DataFormatTest extends TestCase
     }
 
     /**
-     * Test if DataFormat have proper keys and values,
+     * Test if Data Format have proper keys and values,
      * that means data format abbreviations
-     * corresponding data format full names defined.
+     * corresponding data format full names
+     * are defined.
      *
      * @dataProvider formatAbbreviationAndFullNameProvider
-     * @param string $formatAbbreviation
-     * @param string $formatFullName
      */
     public function testDataFormatsItems($formatAbbreviation, $expectedFormatFullName)
     {
@@ -60,7 +61,7 @@ class DataFormatTest extends TestCase
      *
      * @return array
      */
-    public static function formatAbbreviationAndFullNameProvider()
+    public static function formatAbbreviationAndFullNameProvider(): array
     {
         return [
             ['JSON', 'JSON'],

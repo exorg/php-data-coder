@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -34,10 +36,12 @@ class Decoder extends AbstractCoder
      * Decode file content.
      *
      * @param string $filePath
+     *
      * @return array
+     *
      * @throws \InvalidArgumentException
      */
-    public function decodeFile($filePath)
+    public function decodeFile(string $filePath): array
     {
         $this->file = new File($filePath);
 

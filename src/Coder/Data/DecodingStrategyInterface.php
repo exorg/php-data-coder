@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -26,8 +28,9 @@ interface DecodingStrategyInterface
     /**
      * Decode data.
      *
-     * @param array $data
+     * @param string $data
+     *
      * @return array
      */
-    public function decodeData($data);
+    public function decodeData(string $data): array;
 }

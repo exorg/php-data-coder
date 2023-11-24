@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -31,10 +33,12 @@ class Decoder extends AbstractDecoder implements DecodingStrategyInterface
      * Decode given JSON data to PHP array.
      *
      * @param string $data
+     *
      * @return array
+     *
      * @throws DataFormatInvalidException
      */
-    public function decodeData($data)
+    public function decodeData(string $data): array
     {
         $this->validateData($data);
 

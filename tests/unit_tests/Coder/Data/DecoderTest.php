@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -12,11 +14,9 @@
 namespace ExOrg\DataCoder\Coder\Data;
 
 use PHPUnit\Framework\TestCase;
-use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
- * DataDecoderTest.
- * PHPUnit test class for DataDecoder class.
+ * Data Decoder Test.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -33,10 +33,10 @@ class DecoderTest extends TestCase
      *
      * @var DataDecoder
      */
-    private $dataDecoder;
+    private Decoder $dataDecoder;
 
     /**
-     * Test ExOrg\DataCoder\DataDecoder class
+     * Test Data Decoder class
      * has been created.
      */
     public function testDataDecoderClassExists()
@@ -66,7 +66,7 @@ class DecoderTest extends TestCase
      */
     public function testSetDataFormatWithNotStringDataFormat()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $dataFormat = 1024;
 
@@ -79,7 +79,7 @@ class DecoderTest extends TestCase
      */
     public function testSetDataFormatWithNullDataFormat()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $dataFormat = null;
 
@@ -151,7 +151,7 @@ class DecoderTest extends TestCase
      *
      * @return array
      */
-    public static function dataFormatsAndResultsProvider()
+    public static function dataFormatsAndResultsProvider(): array
     {
         return [
             ['format1', ['<FORMAT 1 DECODED DATA/>']],
@@ -165,7 +165,7 @@ class DecoderTest extends TestCase
      *
      * @return array
      */
-    public static function dataProvider()
+    public static function dataProvider(): array
     {
         return [
             ['apple'],
@@ -177,6 +177,8 @@ class DecoderTest extends TestCase
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp(): void
     {

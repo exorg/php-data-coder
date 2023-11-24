@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -12,7 +14,7 @@
 namespace ExOrg\DataCoder\DataFormat;
 
 /**
- * DataFormatInvalidException.
+ * Data Format Invalid Exception.
  * Exception indicating that data has incorrect format.
  *
  * @package DataCoder

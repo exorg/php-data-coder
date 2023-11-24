@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -30,10 +32,12 @@ class Encoder
      * Encode YAML data and write to the file.
      *
      * @param array $data
+     *
      * @param string $filePath
+     *
      * @throws \InvalidArgumentException
      */
-    public function encodeFile($data, $filePath)
+    public function encodeFile(array $data, string $filePath): void
     {
         $file = new File($filePath);
 

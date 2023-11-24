@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -13,11 +15,10 @@ namespace ExOrg\DataCoder\Coder\Datafile;
 
 use PHPUnit\Framework\TestCase;
 use ExOrg\DataCoder\Fixture\DataFileFixturesHelper;
-use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
  * Datafile Encoder Test.
- * PHPUnit test class for DatafileEncoder class.
+ * PHPUnit test class for Datafile Encoder class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -35,17 +36,17 @@ class EncoderTest extends TestCase
      *
      * @var DataFileFixturesHelper
      */
-    private static $dataFileFixturesHelper = null;
+    private static DataFileFixturesHelper $dataFileFixturesHelper;
 
     /**
      * Instance of tested class.
      *
-     * @var DatafileEncoder
+     * @var Encoder
      */
-    private $datafileEncoder;
+    private Encoder $datafileEncoder;
 
     /**
-     * Test ExOrg\DataCoder\DatafileEncoder class
+     * Test Datafile Encoder class
      * has been created.
      */
     public function testDatafileEncoderClassExists()
@@ -75,7 +76,7 @@ class EncoderTest extends TestCase
      */
     public function testSetDataFormatWithNotStringDataFormat()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $dataFormat = 1024;
 
@@ -88,7 +89,7 @@ class EncoderTest extends TestCase
      */
     public function testSetDataFormatWithNullDataFormat()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $dataFormat = null;
 
@@ -227,7 +228,7 @@ class EncoderTest extends TestCase
      *
      * @return array
      */
-    public static function dataFormatsAndResultsProvider()
+    public static function dataFormatsAndResultsProvider(): array
     {
         return [
             ['format1', '<FORMAT 1 ENCODED DATA/>'],
@@ -238,6 +239,8 @@ class EncoderTest extends TestCase
 
     /**
      * This method is called before the first test of this test class is run.
+     *
+     * @return void
      */
     public static function setUpBeforeClass(): void
     {
@@ -247,6 +250,8 @@ class EncoderTest extends TestCase
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp(): void
     {

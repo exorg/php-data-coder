@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace ExOrg\DataCoder\Coder\Json\Data;
 
-use ExOrg\DataCoder\Coder\Data\AbstractDecoder;
 use ExOrg\DataCoder\Coder\Data\DecodingStrategyInterface;
 use ExOrg\DataCoder\DataFormat\DataFormatInvalidException;
 
@@ -27,7 +26,7 @@ use ExOrg\DataCoder\DataFormat\DataFormatInvalidException;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Decoder extends AbstractDecoder implements DecodingStrategyInterface
+class Decoder implements DecodingStrategyInterface
 {
     /**
      * Decode given JSON data to PHP array.
@@ -40,8 +39,6 @@ class Decoder extends AbstractDecoder implements DecodingStrategyInterface
      */
     public function decodeData(string $data): array
     {
-        $this->validateData($data);
-
         $decodedData = json_decode($data, true);
 
         $parsingSuccessful = !(is_null($decodedData));

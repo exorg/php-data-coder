@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace ExOrg\DataCoder\Coder\Yaml\Data;
 
-use ExOrg\DataCoder\Coder\Data\AbstractEncoder;
 use ExOrg\DataCoder\Coder\Data\EncodingStrategyInterface;
 use Symfony\Component\Yaml\Yaml;
 
@@ -27,7 +26,7 @@ use Symfony\Component\Yaml\Yaml;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Encoder extends AbstractEncoder implements EncodingStrategyInterface
+class Encoder implements EncodingStrategyInterface
 {
     /**
      * Encode given PHP array to YAML data.
@@ -40,8 +39,6 @@ class Encoder extends AbstractEncoder implements EncodingStrategyInterface
      */
     public function encodeData(array $data): string
     {
-        $this->validateData($data);
-
         $encodedData = Yaml::dump($data);
 
         return $encodedData;

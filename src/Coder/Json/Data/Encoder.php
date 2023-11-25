@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace ExOrg\DataCoder\Coder\Json\Data;
 
-use ExOrg\DataCoder\Coder\Data\AbstractEncoder;
 use ExOrg\DataCoder\Coder\Data\EncodingStrategyInterface;
 
 /**
@@ -26,7 +25,7 @@ use ExOrg\DataCoder\Coder\Data\EncodingStrategyInterface;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Encoder extends AbstractEncoder implements EncodingStrategyInterface
+class Encoder implements EncodingStrategyInterface
 {
     /**
      * Encode given PHP array to JSON data.
@@ -39,10 +38,6 @@ class Encoder extends AbstractEncoder implements EncodingStrategyInterface
      */
     public function encodeData(array $data): string
     {
-        $dataTypeIsCorrect = is_array($data);
-
-        $this->validateData($data);
-
         $encodedData = json_encode($data, JSON_PRETTY_PRINT);
 
         return $encodedData;

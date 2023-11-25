@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -14,7 +16,7 @@ namespace ExOrg\DataCoder\DataFormat;
 use PHPUnit\Framework\TestCase;
 
 /**
- * DataFormatInvalidExceptionTest.
+ * Data Format Invalid Exception Test.
  * PHPUnit test class for DataFormatInvalidException class.
  *
  * @package DataCoder
@@ -25,14 +27,16 @@ use PHPUnit\Framework\TestCase;
  */
 class DataFormatInvalidExceptionTest extends TestCase
 {
+    const DATA_FORMAT_INVALID_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME = 'ExOrg\DataCoder\DataFormat\DataFormatInvalidException';
+
     /**
-     * Test if ExOrg\DataCoder\DataFormatInvalidException class
+     * Test if Data Format Invalid Exception class
      * has been created.
      */
     public function testDataFormatInvalidExceptionClassExists()
     {
         $this->assertTrue(
-            class_exists('ExOrg\DataCoder\DataFormat\DataFormatInvalidException')
+            class_exists(self::DATA_FORMAT_INVALID_EXCEPTION_FULLY_QUALIFIED_CLASS_NAME)
         );
     }
 }

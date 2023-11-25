@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -41,10 +43,10 @@ class DataFileFixturesHelperTest extends TestCase
      *
      * @var DataFileFixturesHelper
      */
-    private $dataFileFixturesHelper = null;
+    private DataFileFixturesHelper $dataFileFixturesHelper;
 
     /**
-     * Test if ExOrg\DataCoder\Fixture\DataFileFixturesHelper class
+     * Test if Data FileF ixtures Helper class
      * has been created.
      */
     public function testDataCodersTestHelperClassExists()
@@ -139,9 +141,9 @@ class DataFileFixturesHelperTest extends TestCase
      */
     public function testLoadDecodedData()
     {
-        $expectedResult = array(
+        $expectedResult = [
             'value' => (string) microtime(),
-        );
+        ];
         $this->writeResultToSelfTestDecodedFile($expectedResult);
 
         $this->dataFileFixturesHelper->setDataFormat('self-test');
@@ -231,6 +233,8 @@ class DataFileFixturesHelperTest extends TestCase
     /**
      * Set up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp(): void
     {
@@ -242,8 +246,10 @@ class DataFileFixturesHelperTest extends TestCase
      * from directory with encoded data.
      *
      * @param string $content
+     *
+     * @return void
      */
-    private function writeContentToSelfTestEncodedFile($content)
+    private function writeContentToSelfTestEncodedFile(string $content): void
     {
         $filePath = __DIR__ . DIRECTORY_SEPARATOR . self::FILES_DIRECTORY . '/encoded/data.self-test';
         file_put_contents($filePath, $content);
@@ -253,15 +259,17 @@ class DataFileFixturesHelperTest extends TestCase
      * Write result to the special self test file
      * from directory with decoded data.
      *
-     * @param string $content
+     * @param array $content
+     *
+     * @return void
      */
-    private function writeResultToSelfTestDecodedFile($result)
+    private function writeResultToSelfTestDecodedFile(array $result): void
     {
-        $content = "\$result = array(\n";
+        $content = "\$result = [\n";
         foreach ($result as $key => $value) {
             $content .= "    '$key' => '$value',\n";
         }
-        $content .= ');';
+        $content .= '];';
 
         $filePath = __DIR__ . DIRECTORY_SEPARATOR . self::FILES_DIRECTORY . '/decoded/self-test.php';
         file_put_contents($filePath, $content);

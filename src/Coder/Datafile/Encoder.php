@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -35,9 +37,12 @@ class Encoder extends AbstractCoder
      *
      * @param array $data
      * @param string $filePath
+     *
+     * @return void
+     *
      * @throws \InvalidArgumentException
      */
-    public function encodeFile($data, $filePath)
+    public function encodeFile(array $data, string $filePath): void
     {
         $this->file = new File($filePath);
 

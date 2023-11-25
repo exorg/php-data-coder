@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -31,10 +33,12 @@ class Encoder extends AbstractEncoder implements EncodingStrategyInterface
      * Encode given PHP array to YAML data.
      *
      * @param array $data
+     *
      * @return string
+     *
      * @throws \InvalidArgumentException
      */
-    public function encodeData($data)
+    public function encodeData(array $data): string
     {
         $this->validateData($data);
 

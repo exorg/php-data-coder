@@ -31,6 +31,6 @@ class Decoder
      */
     public function decodeData($data)
     {
-        return array("<FORMAT 3 DECODED DATA/>");
+        return ["<FORMAT 3 DECODED DATA/>"];
     }
 }

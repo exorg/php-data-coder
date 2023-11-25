@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -12,7 +14,6 @@
 namespace ExOrg\DataCoder\Coder\Yaml\Datafile;
 
 use PHPUnit\Framework\TestCase;
-use ExOrg\Decapsulator\ObjectDecapsulator;
 use ExOrg\DataCoder\Fixture\DataFileFixturesHelper;
 
 /**
@@ -39,17 +40,17 @@ class EncoderTest extends TestCase
      *
      * @var DataFileFixturesHelper
      */
-    private static $dataFileFixturesHelper = null;
+    private static DataFileFixturesHelper $dataFileFixturesHelper;
 
     /**
      * Instance of tested class.
      *
-     * @var YamlDatafileEncoder
+     * @var Encoder
      */
-    private $yamlDatafileEncoder;
+    private Encoder $yamlDatafileEncoder;
 
     /**
-     * Test ExOrg\DataCoder\YamlDatafileEncoder class
+     * Test Yaml Datafile Encoder class
      * has been created.
      */
     public function testYamlDatafileEncoderClassExists()
@@ -79,7 +80,7 @@ class EncoderTest extends TestCase
      */
     public function testEncodeFileWithIncorrectData()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $dataFilePath = self::$dataFileFixturesHelper->buildCreatedFilePath('data');
         $data = 1024;
@@ -106,6 +107,8 @@ class EncoderTest extends TestCase
 
     /**
      * This method is called before the first test of this test class is run.
+     *
+     * @return void
      */
     public static function setUpBeforeClass(): void
     {
@@ -116,6 +119,8 @@ class EncoderTest extends TestCase
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp(): void
     {

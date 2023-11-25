@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -65,7 +67,7 @@ class FileTest extends TestCase
      */
     public function testConstructorWhenFilePathIsNotString()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $filePath = 1024;
 
@@ -78,7 +80,7 @@ class FileTest extends TestCase
      */
     public function testConstructorWhenFilePathIsNull()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $filePath = null;
 
@@ -246,7 +248,7 @@ class FileTest extends TestCase
      */
     public function testSetContentWhenContentIsImproper($content)
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $file = new File('file');
 
@@ -288,8 +290,6 @@ class FileTest extends TestCase
      * returns proper content.
      *
      * @dataProvider fileForWritePathAndContentProvider
-     * @param string $filePath
-     * @param string $fileContent
      */
     public function testSetContent($filePath, $fileContent)
     {
@@ -306,14 +306,14 @@ class FileTest extends TestCase
      *
      * @return array
      */
-    public static function filePathExtensionProvider()
+    public static function filePathExtensionProvider(): array
     {
-        return array(
-            array('file', ''),
-            array('file.ext', 'ext'),
-            array('file.dat', 'dat'),
-            array('files/file.ext', 'ext'),
-        );
+        return [
+            ['file', ''],
+            ['file.ext', 'ext'],
+            ['file.dat', 'dat'],
+            ['files/file.ext', 'ext'],
+        ];
     }
 
     /**
@@ -322,14 +322,14 @@ class FileTest extends TestCase
      *
      * @return array
      */
-    public static function fileForReadPathAndContentProvider()
+    public static function fileForReadPathAndContentProvider(): array
     {
-        return array(
-            array(self::buildFileFixturePath('file-for-read'), 'File for read'),
-            array(self::buildFileFixturePath('file-for-read.ext'), 'File for read with extension'),
-            array(self::buildFileFixturePath('file-for-read.dat'), 'File for read with another extension'),
-            array(self::buildFileFixturePath('directory/file-for-read'), 'File for read in directory'),
-        );
+        return [
+            [self::buildFileFixturePath('file-for-read'), 'File for read'],
+            [self::buildFileFixturePath('file-for-read.ext'), 'File for read with extension'],
+            [self::buildFileFixturePath('file-for-read.dat'), 'File for read with another extension'],
+            [self::buildFileFixturePath('directory/file-for-read'), 'File for read in directory'],
+        ];
     }
 
     /**
@@ -338,18 +338,18 @@ class FileTest extends TestCase
      *
      * @return array
      */
-    public static function fileForWritePathAndContentProvider()
+    public static function fileForWritePathAndContentProvider(): array
     {
-        return array(
-            array(self::buildFileFixturePath('file-for-write'), 'File for write'),
-            array(self::buildFileFixturePath('file-for-write.ext'), 'File for write with extension'),
-            array(self::buildFileFixturePath('file-for-write.dat'), 'File for write with another extension'),
-            array(self::buildFileFixturePath('directory/file-for-write'), 'File for write in directory'),
-            array(self::buildFileFixturePath('nonexistant-file-for-write'), 'Nonoexistent file for write'),
-            array(self::buildFileFixturePath('nonexistent-file-for-write.ext'), 'Nonexistent file for write with extension'),
-            array(self::buildFileFixturePath('nonexistent-file-for-write.dat'), 'Nonexistent file for write with another extension'),
-            array(self::buildFileFixturePath('directory/nonexistent-file-for-write'), 'Nonexistent file for write in directory'),
-        );
+        return [
+            [self::buildFileFixturePath('file-for-write'), 'File for write'],
+            [self::buildFileFixturePath('file-for-write.ext'), 'File for write with extension'],
+            [self::buildFileFixturePath('file-for-write.dat'), 'File for write with another extension'],
+            [self::buildFileFixturePath('directory/file-for-write'), 'File for write in directory'],
+            [self::buildFileFixturePath('nonexistant-file-for-write'), 'Nonoexistent file for write'],
+            [self::buildFileFixturePath('nonexistent-file-for-write.ext'), 'Nonexistent file for write with extension'],
+            [self::buildFileFixturePath('nonexistent-file-for-write.dat'), 'Nonexistent file for write with another extension'],
+            [self::buildFileFixturePath('directory/nonexistent-file-for-write'), 'Nonexistent file for write in directory'],
+        ];
     }
 
     /**
@@ -358,15 +358,15 @@ class FileTest extends TestCase
      *
      * @return array
      */
-    public static function improperFileContentProvider()
+    public static function improperFileContentProvider(): array
     {
-        return array(
-            array(null),
-            array(1024),
-            array(true),
-            array(array()),
-            array(new \stdClass()),
-        );
+        return [
+            [null],
+            [1024],
+            [true],
+            [[]],
+            [new \stdClass()],
+        ];
     }
 
     /**
@@ -393,7 +393,7 @@ class FileTest extends TestCase
      * @param string $fileName
      * @return string
      */
-    private static function buildFileFixturePath($fileName)
+    private static function buildFileFixturePath(string $fileName): string
     {
         $absoluteFilePath = __DIR__
             . DIRECTORY_SEPARATOR
@@ -407,8 +407,10 @@ class FileTest extends TestCase
     /**
      * Set special permissions for files and directories
      * to test unwrittable and unreadable ones.
+     *
+     * @return void
      */
-    private static function setSpecialPermissionsForFiles()
+    private static function setSpecialPermissionsForFiles(): void
     {
         exec("chmod a-r " . self::buildFileFixturePath('unreadable-file'));
         exec("chmod a-w " . self::buildFileFixturePath('unwritable-file'));
@@ -418,8 +420,10 @@ class FileTest extends TestCase
 
     /**
      * Reset permissions for files to default.
+     *
+     * @return void
      */
-    private static function resetPermissionsForFiles()
+    private static function resetPermissionsForFiles(): void
     {
         exec("chmod a+r " . self::buildFileFixturePath('unreadable-file'));
         exec("chmod a+w " . self::buildFileFixturePath('unwritable-file'));
@@ -430,8 +434,10 @@ class FileTest extends TestCase
     /**
      * Remove files created in the testing process,
      * that shouldn't exist at the begining of tests.
+     *
+     * @return void
      */
-    private static function removeFilesShouldNotExist()
+    private static function removeFilesShouldNotExist(): void
     {
         exec("rm " . self::buildFileFixturePath('nonexistant-file-for-write'));
         exec("rm " . self::buildFileFixturePath('nonexistent-file-for-write.ext'));
@@ -442,8 +448,10 @@ class FileTest extends TestCase
     /**
      * Clear content of files,
      * that should be empty at the begining of tests.
+     *
+     * @return void
      */
-    private static function clearFilesShouldBeEmpty()
+    private static function clearFilesShouldBeEmpty(): void
     {
         file_put_contents(self::buildFileFixturePath('file-for-write'), '');
         file_put_contents(self::buildFileFixturePath('file-for-write.ext'), '');

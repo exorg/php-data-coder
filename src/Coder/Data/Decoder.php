@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -16,7 +18,7 @@ use ExOrg\DataCoder\CoderBuilder\CoderBuildingTrait;
 use ExOrg\DataCoder\DataFormat\DataFormatConfigurableTrait;
 
 /**
- * DataDecoder.
+ * Data Decoder.
  * Allows to decode data
  * accordingly the chosen data format.
  *
@@ -34,10 +36,11 @@ class Decoder implements DecodingStrategyInterface
     /**
      * Decode data.
      *
-     * @param array $data
+     * @param string $data
+     *
      * @return array
      */
-    public function decodeData($data)
+    public function decodeData(string $data): array
     {
         $dataDecodingStrategy = $this->buildCoder();
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -12,7 +14,6 @@
 namespace ExOrg\DataCoder\Coder\Json\Data;
 
 use PHPUnit\Framework\TestCase;
-// use ExOrg\DataCoder\ObjectDecapsulator;
 use ExOrg\DataCoder\Fixture\DataFileFixturesHelper;
 
 /**
@@ -39,17 +40,17 @@ class EncoderTest extends TestCase
      *
      * @var DataFileFixturesHelper
      */
-    private static $dataFileFixturesHelper = null;
+    private static DataFileFixturesHelper $dataFileFixturesHelper;
 
     /**
      * Instance of tested class.
      *
-     * @var JsonDataEncoder
+     * @var Encoder
      */
-    private $jsonDataEncoder;
+    private Encoder $jsonDataEncoder;
 
     /**
-     * Test JsonDataEncoder class
+     * Test Json Data Encoder class
      * has been created.
      */
     public function testJsonDataEncoderClassExists()
@@ -79,7 +80,7 @@ class EncoderTest extends TestCase
      */
     public function testEncodeDataWithNotArrayData()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $data = 1024;
 
@@ -102,6 +103,8 @@ class EncoderTest extends TestCase
 
     /**
      * This method is called before the first test of this test class is run.
+     *
+     * @return void
      */
     public static function setUpBeforeClass(): void
     {
@@ -112,6 +115,8 @@ class EncoderTest extends TestCase
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp(): void
     {

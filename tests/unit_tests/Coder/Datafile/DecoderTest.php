@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the DataCoder package.
  *
@@ -13,11 +15,10 @@ namespace ExOrg\DataCoder\Coder\Datafile;
 
 use PHPUnit\Framework\TestCase;
 use ExOrg\DataCoder\Fixture\DataFileFixturesHelper;
-use ExOrg\Decapsulator\ObjectDecapsulator;
 
 /**
- * DatafileDecoderTest.
- * PHPUnit test class for DatafileDecoder class.
+ * Datafile Decoder Test.
+ * PHPUnit test class for Datafile Decoder class.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -36,17 +37,17 @@ class DecoderTest extends TestCase
      *
      * @var DataFileFixturesHelper
      */
-    private static $dataFileFixturesHelper = null;
+    private static DataFileFixturesHelper $dataFileFixturesHelper;
 
     /**
      * Instance of tested class.
      *
-     * @var DatafileDecoder
+     * @var Decoder
      */
-    private $datafileDecoder;
+    private Decoder $datafileDecoder;
 
     /**
-     * Test ExOrg\DataCoder\DatafileDecoder class
+     * Test Datafile Decoder class
      * has been created.
      */
     public function testDatafileDecoderClassExists()
@@ -57,7 +58,7 @@ class DecoderTest extends TestCase
     }
 
     /**
-     * Test if setDataFormat($dataFormat) method
+     * Test if setDataFormat function
      * has been defined.
      */
     public function testSetDataFormatFunctionExists()
@@ -76,7 +77,7 @@ class DecoderTest extends TestCase
      */
     public function testSetDataFormatWithNotStringDataFormat()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $dataFormat = 1024;
 
@@ -89,7 +90,7 @@ class DecoderTest extends TestCase
      */
     public function testSetDataFormatWithNullDataFormat()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException('\TypeError');
 
         $dataFormat = null;
 
@@ -172,7 +173,7 @@ class DecoderTest extends TestCase
      */
     public function testDecodeFileWhenDataFormatIsSet()
     {
-        $expectedResult = array("<FORMAT DECODED DATA>Another dummy data</FORMAT DECODED DATA>");
+        $expectedResult = ["<FORMAT DECODED DATA>Another dummy data</FORMAT DECODED DATA>"];
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.anotherformat');
 
@@ -219,7 +220,7 @@ class DecoderTest extends TestCase
      */
     public function testDecodeFileWhenDataFormatIsNotSet()
     {
-        $expectedResult = array("<FORMAT DECODED DATA>Dummy data</FORMAT DECODED DATA>");
+        $expectedResult = ["<FORMAT DECODED DATA>Dummy data</FORMAT DECODED DATA>"];
 
         $dataFilePath = self::$dataFileFixturesHelper->buildEncodedFilePath('data.format');
 
@@ -234,17 +235,19 @@ class DecoderTest extends TestCase
      *
      * @return array
      */
-    public static function dataFormatsAndResultsProvider()
+    public static function dataFormatsAndResultsProvider(): array
     {
-        return array(
-            array('format1', array('<FORMAT 1 DECODED DATA/>')),
-            array('Format2', array('<FORMAT 2 DECODED DATA/>')),
-            array('format3', array('<FORMAT 3 DECODED DATA/>')),
-        );
+        return [
+            ['format1', ['<FORMAT 1 DECODED DATA/>']],
+            ['Format2', ['<FORMAT 2 DECODED DATA/>']],
+            ['format3', ['<FORMAT 3 DECODED DATA/>']],
+        ];
     }
 
     /**
      * This method is called before the first test of this test class is run.
+     *
+     * @return void
      */
     public static function setUpBeforeClass(): void
     {
@@ -254,6 +257,8 @@ class DecoderTest extends TestCase
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
+     *
+     * @return void
      */
     protected function setUp(): void
     {

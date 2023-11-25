@@ -12,7 +12,7 @@
 namespace ExOrg\DataCoder\CoderBuilder;
 
 /**
- * CoderClassNotFoundException.
+ * Coder Class Not Found Exception.
  * Exception thrown to indicate
  * that Coder class (either Encoder or Decoder),
  * needed to handle the given data format,

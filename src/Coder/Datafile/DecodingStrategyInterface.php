@@ -11,15 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder\Coder\Yaml\Datafile;
-
-use ExOrg\DataCoder\Coder\Datafile\DecodingStrategyInterface;
-use ExOrg\DataCoder\File\File;
-use ExOrg\DataCoder\Coder\Yaml\Data\Decoder as DataDecoder;
+namespace ExOrg\DataCoder\Coder\Datafile;
 
 /**
- * Yaml Datafile Decoder.
- * Datafile decoder for YAML format.
+ * Datafile Decoding Strategy Interface.
+ * Defines interface of particular data file decoding strategy.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -27,7 +23,7 @@ use ExOrg\DataCoder\Coder\Yaml\Data\Decoder as DataDecoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Decoder implements DecodingStrategyInterface
+interface DecodingStrategyInterface
 {
     /**
      * Decode file content.
@@ -35,18 +31,6 @@ class Decoder implements DecodingStrategyInterface
      * @param string $filePath
      *
      * @return array
-     *
-     * @throws \InvalidArgumentException
      */
-    public function decodeFile(string $filePath): array
-    {
-        $file = new File($filePath);
-
-        $fileData = $file->getContent();
-
-        $dataDecoder = new DataDecoder();
-        $result = $dataDecoder->decodeData($fileData);
-
-        return $result;
-    }
+    public function decodeFile(string $filePath): array;
 }

@@ -13,14 +13,9 @@ declare(strict_types=1);
 
 namespace ExOrg\DataCoder\Coder\Datafile;
 
-use ExOrg\DataCoder\CoderBuilder\CoderBuildingTrait;
-use ExOrg\DataCoder\File\File;
-
 /**
- * Datafile Encoder.
- * Allows to encode data file
- * accordingly the data format set directly
- * or defined by file extension.
+ * Datafile Encoding Strategy Interface.
+ * Defines interface of particular data file encoding strategy.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -28,10 +23,8 @@ use ExOrg\DataCoder\File\File;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Encoder extends AbstractCoder implements EncodingStrategyInterface
+interface EncodingStrategyInterface
 {
-    use CoderBuildingTrait;
-
     /**
      * Encode data and write to the file.
      *
@@ -39,17 +32,6 @@ class Encoder extends AbstractCoder implements EncodingStrategyInterface
      * @param string $filePath
      *
      * @return void
-     *
-     * @throws \InvalidArgumentException
      */
-    public function encodeFile(array $data, string $filePath): void
-    {
-        $this->file = new File($filePath);
-
-        $this->completeDataFormat();
-        $dataEncoder = $this->buildCoder();
-
-        $fileData = $dataEncoder->encodeData($data);
-        $this->file->setContent($fileData);
-    }
+    public function encodeFile(array $data, string $filePath): void;
 }

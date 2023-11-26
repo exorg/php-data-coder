@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace ExOrg\DataCoder\Coder\Json\Datafile;
 
+use ExOrg\DataCoder\Coder\Datafile\DecodingStrategyInterface;
 use ExOrg\DataCoder\File\File;
 use ExOrg\DataCoder\Coder\Json\Data\Decoder as DataDecoder;
 
@@ -26,7 +27,7 @@ use ExOrg\DataCoder\Coder\Json\Data\Decoder as DataDecoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Decoder
+class Decoder implements DecodingStrategyInterface
 {
     /**
      * Decode file content.

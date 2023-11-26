@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace ExOrg\DataCoder\Coder\Yaml\Data;
 
-use ExOrg\DataCoder\Coder\Data\AbstractDecoder;
 use ExOrg\DataCoder\Coder\Data\DecodingStrategyInterface;
 use ExOrg\DataCoder\DataFormat\DataFormatInvalidException;
 use Symfony\Component\Yaml\Yaml;
@@ -28,7 +27,7 @@ use Symfony\Component\Yaml\Yaml;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Decoder extends AbstractDecoder implements DecodingStrategyInterface
+class Decoder implements DecodingStrategyInterface
 {
     /**
      * Decode given YAML data to PHP array.
@@ -42,8 +41,6 @@ class Decoder extends AbstractDecoder implements DecodingStrategyInterface
     public function decodeData(string $data): array
     {
         $this->turnOffErrors();
-
-        $this->validateData($data);
 
         $parsedData = Yaml::parse($data);
 

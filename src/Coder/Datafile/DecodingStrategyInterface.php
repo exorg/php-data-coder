@@ -11,12 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace ExOrg\DataCoder\Coder\Data;
+namespace ExOrg\DataCoder\Coder\Datafile;
 
 /**
- * Abstract Data Decoder.
- * Abstract class for Data Decoder
- * for concrete data format.
+ * Datafile Decoding Strategy Interface.
+ * Defines interface of particular data file decoding strategy.
  *
  * @package DataCoder
  * @author Katarzyna Krasińska <katheroine@gmail.com>
@@ -24,16 +23,14 @@ namespace ExOrg\DataCoder\Coder\Data;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-abstract class AbstractDecoder
+interface DecodingStrategyInterface
 {
     /**
-     * Validate data.
+     * Decode file content.
      *
-     * @param string $data
+     * @param string $filePath
      *
-     * @return void
+     * @return array
      */
-    protected function validateData(string $data): void
-    {
-    }
+    public function decodeFile(string $filePath): array;
 }

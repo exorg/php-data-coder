@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace ExOrg\DataCoder\Coder\Yaml\Datafile;
 
+use ExOrg\DataCoder\Coder\Datafile\EncodingStrategyInterface;
 use ExOrg\DataCoder\File\File;
 use ExOrg\DataCoder\Coder\Yaml\Data\Encoder as DataEncoder;
 
@@ -26,7 +27,7 @@ use ExOrg\DataCoder\Coder\Yaml\Data\Encoder as DataEncoder;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Encoder
+class Encoder implements EncodingStrategyInterface
 {
     /**
      * Encode YAML data and write to the file.

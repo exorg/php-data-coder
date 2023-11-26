@@ -28,7 +28,7 @@ use ExOrg\DataCoder\File\File;
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ExOrg/php-data-coder
  */
-class Decoder extends AbstractCoder
+class Decoder extends AbstractCoder implements DecodingStrategyInterface
 {
     use CoderBuildingTrait;
 

@@ -1,72 +1,37 @@
 # DataCoder
 
-[![Build Status](https://travis-ci.org/ExOrg/php-data-coder.svg?branch=master)](https://travis-ci.org/ExOrg/php-data-coder)
+![example workflow](https://github.com/ExOrg/php-data-coder/actions/workflows/php.yml/badge.svg)
 
-Extendable set of data and datafile encoders and decoders. It allows to transfer PHP arrays into data strings and datafiles and vice versa with chosen format like YAML and JSON. It provides encapsulation of various decoding and encoding mechanisms, unifies interface and exceptions handling.
+Extendable set of data and data file encoders and decoders. It allows to transfer PHP arrays into data strings and datafiles and vice versa with chosen format like YAML and JSON. It provides encapsulation of various decoding and encoding mechanisms, unifies interface and exceptions handling.
 
 There are various groups of decoders and encoders
 
-* With predefined data format - e.g. *JsonDataDecoder*, *YamlDatafileEncoder*
-* With configurable data format - e.g. *DataDecoder*, *DatafileEncoder*
-* For raw data - e.g. *JsonDataDecoder*, *DataEncoder*
-* For data in the file - e.g. *YamlDatafileEncoder*, *DatafileDecoder*
+* With predefined data format - e.g. *Coder\Json\Data\Decoder*, *Coder\Yaml\Datafile\Encoder*
+* With configurable data format - e.g. *Coder\Data\Decoder*, *Coder\Datafile\Encoder*
+* For raw data - e.g. *Coder\Json\Data\Decoder*, *Coder\Data\Encoder*
+* For data in the file - e.g. *Coder\Yaml\Datafile\Encoder*, *Coder\Datafile\Decoder*
 
 ## Getting Started
 
 ### Prerequisities
 
-* PHP 5.5.9+
-* [YAML PHP extension](http://php.net/manual/en/book.yaml.php) 1.2.0
-* [Composer](https://getcomposer.org/) 1.0
+* [PHP](https://www.php.net/) 8.1 - 8.3
+* [Git](https://git-scm.com/) 2.25.1+
+* [Composer](https://getcomposer.org/) 2.6.0+
+
+The instruction assumes using the Linux operating system or compatible tools for other operating systems.
 
 ### Installation
 
-The recommended way to install DataCoder into the source code of the project is to handle it as code dependency by [Composer](http://getcomposer.org).
+#### php8.*-cli, Git and Composer required
 
-#### YAML PHP extension
+The recommended way to install DataCoder into the source code of the project is to handle it as code dependency by [Composer](http://getcomposer.org). [Git](https://git-scm.com/) is needed to fetch packages from version control repositories.
 
-YAML Coders uses [YAML PHP extension](http://php.net/manual/en/book.yaml.php) so it needs to be installed before any YAML Coder will be run.
+The *php8.\*-cli* is needed for installing Composer.
 
-##### PHP 5
+#### DataCoder installation
 
-```bash
-sudo apt-get install php-pear libyaml-dev
-pecl install yaml
-```
-
-##### PHP 7
-
-```bash
-sudo apt-get install php-pear libyaml-dev
-pecl install yaml-beta
-```
-
-Don't forget to add `"extension=yaml.so"` line to your *php.ini* file.
-
-#### cURL, php5-cli and Git
-
-The command line tool cURL will be used to to download *Composer* installer and *php5-cli* for and running it to install Composer. Git is needed by to downloading dependencies by the Composer.
-
-#### Composer
-
-The common way to intall Composer is downloading installer via *curl* tool and call the PHP interpreter to run it. 
-
-```bash
-curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-```
-Now composer is available as the command line tool and can be run by typing `composer` with appropriate parameters.
-
-#### DataCoder
-
-Add to your **composer.json** file following entry in the *require* section
-```
-{
-    "require": {
-        "exorg/data-coder": "^1.0.0"
-    }
-}
-```
-You can do it manually or by running the following command
+Add to your **composer.json** file appropriate entry by running the following command
 ```bash
 composer require exorg/data-coder
 ```
@@ -74,7 +39,6 @@ If it's project set-up stage and no one dependency have been installed yet, run
 ```bash
 composer install
 ```
-
 If another dependencies have been intalled previously, run
 ```bash
 composer update
@@ -86,27 +50,25 @@ The simplest way to autoload all needed files in executable file is attaching *a
 
 ```php
 require_once (__DIR__ . '/vendor/autoload.php');
-
 ```
 
 ### Data Encoders with predefined format
 
 ```php
+use ExOrg\DataCoder\Coder\Json\Data\Encoder;
 
-use Exorg\DataCoder\JsonDataEncoder;
-
-$data = array (
+$data = [
     "firstName" => "John",
     "lastName" => "Smith",
-    "address" => array (
+    "address" => [
         "streetAddress" => "21 2nd Street",
         "city" => "New York",
         "state" => "NY",
         "postalCode" => "10021-3100",
-    ),
-);
+    ],
+];
 
-$encoder = new JsonDataEncoder();
+$encoder = new Encoder();
 $result = $encoder->encodeData($data);
 
 print($result);
@@ -128,11 +90,9 @@ print($result);
 ### Data Decoders with predefined format
 
 ```php
-
-use Exorg\DataCoder\YamlDataDecoder;
+use ExOrg\DataCoder\Coder\Yaml\Data\Decoder;
 
 $data = '
----
 firstName: John
 lastName: Smith
 address:
@@ -140,10 +100,9 @@ address:
   city: New York
   state: NY
   postalCode: 10021-3100
-...
 ';
 
-$decoder = new YamlDataDecoder();
+$decoder = new Decoder();
 $result = $decoder->decodeData($data);
 
 print_r($result);
@@ -168,20 +127,20 @@ Array
 ### Data Encoder with configurable format
 
 ```php
-use Exorg\DataCoder\DataEncoder;
+use ExOrg\DataCoder\Coder\Data\Encoder;
 
-$data = array (
+$data = [
     "firstName" => "John",
     "lastName" => "Smith",
-    "address" => array (
+    "address" => [
         "streetAddress" => "21 2nd Street",
         "city" => "New York",
         "state" => "NY",
         "postalCode" => "10021-3100",
-    ),
-);
+    ],
+];
 
-$encoder = new DataEncoder();
+$encoder = new Encoder();
 $encoder->setDataFormat('yaml');
 $result = $encoder->encodeData($data);
 
@@ -189,22 +148,20 @@ print($result);
 ```
 ---
 ```
----
 firstName: John
 lastName: Smith
 address:
-  streetAddress: 21 2nd Street
-  city: New York
-  state: NY
-  postalCode: 10021-3100
-...
+    streetAddress: '21 2nd Street'
+    city: 'New York'
+    state: NY
+    postalCode: 10021-3100
 
 ```
 
 ### Data Decoder with configurable format
 
 ```php
-use Exorg\DataCoder\DataDecoder;
+use ExOrg\DataCoder\Coder\Data\Decoder;
 
 $data = '
 {
@@ -220,7 +177,7 @@ $data = '
 }
 ';
 
-$decoder = new DataDecoder();
+$decoder = new Decoder();
 $decoder->setDataFormat('json');
 $result = $decoder->decodeData($data);
 
@@ -246,31 +203,31 @@ Array
 
 ### Datafile Encoders and Decoders
 
-Datafile Encoders and Decoders usage is similar to the Data Encoders and Decoders. There are coders with predefined data format like **JsonDatafileEncoder** or **YamlDatafileDecoder** and those, where data format can be chosen by function *setDataFormat*, just like in examples above - **DatafileEncoder** and **DatafileDecoder**.
+Datafile Encoders and Decoders usage is similar to the Data Encoders and Decoders. There are coders with predefined data format like **Coder\Json\Datafile\Encoder** or **Coder\Yaml\Datafile\Decoder** and those, where data format can be chosen by function *setDataFormat*, just like in examples above - **Code\Datafile\Encoder** and **Code\Datafile\Decoder**.
 
 #### Data format recognizing by file extension
 
-Datafile coders with configurable data format - **DatafileEncoder** and **DatafileDecoder** - can recognize data format by file extension. In that case, there is no need to set data format manually.
+Datafile coders with configurable data format - **Coder\Datafile\Encoder** and **Coder\Datafile\Decoder** - can recognize data format by file extension. In that case, there is no need to set data format manually.
 
-##### DatafileEncoder
+##### Datafile Encoder
 
 ```php
-use Exorg\DataCoder\DatafileEncoder;
+use ExOrg\DataCoder\Coder\Datafile\Encoder;
 
-$data = array (
+$data = [
     "firstName" => "John",
     "lastName" => "Smith",
-    "address" => array (
+    "address" => [
         "streetAddress" => "21 2nd Street",
         "city" => "New York",
         "state" => "NY",
         "postalCode" => "10021-3100",
-    ),
-);
+    ],
+];
 
 $datafilePath = 'data.json';
 
-$encoder = new DatafileEncoder();
+$encoder = new Encoder();
 $encoder->encodeFile($data, $datafilePath);
 
 print file_get_contents($datafilePath);
@@ -289,31 +246,29 @@ print file_get_contents($datafilePath);
 }
 ```
 
-##### DatafileDecoder
+##### Datafile Decoder
 
 ```php
-use Exorg\DataCoder\DatafileDecoder;
+use ExOrg\DataCoder\Coder\Datafile\Decoder;
 
 $datafilePath = 'data.yaml';
 
 print file_get_contents($datafilePath);
 
-$decoder = new DatafileDecoder();
+$decoder = new Decoder();
 $data = $decoder->decodeFile($datafilePath);
 
 print_r($data);
 ```
 ---
 ```
----
 firstName: John
 lastName: Smith
 address:
-  streetAddress: 21 2nd Street
-  city: New York
-  state: NY
-  postalCode: 10021-3100
-...
+    streetAddress: '21 2nd Street'
+    city: 'New York'
+    state: NY
+    postalCode: 10021-3100
 Array
 (
     [firstName] => John
@@ -341,30 +296,48 @@ To run tests, write the following command in your command line inside the main D
 vendor/bin/phpunit tests/
 ```
 
+or use a Composer script
+
+```bash
+composer test
+```
+
 ### Code style tests
 
-This code follows [PSR-1](http://www.php-fig.org/psr/psr-1/) and [PSR-2](http://www.php-fig.org/psr/psr-2/) standards.
+This code follows [PSR-1](http://www.php-fig.org/psr/psr-1/) and [PSR-12](http://www.php-fig.org/psr/psr-12/) standards.
 
-To run tests for code style  write the following command in your command line inside the main DataCoder project directory
+To run tests for code style write the following command in your command line inside the main DataCoder project directory
 
 ```bash
 vendor/bin/phpcs tests/ src/
 ```
 
+or use a Composer script
+
+```bash
+composer sniff
+```
+
+You can also use a Composer script for running both tests and check code style
+
+```bash
+composer check
+```
+
 ## Built with
 
 * [Linux Mint](https://www.linuxmint.com/)
-* [Eclipse](https://eclipse.org/)
+* [Visual Studio Code](https://code.visualstudio.com/)
 * [Remarkable](https://remarkableapp.github.io/)
 * [PHPUnit](https://phpunit.de/)
-* [PHPCodeSniffer](https://www.squizlabs.com/php-codesniffer)
+* [PHPCodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+* [Composer](https://getcomposer.org/)
 * [Git](https://git-scm.com/)
 * [GitHub](https://github.com/)
-* [Travis](https://travis-ci.org/)
 
 ## Versioning
 
-This project is versioning according to [SemVer](http://semver.org/)  versioning standars. All available [releases](https://github.com/ExOrg/php-data-coder/releases) are [tagged](https://github.com/ExOrg/php-data-coder/tags). 
+This project is versioning according to [SemVer](http://semver.org/)  versioning standars. All available [releases](https://github.com/ExOrg/php-data-coder/releases) are [tagged](https://github.com/ExOrg/php-data-coder/tags).
 
 ## Contributing
 

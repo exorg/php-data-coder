@@ -1,14 +1,17 @@
 <?xml version="1.0"?>
-<ruleset name="PHP_CodeSniffer">
- <description>The coding standard for PHP_CodeSniffer itself.</description>
+<ruleset name="ExOrg_PHP_DataCoder">
+ <description>The coding standard for PHPDataCoder.</description>
 
- <exclude-pattern>tests/testing_environment/data/*</exclude-pattern>
- <exclude-pattern>tests/testing_environment/files/*</exclude-pattern>
- <exclude-pattern>src/data_format/DataFormat.php</exclude-pattern>
+ <file>./src</file>
+ <file>./tests</file>
+
+ <exclude-pattern>./tests/testing_environment/data/*</exclude-pattern>
+ <exclude-pattern>./tests/testing_environment/files/*</exclude-pattern>
+ <exclude-pattern>./src/data_format/DataFormat.php</exclude-pattern>
 
  <arg name="report" value="full"/>
  <arg value="np"/>
 
  <rule ref="PSR1"/>
- <rule ref="PSR2"/>
+ <rule ref="PSR12"/>
 </ruleset>

@@ -1,7 +1,6 @@
 {
     "name": "exorg/data-coder",
     "description": "Expansible Universal Data and Data Files Decoder/Encoder.",
-    "version": "1.0.0",
     "type": "library",
     "keywords": [
         "exorg",
@@ -19,48 +18,32 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "garoevans/php-enum": "*"
+        "php": "8.1 - 8.3",
+        "symfony/yaml": "^6.3",
+        "garoevans/php-enum": "^1.2"
     },
     "require-dev": {
-        "phpunit/PHPUnit": "4.4.*",
-        "squizlabs/php_codesniffer": "*"
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpunit/phpunit": "^10.4"
     },
     "autoload": {
         "psr-4": {
-            "Exorg\\DataCoder\\": [
-            	"src/",
-            	"src/coders",
-            	"src/coders/data_coders/",
-            	"src/coders/data_coders/data_encoders/",
-            	"src/coders/data_coders/data_decoders/",
-            	"src/coders/datafile_coders/",
-            	"src/coders/datafile_coders/datafile_encoders/",
-            	"src/coders/datafile_coders/datafile_decoders/",
-            	"src/data_format/",
-            	"src/coder_builder/",
-            	"src/file/"
+            "ExOrg\\DataCoder\\": [
+                "src/"
             ]
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Exorg\\DataCoder\\": [
-            	"tests/",
-            	"tests/testing_environment/",
-            	"tests/testing_environment/helpers/",
-            	"tests/testing_environment/classes/",
-            	"tests/unit_tests/coders/",
-            	"tests/unit_tests/coders/data_coders/",
-            	"tests/unit_tests/coders/data_coders/data_encoders/",
-            	"tests/unit_tests/coders/data_coders/data_decoders/",
-            	"tests/unit_tests/coders/datafile_coders/",
-            	"tests/unit_tests/coders/datafile_coders/datafile_encoders/",
-            	"tests/unit_tests/coders/datafile_coders/datafile_decoders/",
-            	"tests/unit_tests/data_format/",
-            	"tests/unit_tests/coder_builder/",
-            	"tests/unit_tests/file/"
+            "ExOrg\\DataCoder\\": [
+                "tests/unit_tests/",
+                "tests/fixtures/classes/"
             ]
         }
-    }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit ./tests",
+        "sniff": "vendor/bin/phpcs ./src ./tests",
+        "check": "composer test; composer sniff"
+	}
 }
